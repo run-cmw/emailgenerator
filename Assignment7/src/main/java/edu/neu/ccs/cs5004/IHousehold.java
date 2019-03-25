@@ -1,5 +1,5 @@
-package java.edu.neu.ccs.cs5004;
+package edu.neu.ccs.cs5004;
 
-public class IHousehold {
+public interface IHousehold {
 
 }
