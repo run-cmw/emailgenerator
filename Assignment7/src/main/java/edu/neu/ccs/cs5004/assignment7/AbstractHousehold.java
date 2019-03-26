@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  * This abstract class is for Household items
