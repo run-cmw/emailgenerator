@@ -17,7 +17,7 @@ public class BeerTest {
 
   @Test
   public void testGetAge() {
-    assertEquals((int) 20, beer.getMinAge());
+    assertEquals((int) 21, beer.getMinAge());
   }
 
   @Test

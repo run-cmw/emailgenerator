@@ -11,12 +11,11 @@ public abstract class AbstractProducts implements IProducts {
   protected int minAge;
 
 
-
   public AbstractProducts(String manufacturer, String productName, int price, int minAge) {
     this.manufacturer = manufacturer;
     this.productName = productName;
     this.price = price;
-    this.minAge = 0;
+    this.minAge = minAge;
   }
 
   /**
