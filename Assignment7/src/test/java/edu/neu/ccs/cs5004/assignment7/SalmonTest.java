@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 
+/**
+ * Note: inherited methods tested in BeerTest. Testing for construction.
+ */
 public class SalmonTest {
 
   AbstractGrocery salmon;

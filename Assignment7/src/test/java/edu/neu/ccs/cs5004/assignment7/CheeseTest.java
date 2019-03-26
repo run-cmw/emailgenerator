@@ -15,6 +15,6 @@ public class CheeseTest {
   @Before
   public void setUp() throws Exception {
     cheese = new Cheese("cheeseManufacturer", "cheese1", 3,
-        21, 20);
+        0, 20);
   }
 }
