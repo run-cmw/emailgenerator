@@ -44,4 +44,10 @@ public class Customer implements ICustomer {
   public Integer getAge() {
     return age;
   }
+  /**
+   * Returns the total cost of items
+   * @return cost of items
+   */
+
+
 }
