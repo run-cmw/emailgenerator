@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  * This class represents the abstract class for products
@@ -11,12 +11,11 @@ public abstract class AbstractProducts implements IProducts {
   protected int minAge;
 
 
-
   public AbstractProducts(String manufacturer, String productName, int price, int minAge) {
     this.manufacturer = manufacturer;
     this.productName = productName;
     this.price = price;
-    this.minAge = 0;
+    this.minAge = minAge;
   }
 
   /**
@@ -24,7 +23,7 @@ public abstract class AbstractProducts implements IProducts {
    * @return manufacturer
    */
   public String getManufacturer() {
-    return manufacturer;
+    return this.manufacturer;
   }
 
   /**
@@ -32,7 +31,7 @@ public abstract class AbstractProducts implements IProducts {
    * @return productName
    */
   public String getProductName() {
-    return productName;
+    return this.productName;
   }
 
   /**
@@ -40,7 +39,7 @@ public abstract class AbstractProducts implements IProducts {
    * @return
    */
   public int getPrice() {
-    return price;
+    return this.price;
   }
 
   /**
@@ -48,6 +47,6 @@ public abstract class AbstractProducts implements IProducts {
    * @return minAge
    */
   public int getMinAge() {
-    return minAge;
+    return this.minAge;
   }
 }

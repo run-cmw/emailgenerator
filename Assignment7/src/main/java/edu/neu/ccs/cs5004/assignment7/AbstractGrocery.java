@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  * This is an abstract class for Grocery items
@@ -17,6 +17,6 @@ public abstract class AbstractGrocery extends AbstractProducts {
    * @return weight
    */
   public int getWeight() {
-    return weight;
+    return this.weight;
   }
 }
