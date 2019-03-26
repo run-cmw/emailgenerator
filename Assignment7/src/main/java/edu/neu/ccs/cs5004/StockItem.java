@@ -8,4 +8,5 @@ public class StockItem {
     this.product = product;
     this.quantitiy = quantitiy;
   }
+
 }
