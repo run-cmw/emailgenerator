@@ -12,13 +12,22 @@ public class InventorySystem implements IInventorySystem{
   }
 
   @Override
-  public Boolean enoughItemsInStock(IStockItem item) {
-    return null;
+  public Boolean enoughItemsInStock(IStockItem item, int quantity) {
+    if (item.getQuantity() >= quantity) {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
   @Override
-  public void reduceStockItem(IStockItem item) {
-
+  public void reduceStockItem(IStockItem item, int quantity) throws NotEnoughItemsInStockException{
+    if (enoughItemsInStock(item, quantity)) {
+      item.reduceQuantity(quantity);
+    } else {
+      throw new NotEnoughItemsInStockException();
+    }
   }
 
   @Override
@@ -32,12 +41,29 @@ public class InventorySystem implements IInventorySystem{
       householdStock.add(item);
     }
   }
-
+  @Override
   public ArrayList<IStockItem> getGroceryStock() {
     return this.groceryStock;
   }
-
+  @Override
   public ArrayList<IStockItem> getHouseholdStock() {
     return this.householdStock;
+  }
+
+  @Override
+  public int getTotalRetailValue() {
+    int value = 0;
+    int grocerySize = this.groceryStock.size();
+    int householdSize = this.householdStock.size();
+
+    // Iterating through groceryStock list and adding all prices.
+    for (int i = 0; i < grocerySize; i++) {
+      value += this.groceryStock.get(i).getProduct().getPrice();
+    }
+    // Iterating through householdStock list and adding all prices.
+    for (int i = 0; i < householdSize; i++) {
+      value += this.householdStock.get(i).getProduct().getPrice();
+    }
+    return value;
   }
 }
