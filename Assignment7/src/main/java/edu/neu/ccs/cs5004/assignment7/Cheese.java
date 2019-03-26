@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.assignment7;
+package java.edu.neu.ccs.cs5004.assignment7;
 
 /**
  * This class represents cheese. It extends from the abstract class AbstractGrocery
