@@ -1,12 +1,19 @@
 package edu.neu.ccs.cs5004.assignment7;
 
-public class StockItem {
-  private AbstractProducts product;
-  private int quantitiy;
+public class StockItem implements IStockItem {
+  private IProducts product;
+  private int quantity;
 
-  public StockItem(AbstractProducts product, int quantitiy) {
+  public StockItem(IProducts product, int quantity) {
     this.product = product;
-    this.quantitiy = quantitiy;
+    this.quantity = quantity;
   }
 
+  public IProducts getProduct() {
+    return this.product;
+  }
+
+  public int getQuantity() {
+    return this.quantity;
+  }
 }
