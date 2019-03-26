@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  *This class represents Beer. It extends the abstract class AbstractGrocery.
@@ -19,4 +19,5 @@ public class Beer extends AbstractGrocery {
   public Beer(String manufacturer, String productName, int price, int minAge, int weight) {
     super(manufacturer, productName, price, minAge, weight);
   }
+
 }

@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004;
+package edu.neu.ccs.cs5004.assignment7;
 
 public class StockItem {
   private AbstractProducts product;
