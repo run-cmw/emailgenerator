@@ -16,4 +16,8 @@ public class StockItem implements IStockItem {
   public int getQuantity() {
     return this.quantity;
   }
+
+  public void reduceQuantity(int quantity) {
+    this.quantity -= quantity;
+  }
 }

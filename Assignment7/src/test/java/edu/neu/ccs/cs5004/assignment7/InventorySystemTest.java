@@ -10,7 +10,7 @@ public class InventorySystemTest {
   IInventorySystem system;
   IStockItem groceryItem;
   IStockItem householdItem;
-  AbstractGrocery salmon = new Salmon("salmonManufacturer", "salmon1", 3,
+  AbstractGrocery salmon = new Salmon("salmonManufacturer", "salmon1", 5,
       21, 20);
   AbstractHousehold towel =  new PaperTowels("towelCreator", "towel1", 3,
       0, 20);
@@ -23,16 +23,7 @@ public class InventorySystemTest {
   }
 
   @Test
-  public void enoughItemsInStock() {
-  }
-
-  @Test
-  public void reduceStockItem() {
-  }
-
-  @Test
   public void addNewGroceryItem() {
-    system = new InventorySystem();
     int grocerySize = system.getGroceryStock().size();
     int householdSize = system.getHouseholdStock().size();
     assertEquals((int)0, grocerySize);
@@ -43,7 +34,6 @@ public class InventorySystemTest {
     assertEquals((int)1, grocerySize);
     assertEquals((int)0, householdSize);
   }
-
 
   @Test
   public void addNewHouseholdItem() {
@@ -57,6 +47,26 @@ public class InventorySystemTest {
     householdSize = system.getHouseholdStock().size();
     assertEquals((int)0, grocerySize);
     assertEquals((int)1, householdSize);
+  }
+
+  @Test
+  public void enoughItemsInStock() {
+  }
+
+  @Test
+  public void reduceStockItem() {
+  }
+
+  @Test
+  public void getTotalRetailValue() {
+    assertEquals((int) 0, system.getTotalRetailValue());
+    // Adding salmon grocery product that costs 5.
+    system.addNewItem(groceryItem);
+    assertEquals((int) 5, system.getTotalRetailValue());
+
+    // Adding towel grocery product that costs 3. Total should be 8
+    system.addNewItem(householdItem);
+    assertEquals((int) 8, system.getTotalRetailValue());
   }
 
 }
