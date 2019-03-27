@@ -4,16 +4,16 @@ public interface IShoppingCart {
 
   /**
    * Adds an item to the shopping cart
-   * @param item item
+   * @param product - Product to be added to the shopping cart.
    */
-  void addProduct(IStockItem item) throws NotEnoughItemsInStockException;
+  void addProduct (IProducts product) throws NotEnoughItemsInStockException;
 
   /**
    * Adds item to the shopping cart based on quantity
-   * @param item item
+   * @param product - Product to be added to the shopping cart.
    * @param quantity of item
    */
-  void addProduct(IStockItem item, int quantity) throws NotEnoughItemsInStockException;
+  void addProduct (IProducts product, int quantity) throws NotEnoughItemsInStockException;
 
   /**
    * Returns the total cost of items in the cart

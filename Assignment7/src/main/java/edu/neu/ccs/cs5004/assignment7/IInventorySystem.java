@@ -47,5 +47,14 @@ public interface IInventorySystem {
    */
   ArrayList<IStockItem> getHouseholdStock();
 
+  /**
+   * Gathers all items in the cart and prepares for pickup.
+   * @param cart - The shopping cart filled with the order that the customer has placed.
+   * @return - A shopping cart
+   */
+  IShoppingCart fulfillOrder(IShoppingCart cart);
+
+  IStockItem findStockItem(IProducts product);
+
 
 }

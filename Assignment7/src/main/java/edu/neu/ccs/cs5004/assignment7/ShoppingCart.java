@@ -7,34 +7,38 @@ import java.util.ArrayList;
 
 public class ShoppingCart implements IShoppingCart {
   private static final int MIN_QUANTITY = 1;
+  private IInventorySystem inventory;
 
-  private ArrayList<IStockItem> shoppingCart;
+  private ArrayList<IProducts> shoppingCart;
 
-  public ShoppingCart() {
-    shoppingCart = new ArrayList<IStockItem>();
+  public ShoppingCart(IInventorySystem inventory) {
+    shoppingCart = new ArrayList<IProducts>();
+    this.inventory = inventory;
   }
 
   //create a method to add items to the shopping cart
-  public void addProduct(IStockItem item) throws NotEnoughItemsInStockException {
+  public void addProduct(IProducts product) throws NotEnoughItemsInStockException {
     int quantity = MIN_QUANTITY;
+    IStockItem item = this.inventory.findStockItem(product);
     try {
       if (item.getQuantity() < quantity) {
         throw new NotEnoughItemsInStockException();
       } else {
-        shoppingCart.add(item);
+        shoppingCart.add(product);
       }
     } catch (Exception NotEnoughItemsInStockException) {
         System.out.print("Cannot add " + item.getProduct().getProductName() + " to the cart.");
     }
   }
 
-  public void addProduct (IStockItem item, int quantity) throws NotEnoughItemsInStockException {
+  public void addProduct (IProducts product, int quantity) throws NotEnoughItemsInStockException {
+    IStockItem item = this.inventory.findStockItem(product);
     try {
       if (item.getQuantity() < quantity) {
         throw new NotEnoughItemsInStockException();
       } else {
         for (int i = quantity; i > 0; i--) {
-          shoppingCart.add(item);
+          shoppingCart.add(product);
         }
       }
     } catch (Exception NotEnoughItemsInStockException) {
@@ -48,7 +52,8 @@ public class ShoppingCart implements IShoppingCart {
 
     // Iterating through shoppingCart list and adding all prices.
     for (int i = 0; i < cartSize; i++) {
-      value += this.shoppingCart.get(i).getProduct().getPrice();
+      IProducts currentProduct = this.shoppingCart.get(i);
+      value += currentProduct.getPrice();
     }
     return value;
   }

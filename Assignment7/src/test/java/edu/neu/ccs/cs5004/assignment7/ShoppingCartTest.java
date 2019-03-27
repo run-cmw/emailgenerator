@@ -11,6 +11,7 @@ public class ShoppingCartTest {
   IProducts shampoo;
   IStockItem salmonItem;
   IStockItem shampooItem;
+  IInventorySystem inventory;
 
   @Before
   public void setUp() throws Exception {
@@ -20,27 +21,30 @@ public class ShoppingCartTest {
         0, 20);
     salmonItem = new StockItem(salmon, 3);
     shampooItem = new StockItem(shampoo, 1);
-    cart = new ShoppingCart();
+    inventory = new InventorySystem();
+    inventory.addNewItem(salmonItem);
+    inventory.addNewItem(shampooItem);
+    cart = new ShoppingCart(inventory);
   }
 
   @Test
   public void addProduct() throws NotEnoughItemsInStockException {
-    cart.addProduct(salmonItem);
+    cart.addProduct(salmon);
     assertEquals((int) 2, cart.getTotalCostOfItems());
   }
 
   @Test
   public void invalidAddProduct() throws NotEnoughItemsInStockException {
-    cart.addProduct(salmonItem, 4);
+    cart.addProduct(salmon, 4);
   }
 
   @Test
   public void getTotalCostOfItems() throws NotEnoughItemsInStockException {
-    cart.addProduct(salmonItem);
+    cart.addProduct(salmon);
     assertEquals((int) 2, cart.getTotalCostOfItems());
-    cart.addProduct(salmonItem, 2);
+    cart.addProduct(salmon, 2);
     assertEquals((int) 6, cart.getTotalCostOfItems());
-    cart.addProduct(shampooItem);
+    cart.addProduct(shampoo);
     assertEquals((int) 9, cart.getTotalCostOfItems());
   }
 }
