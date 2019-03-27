@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * This Abstract class represents receipts
  */
-public class AbstractReceipt {
+public class AbstractReceipt implements IReceipt{
   private int totalPrice;
   private ArrayList<StockItem> receivedItemsList;
   private ArrayList<StockItem> outOfStockList;
