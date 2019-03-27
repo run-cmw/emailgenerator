@@ -1,4 +1,4 @@
-package java.edu.neu.ccs.cs5004.assignment7;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  * This class represents product Salmon. This class extends from the abstract class AbstractGrocery.

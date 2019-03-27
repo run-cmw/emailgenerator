@@ -1,4 +1,4 @@
-package java.edu.neu.ccs.cs5004.assignment7;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  * This class represents Shampoo objects. It extends from the abstract class AbstractHousehold
