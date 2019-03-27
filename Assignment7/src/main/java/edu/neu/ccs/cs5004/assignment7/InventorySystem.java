@@ -31,7 +31,6 @@ public class InventorySystem implements IInventorySystem {
     } else {
       return false;
     }
-
   }
 
   /**
@@ -74,8 +73,7 @@ public class InventorySystem implements IInventorySystem {
   @Override
   public ArrayList<IStockItem> getGroceryStock() {
     return this.groceryStock;
-  }
-
+  
   /**
    * Returns a list of Household stock
    *

@@ -31,18 +31,24 @@ public class StockItem implements IStockItem {
   }
 
   /**
-   * Get quantity of product
-   * @return quantity of products
+   * Get quantity of product this product that the supermarket has in stock
+   * @return quantity of product in stock
    */
   public int getQuantity() {
     return this.quantity;
   }
 
   /**
-   * Reduces the quantity of product
+   * Reduce the quantity of product if there is sufficient quantity.
+   *
    * @param quantity of product
+   * @throws NotEnoughItemsInStockException
    */
-  public void reduceQuantity(int quantity) {
-    this.quantity -= quantity;
+  public void reduceQuantity(int quantity) throws NotEnoughItemsInStockException {
+    if (InventorySystem.enoughItemsInStock()) {
+      this.quantity -= quantity;
+    }
+    else {
+      throw new NotEnoughItemsInStockException();
+    }
   }
-}
