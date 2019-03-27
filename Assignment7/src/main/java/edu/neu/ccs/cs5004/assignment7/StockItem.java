@@ -6,15 +6,20 @@ package edu.neu.ccs.cs5004.assignment7;
 public class StockItem implements IStockItem {
   private IProducts product;
   private int quantity;
+  private static final int MIN_QUANTITY = 1;
 
   /**
    * Constructs a stock Item object
    * @param product product
    * @param quantity quantity of product
    */
-  public StockItem(IProducts product, int quantity) {
+  public StockItem(IProducts product, int quantity) throws InvalidQuantityException {
     this.product = product;
-    this.quantity = quantity;
+    if (quantity < MIN_QUANTITY ) {
+      throw new InvalidQuantityException();
+    } else {
+      this.quantity = quantity;
+    }
   }
 
   /**

@@ -1,25 +1,20 @@
 package edu.neu.ccs.cs5004.assignment7;
-
-
 import java.util.ArrayList;
 
 /**
  * This class represents the shopping cart
  */
 
-public class ShoppingCart extends AbstractProducts {
+public class ShoppingCart implements IShoppingCart {
   private static final int MIN_QUANTITY = 1;
 
   private ArrayList<IStockItem> shoppingCart;
 
-  public ShoppingCart(String manufacturer, String productName, int price, int minAge) {
-    super(manufacturer, productName, price, minAge);
+  public ShoppingCart() {
+    shoppingCart = new ArrayList<IStockItem>();
   }
 
-  //TODO: SHOULD HAVE A WAY TO CALCULATE TOTAL COST OF ALL ITEMS
-
   //create a method to add items to the shopping cart
-
   public void addProduct(IStockItem item) throws NotEnoughItemsInStockException {
     int quantity = MIN_QUANTITY;
     try {
@@ -33,23 +28,28 @@ public class ShoppingCart extends AbstractProducts {
     }
   }
 
-
   public void addProduct (IStockItem item, int quantity) throws NotEnoughItemsInStockException {
     try {
       if (item.getQuantity() < quantity) {
         throw new NotEnoughItemsInStockException();
       } else {
-        shoppingCart.add(item);
+        for (int i = quantity; i > 0; i--) {
+          shoppingCart.add(item);
+        }
       }
     } catch (Exception NotEnoughItemsInStockException) {
       System.out.print("Cannot add " + item.getProduct().getProductName() + " to the cart.");
     }
   }
 
+  public int getTotalCostOfItems(){
+    int value = 0;
+    int cartSize = this.shoppingCart.size();
 
-
-
-  public int gettotalCostOfItems(){
-    return 0;
+    // Iterating through shoppingCart list and adding all prices.
+    for (int i = 0; i < cartSize; i++) {
+      value += this.shoppingCart.get(i).getProduct().getPrice();
+    }
+    return value;
   }
 }
