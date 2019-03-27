@@ -18,10 +18,8 @@ public interface IStockItem {
   int getQuantity();
 
   /**
-   * Reduce the quantity of product if there is sufficient quantity.
-   *
+   * Reduce the quantity of product.
    * @param quantity of product to reduce
-   * @throws NotEnoughItemsInStockException
    */
-  void reduceQuantity(int quantity) throws NotEnoughItemsInStockException;
+  void reduceQuantity(int quantity);
 }

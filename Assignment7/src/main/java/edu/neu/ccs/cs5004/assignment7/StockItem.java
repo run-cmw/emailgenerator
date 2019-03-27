@@ -39,16 +39,10 @@ public class StockItem implements IStockItem {
   }
 
   /**
-   * Reduce the quantity of product if there is sufficient quantity.
-   *
-   * @param quantity of product
-   * @throws NotEnoughItemsInStockException
+   * Reduce the quantity of product.
+   * @param quantity of product to reduce
    */
-  public void reduceQuantity(int quantity) throws NotEnoughItemsInStockException {
-    if (InventorySystem.enoughItemsInStock()) {
-      this.quantity -= quantity;
-    }
-    else {
-      throw new NotEnoughItemsInStockException();
-    }
+  public void reduceQuantity(int quantity) {
+    this.quantity -= quantity;
   }
+}
