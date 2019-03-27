@@ -1,4 +1,4 @@
-package java.edu.neu.ccs.cs5004.assignment7;
+package edu.neu.ccs.cs5004.assignment7;
 
 public interface IShoppingCart {
 
@@ -13,7 +13,7 @@ public interface IShoppingCart {
    * @param item item
    * @param quantity of item
    */
-  void addporduct(IStockItem item, int quantity);
+  void addProduct(IStockItem item, int quantity);
 
   /**
    * Returns the total cost of items in the cart

@@ -1,4 +1,4 @@
-package java.edu.neu.ccs.cs5004.assignment7;
+package edu.neu.ccs.cs5004.assignment7;
 
 
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 
 public class ShoppingCart extends AbstractProducts {
+  private static final int MIN_QUANTITY = 1;
 
-
-  private ArrayList<IProducts> shoppingCart;
+  private ArrayList<IStockItem> shoppingCart;
 
   public ShoppingCart(String manufacturer, String productName, int price, int minAge) {
     super(manufacturer, productName, price, minAge);
@@ -20,15 +20,30 @@ public class ShoppingCart extends AbstractProducts {
 
   //create a method to add items to the shopping cart
 
-  public void addProduct(IStockItem item) throws NotEnoughItemsInStockException{
-
-
-
+  public void addProduct(IStockItem item) throws NotEnoughItemsInStockException {
+    int quantity = MIN_QUANTITY;
+    try {
+      if (item.getQuantity() < quantity) {
+        throw new NotEnoughItemsInStockException();
+      } else {
+        shoppingCart.add(item);
+      }
+    } catch (Exception NotEnoughItemsInStockException) {
+        System.out.print("Cannot add " + item.getProduct().getProductName() + " to the cart.");
+    }
   }
 
 
-  public void addporduct(IStockItem item, int quantity) throws NotEnoughItemsInStockException {
-
+  public void addProduct (IStockItem item, int quantity) throws NotEnoughItemsInStockException {
+    try {
+      if (item.getQuantity() < quantity) {
+        throw new NotEnoughItemsInStockException();
+      } else {
+        shoppingCart.add(item);
+      }
+    } catch (Exception NotEnoughItemsInStockException) {
+      System.out.print("Cannot add " + item.getProduct().getProductName() + " to the cart.");
+    }
   }
 
 
