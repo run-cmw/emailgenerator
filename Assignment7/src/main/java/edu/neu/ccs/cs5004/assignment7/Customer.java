@@ -1,4 +1,4 @@
-package java.edu.neu.ccs.cs5004.assignment7;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  * This class represents a Customer
@@ -44,4 +44,10 @@ public class Customer implements ICustomer {
   public Integer getAge() {
     return age;
   }
+  /**
+   * Returns the total cost of items
+   * @return cost of items
+   */
+
+
 }

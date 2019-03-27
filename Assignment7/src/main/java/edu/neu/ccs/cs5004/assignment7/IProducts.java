@@ -1,4 +1,4 @@
-package java.edu.neu.ccs.cs5004.assignment7;
+package edu.neu.ccs.cs5004.assignment7;
 
 /**
  * Interface for Products
