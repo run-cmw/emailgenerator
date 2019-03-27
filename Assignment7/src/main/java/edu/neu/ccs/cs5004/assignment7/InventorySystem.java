@@ -18,7 +18,6 @@ public class InventorySystem implements IInventorySystem{
     } else {
       return false;
     }
-
   }
 
   @Override
@@ -41,10 +40,12 @@ public class InventorySystem implements IInventorySystem{
       householdStock.add(item);
     }
   }
+
   @Override
   public ArrayList<IStockItem> getGroceryStock() {
     return this.groceryStock;
   }
+
   @Override
   public ArrayList<IStockItem> getHouseholdStock() {
     return this.householdStock;
