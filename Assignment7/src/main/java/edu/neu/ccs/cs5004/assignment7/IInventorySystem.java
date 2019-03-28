@@ -49,13 +49,30 @@ public interface IInventorySystem {
 
   /**
    * Gathers all items in the cart and prepares for pickup.
+   *
+   * @param cart - The shopping cart filled with the order that the customer has placed.
+   * @return - Updated shopping cart with applicable substitutions
+   */
+  IShoppingCart fulfillOrder(IShoppingCart cart);
+
+  /**
+   * Processes the order by removing products that the customer is not old enough to
+   * purchase and returning a receipt summarizing the purchase.
    * @param cart - The shopping cart filled with the order that the customer has placed.
    * @param customer - The customer that the shopping cart belongs to
-   * @return - A shopping cart
+   * @param outOfStockList - A list of items that were out of stock.
+   * @return - Receipt summarizing the order.
+   * @throws NotEnoughItemsInStockException - Exception that is thrown if there are not enough items
+   * in stock for the customer to obtain that quantity.
    */
-  IReceipt processOrder(IShoppingCart cart, ICustomer customer, ArrayList<IProducts> outOfStockList)
-      throws NotEnoughItemsInStockException ;
+  IReceipt processOrder(IShoppingCart cart, ICustomer customer,
+      ArrayList<IProducts> outOfStockList) throws NotEnoughItemsInStockException;
 
+  /**
+   * Helper method to find the StockItem that maps to a product.
+   * @param product - The product that the StockItem should map to.
+   * @return IStockItem that maps to the given product.
+   */
   IStockItem findStockItem(IProducts product);
 
 }

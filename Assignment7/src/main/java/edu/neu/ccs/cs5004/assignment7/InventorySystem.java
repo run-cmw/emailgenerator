@@ -55,11 +55,6 @@ public class InventorySystem implements IInventorySystem {
    */
   @Override
   public void addNewItem(IStockItem item) {
-// Remove comment after reading: made helper method isGrocery since this code is repeated several times in the class
-//    Class grocery = AbstractGrocery.class;
-//    Boolean isGrocery = grocery.isInstance(item.getProduct());
-// Also, not sure if this is the best way to do this since there will be more StockItems
-// added (e.g. electronics, toys, etc.). But that's something to keep in mind for future assignments.
     if (isGrocery(item.getProduct())) {
       groceryStock.add(item);
     } else {
@@ -113,23 +108,28 @@ public class InventorySystem implements IInventorySystem {
    * Gathers all items in the cart and prepares for pickup.
    *
    * @param cart - The shopping cart filled with the order that the customer has placed.
-   * @return - A shopping cart
+   * @return - Updated shopping cart with applicable substitutions
    */
   @Override
   public IShoppingCart fulfillOrder(IShoppingCart cart) {
+    ArrayList<IProducts> cartList = cart.getShoppingCartProductsList();
+    int shoppingCartSize = cart.getShoppingCartProductsList().size();
     IStockItem substitute;
-    int shoppingCartSize = cart.size();
 
     for (int i = 0; i < shoppingCartSize; i++) {
-      if (!enoughItemsInStock(i)) {
-        substituteCartProduct();
-      }
-      else {
-        // CHANGE method below!! Remove original item from cart not from stock. ShoppingCart needs remove method.
-        reduceStockItem(i);
+      IProducts currentProduct = cartList.get(i);
+      if (!enoughItemsInStock(cartList(i))) {
+        substituteCartProduct(cart, substitute);
+        // Replace original item i with substitute?
+        cartlist(i) = substitute;
+
+        // If no suitable substitution is found, the item will be removed from the customer’s
+        //cart.
+        cart.removeProduct(cartList(i));
       }
     }
 
+    // return updated cart to be used by processOrder()
     return cart;
   }
 
@@ -139,26 +139,26 @@ public class InventorySystem implements IInventorySystem {
    *
    * @throws NotEnoughItemsInStockException if there is not a sufficient quantity of an item
    */
-  private void substituteCartProduct() throws NotEnoughItemsInStockException {
-    IShoppingCart cart;
-    IProducts substitute = ; // get cart item type then just start iterating through applicable list for subs?
+  private void substituteCartProduct(IShoppingCart cart, IProducts original) throws NotEnoughItemsInStockException {
+    ArrayList<IProducts> cartList = cart.getShoppingCartProductsList();
+    IStockItem substitute;
 
-    for (int i = 0; i < cart.size(); i++) {
-      if(isSameType(substitute) && isSimilarPrice(substitute) && isSimilarWeight(substitute) && enoughItemsInStock(substitute)) {
-        cart.addProduct(substitute);
-      }
+    if(isSameType(substitute, original) && isSimilarPrice(substitute, original) && isSimilarAmount(substitute, original) && enoughItemsInStock(substitute)) {
+      IProducts currentProduct = cartList.get(i);
+      // get shopping cart item type
+      IProducts substituteClass = currentProduct.getClass(); // need to get the class of the item, but this is a list.
+      // iterate through substituteClass list
+      // add to shopping cart whichever meets requirements
+      cart.addProduct(substitute);
     }
   }
 
   /**
-   * Private method to find the StockItem that maps to a product.
+   * Helper method to find the StockItem that maps to a product.
    * @param product - The product that the StockItem should map to.
    * @return IStockItem that maps to the given product.
    */
   public IStockItem findStockItem(IProducts product) {
-// Remove comment after reading: made helper method isGrocery since this code is repeated several times in the class
-//    Class grocery = AbstractGrocery.class;
-//    Boolean isGrocery = grocery.isInstance(product);
     int size;
     ArrayList<IStockItem> list;
     IStockItem item = null;
@@ -208,17 +208,17 @@ public class InventorySystem implements IInventorySystem {
   }
 
   /**
-   * Private method to return whether the substitute product is the same weight or more than the original product.
+   * Private method to return whether the substitute product is the same weight (if AbstractGrocery) or same units (if AbstractHousehold) or more than the original product.
    *
    * @param substitute - product to substitute original item in ShoppingCart
-   * @return true if substitute product is a similar weight as original product and false otherwise
+   * @return true if substitute product is a similar weight or units as original product and false otherwise
    */
-  private boolean isSimilarWeight(IProducts substitute, IProducts original) {
+  private boolean isSimilarAmount(IProducts substitute, IProducts original) {
     if (isGrocery(substitute)) {
       return (((AbstractGrocery)substitute).getWeight() >= ((AbstractGrocery)original).getWeight());
     } else {
       // If not a grocery item, weight does not matter and therefore should not impact substitution.
-      return true;
+      return (((AbstractHousehold)substitute).getUnits() >= ((AbstractHousehold)original).getUnits());
     }
   }
 
