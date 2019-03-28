@@ -53,7 +53,8 @@ public interface IInventorySystem {
    * @param cart - The shopping cart filled with the order that the customer has placed.
    * @return - Updated shopping cart with applicable substitutions
    */
-  IShoppingCart fulfillOrder(IShoppingCart cart);
+  IShoppingCart fulfillOrder(IShoppingCart cart, ArrayList<IProducts> outOfStockList)
+      throws NotEnoughItemsInStockException;
 
   /**
    * Processes the order by removing products that the customer is not old enough to

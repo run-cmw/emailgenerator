@@ -11,8 +11,8 @@ public class InventorySystem implements IInventorySystem {
   private ArrayList<IStockItem> householdStock;
 
   public InventorySystem() {
-    groceryStock = new ArrayList<IStockItem>();
-    householdStock = new ArrayList<IStockItem>();
+    groceryStock = new ArrayList<>();
+    householdStock = new ArrayList<>();
   }
 
   /**
@@ -111,25 +111,19 @@ public class InventorySystem implements IInventorySystem {
    * @return - Updated shopping cart with applicable substitutions
    */
   @Override
-  public IShoppingCart fulfillOrder(IShoppingCart cart) {
+  public IShoppingCart fulfillOrder(IShoppingCart cart, ArrayList<IProducts> outOfStockList) throws NotEnoughItemsInStockException {
     ArrayList<IProducts> cartList = cart.getShoppingCartProductsList();
     int shoppingCartSize = cart.getShoppingCartProductsList().size();
-    IStockItem substitute;
 
+    // Iterate through shopping cart. If the product is out of stock, call substitute Cart Product
+    // helper function.
     for (int i = 0; i < shoppingCartSize; i++) {
       IProducts currentProduct = cartList.get(i);
-      if (!enoughItemsInStock(cartList(i))) {
-        substituteCartProduct(cart, substitute);
-        // Replace original item i with substitute?
-        cartlist(i) = substitute;
-
-        // If no suitable substitution is found, the item will be removed from the customer’s
-        //cart.
-        cart.removeProduct(cartList(i));
+      IStockItem currentStockItem = this.findStockItem(currentProduct);
+      if (!this.enoughItemsInStock(currentStockItem, 1)) {
+        this.substituteCartProduct(cart, currentProduct, outOfStockList);
       }
     }
-
-    // return updated cart to be used by processOrder()
     return cart;
   }
 
@@ -139,17 +133,22 @@ public class InventorySystem implements IInventorySystem {
    *
    * @throws NotEnoughItemsInStockException if there is not a sufficient quantity of an item
    */
-  private void substituteCartProduct(IShoppingCart cart, IProducts original) throws NotEnoughItemsInStockException {
+  private void substituteCartProduct(IShoppingCart cart, IProducts original,
+      ArrayList<IProducts> outOfStockList) throws NotEnoughItemsInStockException {
     ArrayList<IProducts> cartList = cart.getShoppingCartProductsList();
-    IStockItem substitute;
-
-    if(isSameType(substitute, original) && isSimilarPrice(substitute, original) && isSimilarAmount(substitute, original) && enoughItemsInStock(substitute)) {
-      IProducts currentProduct = cartList.get(i);
-      // get shopping cart item type
-      IProducts substituteClass = currentProduct.getClass(); // need to get the class of the item, but this is a list.
-      // iterate through substituteClass list
-      // add to shopping cart whichever meets requirements
-      cart.addProduct(substitute);
+    int size = cartList.size();
+    for (int i = 0; i < size; i++) {
+      IProducts substitute = cartList.get(i);
+      IStockItem substituteStockItem = this.findStockItem(substitute);
+      if (this.isSameType(substitute, original)
+          && this.isSimilarPrice(substitute, original)
+          && isSimilarAmount(substitute, original)
+          && enoughItemsInStock(substituteStockItem, 1)) {
+        cart.removeProduct(original);
+        cart.addProduct(substitute);
+        outOfStockList.add(original);
+        break;
+      }
     }
   }
 
@@ -199,7 +198,8 @@ public class InventorySystem implements IInventorySystem {
   }
 
   /**
-   * Private method to return whether the substitute product is the same price or cheaper than the original product.
+   * Private method to return whether the substitute product is the same price or
+   * cheaper than the original product.
    *
    * @return true if substitute product is a similar price as original product and false otherwise
    */
@@ -208,10 +208,12 @@ public class InventorySystem implements IInventorySystem {
   }
 
   /**
-   * Private method to return whether the substitute product is the same weight (if AbstractGrocery) or same units (if AbstractHousehold) or more than the original product.
+   * Private method to return whether the substitute product is the same weight (if AbstractGrocery)
+   * or same units (if AbstractHousehold) or more than the original product.
    *
    * @param substitute - product to substitute original item in ShoppingCart
-   * @return true if substitute product is a similar weight or units as original product and false otherwise
+   * @return true if substitute product is a similar weight or units as original product and false
+   * otherwise
    */
   private boolean isSimilarAmount(IProducts substitute, IProducts original) {
     if (isGrocery(substitute)) {
@@ -254,7 +256,7 @@ public class InventorySystem implements IInventorySystem {
   private ArrayList<IProducts> removeItemsFromCart(IShoppingCart cart, ICustomer customer)
       throws NotEnoughItemsInStockException {
     ArrayList<IProducts> cartList = cart.getShoppingCartProductsList();
-    ArrayList<IProducts> removedProducts = new ArrayList<IProducts>();
+    ArrayList<IProducts> removedProducts = new ArrayList<>();
 
     for (int i = 0; i < cartList.size(); i++) {
       IProducts currentProduct = cartList.get(i);
