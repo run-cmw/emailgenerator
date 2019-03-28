@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.assignment7;
 
+import java.util.Objects;
+
 /**
  * This is an abstract class for Grocery items
  */
@@ -26,5 +28,23 @@ public abstract class AbstractGrocery extends AbstractProducts {
    */
   public int getWeight() {
     return this.weight;
+  }
+
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof AbstractGrocery)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    AbstractGrocery that = (AbstractGrocery) o;
+    return getWeight() == that.getWeight();
+  }
+
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), getWeight());
   }
 }
