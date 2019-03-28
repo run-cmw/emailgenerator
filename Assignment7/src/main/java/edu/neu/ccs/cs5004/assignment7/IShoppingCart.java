@@ -29,7 +29,10 @@ public interface IShoppingCart {
    */
   ArrayList<IProducts> getShoppingCartProductsList();
 
-
+  /**
+   * Removes the given product from the shopping cart.
+   */
+  void removeProduct(IProducts product);
 
 
 }

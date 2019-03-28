@@ -65,4 +65,13 @@ public class ShoppingCart implements IShoppingCart {
   public ArrayList<IProducts> getShoppingCartProductsList() {
     return this.shoppingCart;
   }
+
+
+  /**
+   * Removes the given product from the shopping cart.
+   */
+  public void removeProduct(IProducts product) {
+    this.shoppingCart.remove(product);
+  }
+
 }
