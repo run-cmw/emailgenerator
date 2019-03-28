@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.assignment7;
 
+import java.util.ArrayList;
+
 public interface IShoppingCart {
 
   /**
@@ -20,6 +22,12 @@ public interface IShoppingCart {
    * @return the total cost of items in the cart
    */
   int getTotalCostOfItems();
+
+  /**
+   * Returns the list of products in the shopping cart.
+   * @return list of products in the shopping cart.
+   */
+  ArrayList<IProducts> getShoppingCartProductsList();
 
 
 

@@ -57,4 +57,12 @@ public class ShoppingCart implements IShoppingCart {
     }
     return value;
   }
+
+  /**
+   * Returns the list of products in the shopping cart.
+   * @return list of products in the shopping cart.
+   */
+  public ArrayList<IProducts> getShoppingCartProductsList() {
+    return this.shoppingCart;
+  }
 }
