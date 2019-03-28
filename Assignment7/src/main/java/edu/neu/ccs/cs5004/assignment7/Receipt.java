@@ -31,7 +31,7 @@ public class Receipt implements IReceipt{
    */
   @Override
   public ArrayList<IProducts> getRemovedProductList() {
-    return this.getRemovedProductList();
+    return this.removedItemsList;
   }
 
   /**
@@ -41,7 +41,7 @@ public class Receipt implements IReceipt{
    */
   @Override
   public ArrayList<IProducts> getOutOfStockProductList() {
-    return null;
+    return this.outOfStockList;
   }
 
   /**
@@ -51,7 +51,7 @@ public class Receipt implements IReceipt{
    */
   @Override
   public ArrayList<IProducts> getListOfProductsReceived() {
-    return null;
+    return this.receivedItemsList;
   }
 
   /**
@@ -61,7 +61,7 @@ public class Receipt implements IReceipt{
    */
   @Override
   public int getTotalPricePaid() {
-    return 0;
+    return this.totalPrice;
   }
 
   /**

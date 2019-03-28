@@ -56,7 +56,8 @@ public class ReceiptTest {
 
   @Test
   public void getTotalPricePaid() {
+    // Added cheese and shampoo - cheese price 2, shampoo price 5
     int price = receipt.getTotalPricePaid();
-    assertEquals((int) 5, price);
+    assertEquals((int) 7, price);
   }
 }
