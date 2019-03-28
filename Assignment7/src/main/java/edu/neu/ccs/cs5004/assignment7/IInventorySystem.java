@@ -54,7 +54,10 @@ public interface IInventorySystem {
    */
   IShoppingCart fulfillOrder(IShoppingCart cart);
 
-  IStockItem findStockItem(IProducts product);
-
-
+  /**
+   * Returns order receipt summarizing order.
+   * @param cart - The shopping cart filled with the order that the customer has placed.
+   * @return order receipt summarizing order
+   */
+  IReceipt processOrder(IShoppingCart cart);
 }
