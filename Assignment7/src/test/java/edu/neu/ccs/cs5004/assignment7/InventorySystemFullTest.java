@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class InventorySystemFullTest {
   private IInventorySystem system;
+  IShoppingCart cart;
   private IStockItem salmonItem;
   private IStockItem towelItem;
   private IStockItem beerItem;
@@ -33,7 +34,10 @@ public class InventorySystemFullTest {
     beerItem = new StockItem(beer, 3);
     cheeseItem = new StockItem(cheese, 4);
     shampooItem = new StockItem(shampoo, 5);
+    cart = new ShoppingCart(system);
   }
+
+
 
   @Test
   public void addNewGroceryItem() {
@@ -126,7 +130,13 @@ public class InventorySystemFullTest {
   }
 
   @Test
-  public void fulfillOrder() {
+  public void fulfillOrder() throws NotEnoughItemsInStockException {
+    // Adding to cart - salmon x2, shampoo
+    cart.addProduct(salmon);
+    cart.addProduct(salmon, 2);
+    cart.addProduct(shampoo);
+
+
   }
 
   @Test

@@ -17,6 +17,8 @@ public class Beer extends AbstractGrocery {
    * @param weight of this Beer
    */
   public Beer(String manufacturer, String productName, int price, int minAge, int weight) {
-    super(manufacturer, productName, price, MINIMUM_AGE, weight);
+    super(manufacturer, productName, price, minAge, weight);
+    this.minAge = MINIMUM_AGE;
+
   }
 }

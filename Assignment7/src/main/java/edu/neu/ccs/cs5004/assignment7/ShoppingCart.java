@@ -9,10 +9,10 @@ public class ShoppingCart implements IShoppingCart {
   private static final int MIN_QUANTITY = 1;
   private IInventorySystem inventory;
 
-  private ArrayList<IProducts> shoppingCart;
+  private ArrayList<IProducts> cart;
 
   public ShoppingCart(IInventorySystem inventory) {
-    shoppingCart = new ArrayList<IProducts>();
+    cart = new ArrayList<IProducts>();
     this.inventory = inventory;
   }
 
@@ -24,7 +24,7 @@ public class ShoppingCart implements IShoppingCart {
       if (item.getQuantity() < quantity) {
         throw new NotEnoughItemsInStockException();
       } else {
-        shoppingCart.add(product);
+        cart.add(product);
       }
     } catch (Exception NotEnoughItemsInStockException) {
         System.out.print("Cannot add " + item.getProduct().getProductName() + " to the cart.");
@@ -38,7 +38,7 @@ public class ShoppingCart implements IShoppingCart {
         throw new NotEnoughItemsInStockException();
       } else {
         for (int i = quantity; i > 0; i--) {
-          shoppingCart.add(product);
+          cart.add(product);
         }
       }
     } catch (Exception NotEnoughItemsInStockException) {
@@ -48,11 +48,11 @@ public class ShoppingCart implements IShoppingCart {
 
   public int getTotalCostOfItems(){
     int value = 0;
-    int cartSize = this.shoppingCart.size();
+    int cartSize = this.cart.size();
 
     // Iterating through shoppingCart list and adding all prices.
     for (int i = 0; i < cartSize; i++) {
-      IProducts currentProduct = this.shoppingCart.get(i);
+      IProducts currentProduct = this.cart.get(i);
       value += currentProduct.getPrice();
     }
     return value;
@@ -63,7 +63,7 @@ public class ShoppingCart implements IShoppingCart {
    * @return list of products in the shopping cart.
    */
   public ArrayList<IProducts> getShoppingCartProductsList() {
-    return this.shoppingCart;
+    return this.cart;
   }
 
 
@@ -71,7 +71,7 @@ public class ShoppingCart implements IShoppingCart {
    * Removes the given product from the shopping cart.
    */
   public void removeProduct(IProducts product) {
-    this.shoppingCart.remove(product);
+    this.cart.remove(product);
   }
 
 }
