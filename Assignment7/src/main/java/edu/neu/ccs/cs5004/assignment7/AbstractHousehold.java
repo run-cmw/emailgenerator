@@ -29,17 +29,17 @@ public abstract class AbstractHousehold extends AbstractProducts {
     return units;
   }
 
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object object) {
+    if (this == object) {
       return true;
     }
-    if (!(o instanceof AbstractHousehold)) {
+    if (!(object instanceof AbstractHousehold)) {
       return false;
     }
-    if (!super.equals(o)) {
+    if (!super.equals(object)) {
       return false;
     }
-    AbstractHousehold that = (AbstractHousehold) o;
+    AbstractHousehold that = (AbstractHousehold) object;
     return getUnits() == that.getUnits();
   }
 

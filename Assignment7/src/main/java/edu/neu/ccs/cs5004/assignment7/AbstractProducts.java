@@ -59,14 +59,14 @@ public abstract class AbstractProducts implements IProducts {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object object) {
+    if (this == object) {
       return true;
     }
-    if (!(o instanceof AbstractProducts)) {
+    if (!(object instanceof AbstractProducts)) {
       return false;
     }
-    AbstractProducts that = (AbstractProducts) o;
+    AbstractProducts that = (AbstractProducts) object;
     return getPrice() == that.getPrice() &&
         getMinAge() == that.getMinAge() &&
         getManufacturer().equals(that.getManufacturer()) &&
