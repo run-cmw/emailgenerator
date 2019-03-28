@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.assignment7;
 
+import java.util.Objects;
+
 /**
  * This class represents the abstract class for products
  */
@@ -54,5 +56,25 @@ public abstract class AbstractProducts implements IProducts {
    */
   public int getMinAge() {
     return this.minAge;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof AbstractProducts)) {
+      return false;
+    }
+    AbstractProducts that = (AbstractProducts) o;
+    return getPrice() == that.getPrice() &&
+        getMinAge() == that.getMinAge() &&
+        getManufacturer().equals(that.getManufacturer()) &&
+        getProductName().equals(that.getProductName());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getManufacturer(), getProductName(), getPrice(), getMinAge());
   }
 }
