@@ -30,17 +30,17 @@ public abstract class AbstractGrocery extends AbstractProducts {
     return this.weight;
   }
 
-  public boolean equals(Object o) {
-    if (this == o) {
+  public boolean equals(Object object) {
+    if (this == object) {
       return true;
     }
-    if (!(o instanceof AbstractGrocery)) {
+    if (!(object instanceof AbstractGrocery)) {
       return false;
     }
-    if (!super.equals(o)) {
+    if (!super.equals(object)) {
       return false;
     }
-    AbstractGrocery that = (AbstractGrocery) o;
+    AbstractGrocery that = (AbstractGrocery) object;
     return getWeight() == that.getWeight();
   }
 
