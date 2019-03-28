@@ -130,16 +130,6 @@ public class InventorySystemFullTest {
   }
 
   @Test
-  public void fulfillOrder() throws NotEnoughItemsInStockException {
-    // Adding to cart - salmon x2, shampoo
-    cart.addProduct(salmon);
-    cart.addProduct(salmon, 2);
-    cart.addProduct(shampoo);
-
-
-  }
-
-  @Test
   public void findStockItem() {
     // Cheese Stock Item - price 2 quantity 4
     // First adding cheese to inventory system.
@@ -148,10 +138,5 @@ public class InventorySystemFullTest {
     assertEquals((int) 4, item.getQuantity());
     assertEquals((int) 2, item.getProduct().getPrice());
   }
-
-  @Test
-  public void processOrder() {
-  }
-
 
 }

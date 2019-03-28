@@ -16,13 +16,13 @@ public interface ICustomer {
    * returns the cart of the customer
    * @return cart
    */
-  ShoppingCart getCart();
+  IShoppingCart getCart();
 
   /**
    * return the age of the customer
    * @return age
    */
-  Integer getAge();
+  int getAge();
 
 
 
