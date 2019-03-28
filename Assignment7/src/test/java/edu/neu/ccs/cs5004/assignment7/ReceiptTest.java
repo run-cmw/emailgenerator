@@ -23,6 +23,8 @@ public class ReceiptTest {
   @Before
   public void setUp() throws Exception {
     received = new ArrayList<>();
+    outOfStock = new ArrayList<>();
+    removed = new ArrayList<>();
     received.add(cheese);
     received.add(shampoo);
     outOfStock.add(salmon);
