@@ -203,8 +203,8 @@ public class InventorySystem implements IInventorySystem {
    *
    * @return true if substitute product is a similar price as original product and false otherwise
    */
-  private boolean isSimilarPrice(IProducts substitute) {
-    return (substitute.getPrice() <= this.getPrice());
+  private boolean isSimilarPrice(IProducts substitute, IProducts original) {
+    return (substitute.getPrice() <= original.getPrice());
   }
 
   /**
@@ -213,9 +213,9 @@ public class InventorySystem implements IInventorySystem {
    * @param substitute - product to substitute original item in ShoppingCart
    * @return true if substitute product is a similar weight as original product and false otherwise
    */
-  private boolean isSimilarWeight(IProducts substitute) {
+  private boolean isSimilarWeight(IProducts substitute, IProducts original) {
     if (isGrocery(substitute)) {
-      return (substitute.getWeight() >= this.getWeight());
+      return (((AbstractGrocery)substitute).getWeight() >= ((AbstractGrocery)original).getWeight());
     } else {
       // If not a grocery item, weight does not matter and therefore should not impact substitution.
       return true;
@@ -251,7 +251,7 @@ public class InventorySystem implements IInventorySystem {
   *
   * @return true if customer is minumum age and false otherwise
   */
-  private boolean isMinimumAge(ICustomer customer) {
-    return (customer.getAge() >= this.getMinAge());
+  private boolean isMinimumAge(ICustomer customer, IProducts product) {
+    return (customer.getAge() >= product.getMinAge());
   }
 }
