@@ -155,7 +155,7 @@ public class InventorySystem implements IInventorySystem {
    * @param product - The product that the StockItem should map to.
    * @return IStockItem that maps to the given product.
    */
-  protected IStockItem findStockItem(IProducts product) {
+  public IStockItem findStockItem(IProducts product) {
 // Remove comment after reading: made helper method isGrocery since this code is repeated several times in the class
 //    Class grocery = AbstractGrocery.class;
 //    Boolean isGrocery = grocery.isInstance(product);
@@ -223,27 +223,53 @@ public class InventorySystem implements IInventorySystem {
   }
 
   /**
-   * Returns order receipt summarizing order.
+   * Processes the order by removing products that the customer is not old enough to
+   * purchase and returning a receipt summarizing the purchase.
    * @param cart - The shopping cart filled with the order that the customer has placed.
-   * @return order receipt summarizing order
+   * @param customer - The customer that the shopping cart belongs to
+   * @param outOfStockList - A list of items that were out of stock.
+   * @return - Receipt summarizing the order.
+   * @throws NotEnoughItemsInStockException - Exception that is thrown if there are not enough items
+   * in stock for the customer to obtain that quantity.
    */
   @Override
-  public IReceipt processOrder(IShoppingCart cart) {
-    IReceipt receipt;
+  public IReceipt processOrder(IShoppingCart cart, ICustomer customer,
+      ArrayList<IProducts> outOfStockList) throws NotEnoughItemsInStockException {
+    ArrayList<IProducts> cartList = cart.getShoppingCartProductsList();
+    ArrayList<IProducts> removedProducts = this.removeItemsFromCart(cart, customer);
+    IReceipt receipt = new Receipt(cartList, outOfStockList, removedProducts);
+    return receipt;
+  }
 
-    //
-    for (int i = 0; i < cart.size(); i++) {
-      if(!isMinimumAge()) {
-        receipt.removedItemsList.add(i);
-        // Remove from cart
+
+  /**
+   * Helper method that removes items from the cart that the customer does not meet
+   * the minimum age requirement and adds them to a removedProducts list.
+   * @param cart - The customer's shopping cart.
+   * @param customer - The owner of the shopping cart.
+   * @return ArrayList of products that were removed from the cart.
+   * @throws NotEnoughItemsInStockException - Exception that is thrown if there are not enough items
+   * in stock for the customer to obtain that quantity.
+   */
+  private ArrayList<IProducts> removeItemsFromCart(IShoppingCart cart, ICustomer customer)
+      throws NotEnoughItemsInStockException {
+    ArrayList<IProducts> cartList = cart.getShoppingCartProductsList();
+    ArrayList<IProducts> removedProducts = new ArrayList<IProducts>();
+
+    for (int i = 0; i < cartList.size(); i++) {
+      IProducts currentProduct = cartList.get(i);
+      if (!this.isMinimumAge(customer, currentProduct)) {
+        // If customer is not the minimum age for the product, adding it to the remove list
+        // and removing the product from the cartList.
+        removedProducts.add(currentProduct);
+        cart.removeProduct(currentProduct);
       } else {
-        receipt.receivedItemsList.add(i);
-        reduceStockItem(i); // How can we be sure this continues iterating through cart if OutOfStockException thrown?
+        // Reducing the amount of the stock item.
+        IStockItem removedProduct = this.findStockItem(currentProduct);
+        this.reduceStockItem(removedProduct, 1);
       }
     }
-
-    // Empty shopping cart
-    return receipt;
+    return removedProducts;
   }
 
   /**

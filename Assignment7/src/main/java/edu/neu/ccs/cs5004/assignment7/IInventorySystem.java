@@ -50,14 +50,12 @@ public interface IInventorySystem {
   /**
    * Gathers all items in the cart and prepares for pickup.
    * @param cart - The shopping cart filled with the order that the customer has placed.
+   * @param customer - The customer that the shopping cart belongs to
    * @return - A shopping cart
    */
-  IShoppingCart fulfillOrder(IShoppingCart cart);
+  IReceipt processOrder(IShoppingCart cart, ICustomer customer, ArrayList<IProducts> outOfStockList)
+      throws NotEnoughItemsInStockException ;
 
-  /**
-   * Returns order receipt summarizing order.
-   * @param cart - The shopping cart filled with the order that the customer has placed.
-   * @return order receipt summarizing order
-   */
-  IReceipt processOrder(IShoppingCart cart);
+  IStockItem findStockItem(IProducts product);
+
 }
