@@ -50,14 +50,6 @@ public class InventorySystemTest {
   }
 
   @Test
-  public void enoughItemsInStock() {
-  }
-
-  @Test
-  public void reduceStockItem() {
-  }
-
-  @Test
   public void getTotalRetailValue() {
     assertEquals((int) 0, system.getTotalRetailValue());
     // Adding salmon grocery product that costs 5.
@@ -68,5 +60,42 @@ public class InventorySystemTest {
     system.addNewItem(householdItem);
     assertEquals((int) 8, system.getTotalRetailValue());
   }
+
+  @Test
+  public void enoughItemsInStock() {
+    final int TOO_MANY = 50;
+    final int NOT_TOO_MANY = 5;
+
+    assertFalse(system.enoughItemsInStock(groceryItem, TOO_MANY));
+    assertTrue(system.enoughItemsInStock(groceryItem, NOT_TOO_MANY));
+    assertFalse(system.enoughItemsInStock(householdItem, TOO_MANY));
+    assertTrue(system.enoughItemsInStock(householdItem, NOT_TOO_MANY));
+  }
+
+  @Test
+  public void reduceStockItem() throws NotEnoughItemsInStockException {
+    final int REDUCE_BY = 20;
+    system.reduceStockItem(groceryItem, REDUCE_BY);
+    system.reduceStockItem(householdItem, REDUCE_BY);
+
+    assertEquals(0, groceryItem.getQuantity());
+    assertEquals(1, householdItem.getQuantity());
+  }
+
+  @Test (expected = NotEnoughItemsInStockException.class)
+  public void testGroceryReduceStockItemException() throws NotEnoughItemsInStockException {
+    final int REDUCE_BY = 25;
+
+    system.reduceStockItem(groceryItem, REDUCE_BY);
+  }
+
+  @Test (expected = NotEnoughItemsInStockException.class)
+  public void testHouseholdReduceStockItemException() throws NotEnoughItemsInStockException {
+    final int REDUCE_BY = 25;
+
+    system.reduceStockItem(householdItem, REDUCE_BY);
+  }
+
+
 
 }
