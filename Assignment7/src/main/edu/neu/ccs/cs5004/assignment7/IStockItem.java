@@ -12,14 +12,15 @@ public interface IStockItem {
   IProducts getProduct();
 
   /**
-   * Return the quantity of this product that the supermarket has in stock
-   * @return the product quantity in stock
+   * Returns the quantity of product
+   * @return the product quantity
    */
   int getQuantity();
 
   /**
-   * Reduce the quantity of product.
-   * @param quantity of product to reduce
+   * Reduces the quantity of product
+   * @param quantity of product
    */
   void reduceQuantity(int quantity);
+
 }
