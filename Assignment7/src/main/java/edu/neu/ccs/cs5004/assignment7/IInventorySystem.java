@@ -60,4 +60,5 @@ public interface IInventorySystem {
    * @return order receipt summarizing order
    */
   IReceipt processOrder(IShoppingCart cart);
+  IStockItem findStockItem(IProducts product);
 }

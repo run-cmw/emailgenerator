@@ -155,7 +155,7 @@ public class InventorySystem implements IInventorySystem {
    * @param product - The product that the StockItem should map to.
    * @return IStockItem that maps to the given product.
    */
-  protected IStockItem findStockItem(IProducts product) {
+  public IStockItem findStockItem(IProducts product) {
 // Remove comment after reading: made helper method isGrocery since this code is repeated several times in the class
 //    Class grocery = AbstractGrocery.class;
 //    Boolean isGrocery = grocery.isInstance(product);
