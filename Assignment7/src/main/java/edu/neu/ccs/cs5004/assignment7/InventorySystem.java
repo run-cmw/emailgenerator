@@ -194,8 +194,8 @@ public class InventorySystem implements IInventorySystem {
    *
    * @return true if substitute product is the same type as original product and false otherwise
    */
-  private boolean isSameType(IProducts substitute) {
-    return (substitute.getClass().equals(this.getClass()));
+  private boolean isSameType(IProducts substitute, IProducts original) {
+    return (substitute.getClass().equals(original.getClass()));
   }
 
   /**
