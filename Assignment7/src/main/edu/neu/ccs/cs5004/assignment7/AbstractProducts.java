@@ -10,6 +10,13 @@ public abstract class AbstractProducts implements IProducts {
   protected int price;
   protected int minAge;
 
+  /**
+   * Constructs a product
+   * @param manufacturer of the product
+   * @param productName of the product
+   * @param price of the product
+   * @param minAge required to purchase product
+   */
 
   public AbstractProducts(String manufacturer, String productName, int price, int minAge) {
     this.manufacturer = manufacturer;
@@ -48,5 +55,25 @@ public abstract class AbstractProducts implements IProducts {
    */
   public int getMinAge() {
     return this.minAge;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof AbstractProducts)) {
+      return false;
+    }
+    AbstractProducts that = (AbstractProducts) o;
+    return getPrice() == that.getPrice() &&
+        getMinAge() == that.getMinAge() &&
+        getManufacturer().equals(that.getManufacturer()) &&
+        getProductName().equals(that.getProductName());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getManufacturer(), getProductName(), getPrice(), getMinAge());
   }
 }

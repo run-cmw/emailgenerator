@@ -1,33 +1,25 @@
 package edu.neu.ccs.cs5004.assignment7;
 
-import java.util.ArrayList;
-
 public interface IShoppingCart {
 
   /**
    * Adds an item to the shopping cart
-   * @param product - Product to be added to the shopping cart.
+   * @param item item
    */
-  void addProduct (IProducts product) throws NotEnoughItemsInStockException;
+  void addProduct(IStockItem item);
 
   /**
    * Adds item to the shopping cart based on quantity
-   * @param product - Product to be added to the shopping cart.
+   * @param item item
    * @param quantity of item
    */
-  void addProduct (IProducts product, int quantity) throws NotEnoughItemsInStockException;
+  void addporduct(IStockItem item, int quantity);
 
   /**
    * Returns the total cost of items in the cart
    * @return the total cost of items in the cart
    */
-  int getTotalCostOfItems();
-
-  /**
-   * Returns the list of products in the shopping cart.
-   * @return list of products in the shopping cart.
-   */
-  ArrayList<IProducts> getShoppingCartProductsList();
+  int gettotalCostOfItems();
 
 
 
