@@ -10,7 +10,13 @@ public abstract class AbstractProducts implements IProducts {
   protected int price;
   protected int minAge;
 
-
+  /**
+   * Constructs a product
+   * @param manufacturer of the product
+   * @param productName of the product
+   * @param price of the product
+   * @param minAge required to purchase product
+   */
   public AbstractProducts(String manufacturer, String productName, int price, int minAge) {
     this.manufacturer = manufacturer;
     this.productName = productName;
