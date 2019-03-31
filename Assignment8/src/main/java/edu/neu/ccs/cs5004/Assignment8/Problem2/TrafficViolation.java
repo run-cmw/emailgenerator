@@ -16,7 +16,7 @@ public class TrafficViolation extends AbstractTrafficViolation {
   }
 
   /**
-   * Constsruct a TrafficViolation for a vehicle given the date and type of violation and the person
+   * Construct a TrafficViolation for a vehicle given the date and type of violation and the person
    * who committed the violation.
    *
    * @param date - violation date

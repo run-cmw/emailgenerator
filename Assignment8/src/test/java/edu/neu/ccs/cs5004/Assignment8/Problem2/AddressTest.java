@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AddressTest {
-  private Address address;
+  private IAddress address;
 
   @Before
   public void setUp() throws Exception {

@@ -5,27 +5,17 @@ import java.util.ArrayList;
 /**
  * This class extends AbstractHistory and represents a driver's or vehicle's history.
  */
-public class History extends AbstractHistory {
-
-  /**
-   * Construct a driver's History given traffic violations.
-   *
-   * @param trafficViolations - list of driver's traffic violations
-   */
-  public History(
-      ArrayList<AbstractTrafficViolation> trafficViolations) {
-    super(trafficViolations);
-  }
-
+public class VehicleHistory extends AbstractHistory {
   /**
    * Construct a vehicle's History given traffic violations a crashes.
    *
    * @param trafficViolations - a list of vehicle's traffic violations
    * @param crashes - a list of vehicle's crashes
    */
-  public History(
+  public VehicleHistory (
       ArrayList<AbstractTrafficViolation> trafficViolations,
       ArrayList<Crash> crashes) {
     super(trafficViolations, crashes);
   }
+
 }

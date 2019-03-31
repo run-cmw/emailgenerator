@@ -20,7 +20,7 @@ public class AbstractTrafficViolation implements ITrafficViolation {
   }
 
   /**
-   * Constsruct a TrafficViolation for a vehicle given the date and type of violation and
+   * Construct a TrafficViolation for a vehicle given the date and type of violation and
    * the person who committed the violation.
    *
    * @param date - violation date
