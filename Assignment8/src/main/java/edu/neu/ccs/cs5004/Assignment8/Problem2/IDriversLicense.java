@@ -40,7 +40,7 @@ public interface IDriversLicense {
    *
    * @return license issuing country
    */
-  String getIssuingCountry();
+  Country getIssuingCountry();
 
   /**
    * Return state that issued license.

@@ -22,7 +22,7 @@ public class DriversLicense extends AbstractDriversLicense {
    */
   public DriversLicense(String licenseNumber,
       IName  driverName, IAddress driverAddress,
-      IDate driverBirthDate, String issuingCountry, String issuingState,
+      IDate driverBirthDate, Country issuingCountry, String issuingState,
       IDate issueDate, IDate expirationDate) {
     super(licenseNumber, driverName, driverAddress, driverBirthDate, issuingCountry, issuingState,
         issueDate, expirationDate);

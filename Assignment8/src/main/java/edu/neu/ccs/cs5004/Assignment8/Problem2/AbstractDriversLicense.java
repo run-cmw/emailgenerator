@@ -11,7 +11,7 @@ public class AbstractDriversLicense implements IDriversLicense{
   private IName driverName;
   private IAddress driverAddress;
   private IDate driverBirthDate;
-  private String issuingCountry;
+  private Country issuingCountry;
   private String issuingState;
   private IDate issueDate;
   private IDate expirationDate;
@@ -31,7 +31,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    */
   public AbstractDriversLicense (String licenseNumber,
       IName driverName, IAddress driverAddress,
-      IDate driverBirthDate, String issuingCountry, String issuingState,
+      IDate driverBirthDate, Country issuingCountry, String issuingState,
       IDate issueDate, IDate expirationDate) {
     this.licenseNumber = licenseNumber;
     this.driverName = driverName;
@@ -86,7 +86,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license issuing country
    */
-  public String getIssuingCountry() {
+  public Country getIssuingCountry() {
     return this.issuingCountry;
   }
 

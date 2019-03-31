@@ -36,11 +36,12 @@ public class AbstractName implements IName {
   }
 
   @Override
-  public boolean equals(Object o) {return false;}
+  public int hashCode() {
+    return super.hashCode();
+  }
 
   @Override
-  public int hashCode() {return 0;}
-
-  @Override
-  public String toString() {return null;}
+  public String toString() {
+    return super.toString();
+  }
 }
