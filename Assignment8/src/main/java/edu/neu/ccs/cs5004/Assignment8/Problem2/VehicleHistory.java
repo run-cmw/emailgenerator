@@ -13,7 +13,7 @@ public class VehicleHistory extends AbstractHistory {
    * @param crashes - a list of vehicle's crashes
    */
   public VehicleHistory (
-      ArrayList<AbstractTrafficViolation> trafficViolations,
+      ArrayList<ITrafficViolation> trafficViolations,
       ArrayList<Crash> crashes) {
     super(trafficViolations, crashes);
   }

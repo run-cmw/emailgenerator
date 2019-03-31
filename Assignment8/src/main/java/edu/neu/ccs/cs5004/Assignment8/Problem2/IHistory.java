@@ -12,7 +12,7 @@ public interface IHistory {
    *
    * @return list of driver's or vehicle's traffic violation history
    */
-  ArrayList<AbstractTrafficViolation> getTrafficViolations();
+  ArrayList<ITrafficViolation> getTrafficViolations();
 
   /**
    * Return a list of crashes in a vehicle's history.

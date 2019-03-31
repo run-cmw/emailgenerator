@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TrafficViolationTest {
-  private TrafficViolation driverViolation;
-  private TrafficViolation vehicleViolation;
+  private ITrafficViolation driverViolation;
+  private ITrafficViolation vehicleViolation;
   private Date date;
   private Violations type;
   private Name offender;

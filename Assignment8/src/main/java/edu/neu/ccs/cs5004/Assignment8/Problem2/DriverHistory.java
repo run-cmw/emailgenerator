@@ -13,19 +13,8 @@ public class DriverHistory extends AbstractHistory {
    * @param trafficViolations - list of driver's traffic violations
    */
   public DriverHistory (
-      ArrayList<AbstractTrafficViolation> trafficViolations) {
+      ArrayList<ITrafficViolation> trafficViolations) {
     super(trafficViolations);
   }
 
-  /**
-   * Construct a vehicle's History given traffic violations a crashes.
-   *
-   * @param trafficViolations - a list of vehicle's traffic violations
-   * @param crashes - a list of vehicle's crashes
-   */
-  public DriverHistory (
-      ArrayList<AbstractTrafficViolation> trafficViolations,
-      ArrayList<Crash> crashes) {
-    super(trafficViolations, crashes);
-  }
 }

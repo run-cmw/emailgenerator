@@ -10,19 +10,16 @@ public interface ITrafficViolation {
    *
    * @return violation date
    */
-  AbstractDate getDate();
-
-  /**
-   * Return type of violation.
-   *
-   * @return violation type
-   */
-  AbstractViolations getType();
+  IDate getDate();
 
   /**
    * Person who committed violation.
    *
    * @return offender
    */
-  AbstractName getOffender();
+  IName getOffender();
+
+  Enum getType();
+
+
 }
