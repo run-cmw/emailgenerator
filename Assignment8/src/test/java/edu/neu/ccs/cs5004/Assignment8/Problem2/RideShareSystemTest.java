@@ -28,9 +28,9 @@ public class RideShareSystemTest {
         "Washington", issueDate, expirationDate);
     vehicle = new Vehicle("Toyota", "Camry", 2017, name);
 
-    (IName name, IDate birthDate, IDriversLicense driversLicense,
-        IVehicle vehicle, IVehicleInsurance vehicleInsurance, DriverHistory driverHistory,
-        VehicleHistory vehicleHistory)
+//    (IName name, IDate birthDate, IDriversLicense driversLicense,
+  //      IVehicle vehicle, IVehicleInsurance vehicleInsurance, DriverHistory driverHistory,
+    //    VehicleHistory vehicleHistory)
   }
 
   @Test
