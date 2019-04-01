@@ -19,6 +19,13 @@ public class AcceptedDriver implements IAcceptedDriver{
    */
   private IVehicle vehicle;
 
+  public AcceptedDriver(IName name, IDate birthday, IDriversLicense license, IVehicle vehicle) {
+    this.name = name;
+    this.birthday = birthday;
+    this.license = license;
+    this.vehicle = vehicle;
+  }
+
   /**
    * Returns the name of the accepted driver.
    * @return name of the accepted driver.

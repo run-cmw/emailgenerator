@@ -8,26 +8,87 @@ import java.time.LocalDateTime;
  */
 public class RideShareSystem implements IRideShareSystem {
 
+ /**
+  * Array List of accepted drivers that meet the acceptance requirements
+  * (unique list of AcceptedDrivers).
+  */
  private ArrayList<IAcceptedDriver> acceptedDrivers;
+ /**
+  * Minimum age that a driver has to be to be accepted.
+  */
  private static final int MINIMUM_AGE = 21;
+ /**
+  * The maximum age of a driver's vehicle that the vehicle can be.
+  */
  private static final int MAX_VEHICLE_AGE = 20;
+ /**
+  * The Country US - the only country that a license can be from to be accepted.
+  */
  private static final Country VALID_COUNTRY = Country.US;
+ /**
+  * The minimum month of 6 months.
+  */
  private static final int MIN_MONTH = 6;
 
+ /**
+  * Constructor
+  */
  public RideShareSystem() {
+  this.acceptedDrivers = new ArrayList<>();
  }
 
  /**
-  * Validate information to determine if the driver meets rideshare acceptance requirements.
-  *
+  * Validate information to determine if the driver meets ride share acceptance requirements.
+  * @param name - applicant's name
+  * @param birthDate - applicant's birth date
+  * @param driversLicense - applicant's driver's license
+  * @param vehicle - vehicle information
+  * @param vehicleInsurance - vehicle insurance information
+  * @param driverHistory - applicant's driver history
+  * @param vehicleHistory - vehicle's history
   * @return true if applicant meets all requirements, false if missing at least one requirement
   */
  @Override
- public boolean validateRegistration(IName name,
-     IDate birthDate, IDriversLicense driversLicense, IVehicle vehicle,
-     IVehicleInsurance vehicleInsurance,
-     DriverHistory driverHistory, VehicleHistory vehicleHistory) {
-  return false;
+ public boolean validateRegistration(IName name, IDate birthDate, IDriversLicense driversLicense,
+     IVehicle vehicle, IVehicleInsurance vehicleInsurance, DriverHistory driverHistory,
+     VehicleHistory vehicleHistory) {
+  boolean accept = this.validAge(birthDate)
+      && this.validLicenseInformation(name, birthDate, driversLicense)
+      && this.validVehicleInformation(vehicle)
+      && this.validInsuranceInformation(name, vehicle, vehicleInsurance)
+      && this.validDriverHistory(driverHistory)
+      && this.validVehicleHistory(vehicleHistory);
+  if (accept) {
+   this.addAcceptedDriver(name, birthDate, driversLicense, vehicle);
+  }
+  return accept;
+ }
+
+ /**
+  * If the driver (name, birth date, license) and vehicle information combination does not already
+  * exist in the ride share system (in the ArrayList acceptedDrivers), add the AcceptedDriver
+  * to the accepted drivers list. Else, return and do nothing.
+  * @param name - Driver's name
+  * @param birthDate - Driver's birth date
+  * @param driversLicense - Driver license of the driver.
+  * @param vehicle - Vehicle information of the driver.
+  */
+ private void addAcceptedDriver(IName name, IDate birthDate, IDriversLicense driversLicense,
+     IVehicle vehicle) {
+  IAcceptedDriver newDriver = new AcceptedDriver(name, birthDate, driversLicense, vehicle);
+  int size = this.acceptedDrivers.size();
+
+  for (int i = 0; i < size; i++) {
+   // If the Driver and the vehicle combination (AcceptedDriver) already exists in the system as
+   // an accepted driver, exit the method and do nothing.
+   if (this.acceptedDrivers.get(i).equals(newDriver)) {
+    return;
+   }
+  }
+
+  // If the Driver and vehicle combination does not already exit in the system as an
+  // accepted driver, add the AcceptedDriver to the system (in the ArrayList acceptedDrivers).
+  this.acceptedDrivers.add(newDriver);
  }
 
  /**
