@@ -7,8 +7,13 @@ import org.junit.Test;
 
 public class MediaTest {
 
+  String alias1;
+  String title1;
+  Integer releaseYear1;
+
   @Before
   public void setUp() throws Exception {
+
   }
 
   @Test
