@@ -19,7 +19,34 @@ public interface ITrafficViolation {
    */
   IName getOffender();
 
+  /**
+   * Return the type of traffic violation that was committed: MovingViolation or NonMovingViolation.
+   *
+   * @return type of traffic violation that was committed
+   */
   Enum getType();
 
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
+  boolean equals(Object obj);
 
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  int hashCode();
+
+  /**
+   * Returns a string representation of the object.
+   * Format for driver - "date: type"
+   * Format for vehicle - "date: type, offender"
+   *
+   * @return string representation of the object
+   */
+  String toString();
 }

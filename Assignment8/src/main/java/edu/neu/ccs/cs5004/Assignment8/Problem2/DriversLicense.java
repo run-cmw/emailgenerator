@@ -1,6 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import com.sun.xml.internal.bind.v2.model.core.ID;
+import java.util.Objects;
 
 /**
  * This class extends AbstractDriversLicense and represents a driver's license.
@@ -26,5 +27,57 @@ public class DriversLicense extends AbstractDriversLicense {
       IDate issueDate, IDate expirationDate) {
     super(licenseNumber, driverName, driverAddress, driverBirthDate, issuingCountry, issuingState,
         issueDate, expirationDate);
+  }
+
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof DriversLicense)) {
+      return false;
+    }
+    DriversLicense other = (DriversLicense) obj;
+    return this.getLicenseNumber().equals(other.getLicenseNumber())
+        && this.getDriverName().equals(other.getDriverName())
+        && this.getDriverAddress().equals(other.getDriverAddress())
+        && this.getDriverBirthDate().equals(other.getDriverBirthDate())
+        && this.getIssuingCountry().equals(other.getIssuingCountry())
+        && this.getIssuingState().equals(other.getIssuingState())
+        && this.getIssueDate().equals(other.getIssueDate())
+        && this.getExpirationDate().equals(other.getExpirationDate());
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.getLicenseNumber(), this.getDriverName(), this.getDriverAddress(), this.getDriverBirthDate(), this.getIssuingCountry(), this.getIssuingState(), this.getIssueDate(), this.getExpirationDate());
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * Format - "License number: licenseNumber, Driver: driverName, Expiration date: expirationDate"
+   *
+   * @return string representation of the object
+   */
+  @Override
+  public String toString() {
+    return
+        "Licence number: " +
+        super.getLicenseNumber() +
+        ", Driver: " +
+        super.getDriverName() +
+        ", Expiration date: " +
+        super.getExpirationDate();
   }
 }

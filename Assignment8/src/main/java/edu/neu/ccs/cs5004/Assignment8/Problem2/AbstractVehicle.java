@@ -63,8 +63,20 @@ public class AbstractVehicle implements IVehicle {
   }
 
   /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  /**
    * Returns a hash code value for the object.
-   * @return a hash code value for this object.
+   *
+   * @return hash code value for the object
    */
   @Override
   public int hashCode() {
@@ -73,7 +85,9 @@ public class AbstractVehicle implements IVehicle {
 
   /**
    * Returns a string representation of the object.
-   * @return a string representation of the object.
+   * Format - "year make model"
+   *
+   * @return string representation of the object
    */
   @Override
   public String toString() {

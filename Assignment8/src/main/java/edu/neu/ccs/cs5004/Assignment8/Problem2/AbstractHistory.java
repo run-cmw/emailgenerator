@@ -14,6 +14,7 @@ public class AbstractHistory implements IHistory {
    *
    * @param trafficViolations - list of driver's traffic violations
    */
+  // Overloaded because driver and vehicle require different information
   public AbstractHistory(
       ArrayList<ITrafficViolation> trafficViolations) {
     this.trafficViolations = trafficViolations;
@@ -25,6 +26,7 @@ public class AbstractHistory implements IHistory {
    * @param trafficViolations - a list of vehicle's traffic violations
    * @param crashes - a list of vehicle's crashes
    */
+  // Overloaded because driver and vehicle require different information
   public AbstractHistory(
       ArrayList<ITrafficViolation> trafficViolations,
       ArrayList<IVehicleCrash> crashes) {
@@ -48,5 +50,39 @@ public class AbstractHistory implements IHistory {
    */
   public ArrayList<IVehicleCrash> getCrashes() {
     return crashes;
+  }
+
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * Format for driver - "Violations: ITrafficViolation, ITrafficViolation, ITrafficViolation..."
+   * Format for vehicle - "Violations: ITrafficViolation, ITrafficViolation, ITrafficViolation...
+   * Crashes: Crash, Crash, Crash"
+   *
+   * @return string representation of the object
+   */
+  @Override
+  public String toString() {
+    return super.toString();
   }
 }

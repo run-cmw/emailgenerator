@@ -31,6 +31,12 @@ public class VehicleCrash implements IVehicleCrash {
     return this.crash;
   }
 
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {
@@ -44,16 +50,27 @@ public class VehicleCrash implements IVehicleCrash {
         this.crash == other.crash;
   }
 
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
   @Override
   public int hashCode() {
     return Objects.hash(date, crash);
   }
 
+  /**
+   * Returns a string representation of the object.
+   * Format - "VehicleCrash{date + crash}" "VehicleCrash{date=date, crash=crash}"
+   *
+   * @return string representation of the object
+   */
   @Override
   public String toString() {
     return "VehicleCrash{" +
         "date=" + date +
         ", crash=" + crash +
-        '}';
+        "}";
   }
 }

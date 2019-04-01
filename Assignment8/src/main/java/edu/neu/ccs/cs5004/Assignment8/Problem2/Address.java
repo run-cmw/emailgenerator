@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import java.util.Objects;
+
 /**
  * This class extends IAddress and represents an address.
  */
@@ -80,5 +82,27 @@ public class Address implements IAddress {
         && this.getState().equals(other.getState())
         && this.getZipCode().equals(other.getZipCode())
         && this.getStreetNumberNameUnit().equals(other.getStreetNumberNameUnit());
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(streetNumberNameUnit, city, state, zipCode);
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * Format - "streetNumberNameUnit
+   * city, state zipCode"
+   *
+   * @return string representation of the object
+   */
+  @Override
+  public String toString() {
+    return streetNumberNameUnit + "\n" + city + ", " + state + " " + zipCode;
   }
 }
