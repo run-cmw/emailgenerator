@@ -6,36 +6,77 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AcceptedDriverTest {
+  IAcceptedDriver accepted;
+  IName name;
+  IDate birthday;
+  IDriversLicense license;
+  IVehicle vehicle;
+  IDate issueDate;
+  IDate expirationDate;
+  IAddress address;
 
   @Before
   public void setUp() throws Exception {
+    name = new Name("Tommy", "Land");
+    birthday = new Date(3, 3, 1990);
+    issueDate = new Date(15, 3, 2017);
+    issueDate = new Date(15, 5, 2019);
+    address = new Address("123 Made Up Street",
+        "Seattle", "WA", "98008");
+    license = new DriversLicense("1234567", name, address, birthday, Country.US,
+        "Washington", issueDate, expirationDate);
+    vehicle = new Vehicle("Toyota", "Camry", 2017, name);
+    accepted = new AcceptedDriver(name, birthday, license, vehicle);
   }
 
   @Test
   public void getName() {
+    assertEquals(name.toString(), accepted.getName().toString());
   }
 
   @Test
   public void getBirthday() {
+    assertEquals(birthday.toString(), accepted.getBirthday().toString());
   }
 
   @Test
   public void getLicense() {
+    assertEquals(license, accepted.getLicense());
   }
 
   @Test
   public void getVehicle() {
+    assertEquals(vehicle, accepted.getVehicle());
   }
 
   @Test
-  public void hashCode() {
+  public void equalHashCode() {
+    IAcceptedDriver same = new AcceptedDriver(name, birthday, license, vehicle);
+    assertEquals(same.hashCode(), accepted.hashCode());
+
+  }
+
+  @Test
+  public void differentHashCode() {
+    license = new DriversLicense("123456", name, address, birthday, Country.US,
+        "Washington", issueDate, expirationDate);
+    IAcceptedDriver different = new AcceptedDriver(name, birthday, license, vehicle);
+    assertNotEquals(different.hashCode(), accepted.hashCode());
   }
 
   @Test
   public void equals() {
+    IAcceptedDriver same = new AcceptedDriver(name, birthday, license, vehicle);
+    license = new DriversLicense("123456", name, address, birthday, Country.US,
+        "Washington", issueDate, expirationDate);
+    IAcceptedDriver different = new AcceptedDriver(name, birthday, license, vehicle);
+    assertEquals(true, same.equals(accepted));
+    assertEquals(false, different.equals(accepted));
   }
 
   @Test
-  public void toString() {
+  public void testToString() {
+    assertEquals("Driver: Tommy Land, Vehicle: 2017 Toyota Camry", accepted.toString());
+
   }
 }

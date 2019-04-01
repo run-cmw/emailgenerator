@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import java.util.Objects;
+
 /**
  * This abstract class implements IName and represents a name.
  */
@@ -37,7 +39,7 @@ public class AbstractName implements IName {
 
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(firstName, lastName);
   }
 
   @Override
