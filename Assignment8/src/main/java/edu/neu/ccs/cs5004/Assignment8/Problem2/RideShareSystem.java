@@ -2,6 +2,7 @@ package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * This class implements IRideShareSystem and represents a ride share system.
@@ -38,6 +39,27 @@ public class RideShareSystem implements IRideShareSystem {
  }
 
  /**
+  * A method that allows a person to register as a prospective driver. Returns true if the driver
+  * is accepted to be a driver and false it not.
+  *
+  * @param name - applicant's name
+  * @param birthDate - applicant's birth date
+  * @param driversLicense - applicant's driver's license
+  * @param vehicle - vehicle information
+  * @param vehicleInsurance - vehicle insurance information
+  * @param driverHistory - applicant's driver history
+  * @param vehicleHistory - vehicle's history
+  * @return true if the driver is accepted to be a driver and false it not.
+  */
+ @Override
+ public boolean registerAsProspectiveDriver(IName name, IDate birthDate,
+     IDriversLicense driversLicense, IVehicle vehicle, IVehicleInsurance vehicleInsurance,
+     DriverHistory driverHistory, VehicleHistory vehicleHistory) {
+  return validateRegistration(name, birthDate, driversLicense, vehicle,
+      vehicleInsurance, driverHistory, vehicleHistory);
+ }
+
+ /**
   * Validate information to determine if the driver meets ride share acceptance requirements.
   * @param name - applicant's name
   * @param birthDate - applicant's birth date
@@ -48,8 +70,7 @@ public class RideShareSystem implements IRideShareSystem {
   * @param vehicleHistory - vehicle's history
   * @return true if applicant meets all requirements, false if missing at least one requirement
   */
- @Override
- public boolean validateRegistration(IName name, IDate birthDate, IDriversLicense driversLicense,
+ private boolean validateRegistration(IName name, IDate birthDate, IDriversLicense driversLicense,
      IVehicle vehicle, IVehicleInsurance vehicleInsurance, DriverHistory driverHistory,
      VehicleHistory vehicleHistory) {
   boolean accept = this.validAge(birthDate)
@@ -357,4 +378,50 @@ public class RideShareSystem implements IRideShareSystem {
    }
    return true;
   }
+
+ /**
+  * Returns a list of the accepted drivers of the ride share system.
+  * @return list of the accepted drivers of the ride share system.
+  */
+ @Override
+ public ArrayList<IAcceptedDriver> getAcceptedDriversList() {
+  return this.acceptedDrivers;
+ }
+
+ /**
+  * Returns true if the objects are equal, false if not.
+  * @param obj - The object to compare.
+  * @return true if the objects are equal, false if not.
+  */
+ @Override
+ public boolean equals(Object obj) {
+  if (this == obj) {
+   return true;
+  }
+  if (obj == null || getClass() != obj.getClass()) {
+   return false;
+  }
+  RideShareSystem that = (RideShareSystem) obj;
+  return acceptedDrivers.equals(that.acceptedDrivers);
+ }
+
+ /**
+  * Returns a hash code value for the object.
+  * @return a hash code value for this object.
+  */
+ @Override
+ public int hashCode() {
+  return Objects.hash(acceptedDrivers);
+ }
+
+ /**
+  * Returns a string representation of the Ride Share System.
+  * @return string representation of the Ride Share System.
+  */
+ @Override
+ public String toString() {
+  return "RideShareSystem{" +
+      "acceptedDrivers=" + acceptedDrivers +
+      '}';
+ }
 }

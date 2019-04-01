@@ -64,6 +64,10 @@ public class AcceptedDriver implements IAcceptedDriver{
     return this.vehicle;
   }
 
+  /**
+   *
+   * @return
+   */
   @Override
   public int hashCode() {
     return Objects.hash(name, birthday, license, vehicle);

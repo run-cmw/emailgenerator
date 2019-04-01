@@ -33,4 +33,5 @@ public class Name extends AbstractName {
     return this.getFirstName().equals(other.getFirstName())
         && this.getLastName().equals(other.getLastName());
   }
+
 }
