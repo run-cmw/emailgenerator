@@ -11,6 +11,7 @@ public class DriverHistoryTest {
 
   @Before
   public void setUp() throws Exception {
+    trafficViolations = new ArrayList<>();
     Date date = new Date(31, 3, 2019);
     ITrafficViolation violation1 = new NonMovingTrafficViolation(date, NonMovingViolation.PARKING_VIOLATION);
     ITrafficViolation violation2 = new MovingTrafficViolation(date, MovingViolation.IGNORE_TRAFFIC_SIGNS);

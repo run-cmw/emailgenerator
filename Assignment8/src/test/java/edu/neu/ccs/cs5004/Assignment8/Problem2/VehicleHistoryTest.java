@@ -8,11 +8,13 @@ import org.junit.Test;
 
 public class VehicleHistoryTest {
   private ArrayList<ITrafficViolation> trafficViolations;
-  private ArrayList<Crash> crashes;
+  private ArrayList<IVehicleCrash> crashes;
 
   @Before
   public void setUp() throws Exception {
-    Date date = new Date(31, 3, 2019);
+    trafficViolations = new ArrayList<>();
+    crashes = new ArrayList<>();
+    IDate date = new Date(31, 3, 2019);
     Name offender = new Name("I'm", "Innocent");
     ITrafficViolation violation1 = new NonMovingTrafficViolation(date, NonMovingViolation.PARKING_VIOLATION);
     ITrafficViolation violation2 = new MovingTrafficViolation(date, MovingViolation.IGNORE_TRAFFIC_SIGNS);
@@ -21,8 +23,10 @@ public class VehicleHistoryTest {
 
     trafficViolations.add(violation1);
     trafficViolations.add(violation2);
-    crashes.add(crash1);
-    crashes.add(crash2);
+    IVehicleCrash vehicleCrash1 = new VehicleCrash(date, crash1);
+    IVehicleCrash vehicleCrash2 = new VehicleCrash(date, crash2);
+    crashes.add(vehicleCrash1);
+    crashes.add(vehicleCrash2);
   }
 
   @Test
