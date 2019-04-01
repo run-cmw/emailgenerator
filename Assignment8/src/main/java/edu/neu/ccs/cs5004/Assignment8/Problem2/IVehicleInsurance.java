@@ -12,19 +12,25 @@ public interface IVehicleInsurance {
    *
    * @return vehicle's owner
    */
-  AbstractName getOwner();
+  IName getOwner();
 
   /**
    * Return list of additional drivers covered on insurance.
    *
    * @return list of additional drivers
    */
-  ArrayList<AbstractName> getInsuredDrivers();
+  ArrayList<IName> getInsuredDrivers();
 
   /**
    * Return insurance expiration date.
    *
    * @return expiration date
    */
-  AbstractDate getExpirationDate();
+  IDate getExpirationDate();
+
+  /**
+   * Returns the vehicle that is insured.
+   * @return vehicle that is insured.
+   */
+  IVehicle getVehicle();
 }

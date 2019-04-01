@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class HistoryTest {
-  private ArrayList<TrafficViolation> trafficViolations;
-  private ArrayList<TrafficViolation> violationsList;
-  private TrafficViolation violation1;
-  private TrafficViolation violation2;
+  private ArrayList<ITrafficViolation> trafficViolations;
+  private ArrayList<ITrafficViolation> violationsList;
+  private ITrafficViolation violation1;
+  private ITrafficViolation violation2;
   private ArrayList<Crash> crashes;
   private ArrayList<Crash> crashList;
 

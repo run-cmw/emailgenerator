@@ -42,6 +42,6 @@ public class AbstractName implements IName {
 
   @Override
   public String toString() {
-    return super.toString();
+    return firstName + " " + lastName;
   }
 }

@@ -1,5 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+
 /**
  * This abstract class implements IVehicle and represents a vehicle.
  */
@@ -7,7 +8,7 @@ public class AbstractVehicle implements IVehicle {
   private String make;
   private String model;
   private int year;
-  private AbstractName owner;
+  private IName owner;
 
   /**
    * Construct a Vehicle with the given make, model, year, and owner.
@@ -18,7 +19,7 @@ public class AbstractVehicle implements IVehicle {
    * @param owner - vehicle's official owner
    */
   public AbstractVehicle(String make, String model, int year,
-      AbstractName owner) {
+      IName owner) {
     this.make = make;
     this.model = model;
     this.year = year;
@@ -57,16 +58,25 @@ public class AbstractVehicle implements IVehicle {
    *
    * @return vehicle owner
    */
-  public AbstractName getOwner() {
+  public IName getOwner() {
     return owner;
   }
 
+  /**
+   * Returns a hash code value for the object.
+   * @return a hash code value for this object.
+   */
   @Override
-  public boolean equals(Object o) {return false;}
+  public int hashCode() {
+    return super.hashCode();
+  }
 
+  /**
+   * Returns a string representation of the object.
+   * @return a string representation of the object.
+   */
   @Override
-  public int hashCode() {return 0;}
-
-  @Override
-  public String toString() {return null;}
+  public String toString() {
+    return super.toString();
+  }
 }

@@ -60,4 +60,25 @@ public class Address implements IAddress {
   public String getZipCode() {
     return this.zipCode;
   }
+
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj the reference object with which to compare.
+   * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise.
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof Address)) {
+      return false;
+    }
+    Address other = (Address) obj;
+    return this.getCity().equals(other.getCity())
+        && this.getState().equals(other.getState())
+        && this.getZipCode().equals(other.getZipCode())
+        && this.getStreetNumberNameUnit().equals(other.getStreetNumberNameUnit());
+  }
 }

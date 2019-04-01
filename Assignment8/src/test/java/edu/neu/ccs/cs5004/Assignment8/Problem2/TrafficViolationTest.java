@@ -16,17 +16,17 @@ public class TrafficViolationTest {
 
   @Before
   public void setUp() throws Exception {
+    date = new Date(31, 03, 2019);
+    name = new Name("I'm", "Innocent");
     movingViolation = MovingViolation.IGNORE_TRAFFIC_SIGNS;
     nonMovingViolation = NonMovingViolation.PARKING_VIOLATION;
     driverViolation = new MovingTrafficViolation(date, movingViolation);
     vehicleViolation = new MovingTrafficViolation(date, movingViolation, offender);
-    date = new Date(31, 03, 2019);
-    name = new Name("I'm", "Innocent");
   }
 
   @Test
   public void getDate() {
-    String dateAsString = "31032019";
+    String dateAsString = "3/31/2019";
 
     assertEquals(dateAsString, driverViolation.getDate().toString()); // update after impl toString()
     assertEquals(dateAsString, vehicleViolation.getDate().toString()); // update after impl toString()

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class AbstractHistory implements IHistory {
   private ArrayList<ITrafficViolation> trafficViolations;
-  private ArrayList<Crash> crashes;
+  private ArrayList<IVehicleCrash> crashes;
 
   /**
    * Construct a driver's History given traffic violations.
@@ -27,7 +27,7 @@ public class AbstractHistory implements IHistory {
    */
   public AbstractHistory(
       ArrayList<ITrafficViolation> trafficViolations,
-      ArrayList<Crash> crashes) {
+      ArrayList<IVehicleCrash> crashes) {
     this.trafficViolations = trafficViolations;
     this.crashes = crashes;
   }
@@ -46,7 +46,7 @@ public class AbstractHistory implements IHistory {
    *
    * @return list of vehicle crash history
    */
-  public ArrayList<Crash> getCrashes() {
+  public ArrayList<IVehicleCrash> getCrashes() {
     return crashes;
   }
 }

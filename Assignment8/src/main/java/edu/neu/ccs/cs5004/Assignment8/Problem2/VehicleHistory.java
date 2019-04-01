@@ -14,7 +14,7 @@ public class VehicleHistory extends AbstractHistory {
    */
   public VehicleHistory (
       ArrayList<ITrafficViolation> trafficViolations,
-      ArrayList<Crash> crashes) {
+      ArrayList<IVehicleCrash> crashes) {
     super(trafficViolations, crashes);
   }
 

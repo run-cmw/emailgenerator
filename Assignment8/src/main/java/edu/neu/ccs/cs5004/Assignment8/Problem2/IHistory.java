@@ -19,5 +19,5 @@ public interface IHistory {
    *
    * @return list of vehicle crash history
    */
-  ArrayList<Crash> getCrashes();
+  ArrayList<IVehicleCrash> getCrashes();
 }

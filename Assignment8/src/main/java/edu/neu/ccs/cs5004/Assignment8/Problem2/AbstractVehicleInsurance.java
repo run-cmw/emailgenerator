@@ -1,15 +1,17 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This abstract class implements IVehicleInsurance and represents a vehicle's insurance
  * information.
  */
 public class AbstractVehicleInsurance implements IVehicleInsurance {
-  private AbstractName owner;
-  private ArrayList<AbstractName> insuredDrivers;
-  private AbstractDate expirationDate;
+  private IName owner;
+  private ArrayList<IName> insuredDrivers;
+  private IDate expirationDate;
+  private IVehicle vehicle;
 
   /**
    * Construct a new VehicleInsurance given the owner, insured drivers, and expiration date.
@@ -17,12 +19,14 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    * @param owner - vehicle's official owner
    * @param insuredDrivers - additional drivers covered by insurance
    * @param expirationDate - insurance expiration date
+   * @param vehicle - vehicle that is insured.
    */
-  public AbstractVehicleInsurance(AbstractName owner,
-      ArrayList<AbstractName> insuredDrivers, AbstractDate expirationDate) {
+  public AbstractVehicleInsurance(IName owner,
+      ArrayList<IName> insuredDrivers, IDate expirationDate, IVehicle vehicle) {
     this.owner = owner;
     this.insuredDrivers = insuredDrivers;
     this.expirationDate = expirationDate;
+    this.vehicle = vehicle;
   }
 
   /**
@@ -30,8 +34,8 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    *
    * @return vehicle's owner
    */
-  public AbstractName getOwner() {
-    return owner;
+  public IName getOwner() {
+    return this.owner;
   }
 
   /**
@@ -39,8 +43,8 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    *
    * @return list of additional drivers
    */
-  public ArrayList<AbstractName> getInsuredDrivers() {
-    return insuredDrivers;
+  public ArrayList<IName> getInsuredDrivers() {
+    return this.insuredDrivers;
   }
 
   /**
@@ -48,7 +52,35 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    *
    * @return expiration date
    */
-  public AbstractDate getExpirationDate() {
-    return expirationDate;
+  public IDate getExpirationDate() {
+    return this.expirationDate;
+  }
+
+  /**
+   * Returns the vehicle that is insured.
+   *
+   * @return vehicle that is insured.
+   */
+  @Override
+  public IVehicle getVehicle() {
+    return this.vehicle;
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   * @return a hash code value for this object.
+   */
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * @return a string representation of the object.
+   */
+  @Override
+  public String toString() {
+    return super.toString();
   }
 }
