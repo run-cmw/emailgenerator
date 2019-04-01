@@ -1,5 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import java.util.Iterator;
 
 /**
@@ -7,13 +8,13 @@ import java.util.Iterator;
  */
 public class AbstractDriversLicense implements IDriversLicense{
   private String licenseNumber;
-  private AbstractName driverName;
-  private AbstractAddress driverAddress;
-  private AbstractDate driverBirthDate;
-  private String issuingCountry;
+  private IName driverName;
+  private IAddress driverAddress;
+  private IDate driverBirthDate;
+  private Country issuingCountry;
   private String issuingState;
-  private AbstractDate issueDate;
-  private AbstractDate expirationDate;
+  private IDate issueDate;
+  private IDate expirationDate;
 
   /**
    * Construct a driver's license given a license number; driver name, address, and birth date;
@@ -29,9 +30,9 @@ public class AbstractDriversLicense implements IDriversLicense{
    * @param expirationDate - license expiration date
    */
   public AbstractDriversLicense (String licenseNumber,
-      AbstractName driverName, AbstractAddress driverAddress,
-      AbstractDate driverBirthDate, String issuingCountry, String issuingState,
-      AbstractDate issueDate, AbstractDate expirationDate) {
+      IName driverName, IAddress driverAddress,
+      IDate driverBirthDate, Country issuingCountry, String issuingState,
+      IDate issueDate, IDate expirationDate) {
     this.licenseNumber = licenseNumber;
     this.driverName = driverName;
     this.driverAddress = driverAddress;
@@ -50,7 +51,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    * @return license number
    */
   public String getLicenseNumber() {
-    return licenseNumber;
+    return this.licenseNumber;
   }
 
   /**
@@ -58,8 +59,8 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return driver's name
    */
-  public AbstractName getDriverName() {
-    return driverName;
+  public IName getDriverName() {
+    return this.driverName;
   }
 
   /**
@@ -67,8 +68,8 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return driver's address
    */
-  public AbstractAddress getDriverAddress() {
-    return driverAddress;
+  public IAddress getDriverAddress() {
+    return this.driverAddress;
   }
 
   /**
@@ -76,8 +77,8 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return driver's birth date
    */
-  public AbstractDate getDriverBirthDate() {
-    return driverBirthDate;
+  public IDate getDriverBirthDate() {
+    return this.driverBirthDate;
   }
 
   /**
@@ -85,8 +86,8 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license issuing country
    */
-  public String getIssuingCountry() {
-    return issuingCountry;
+  public Country getIssuingCountry() {
+    return this.issuingCountry;
   }
 
   /**
@@ -95,7 +96,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    * @return license issuing state
    */
   public String getIssuingState() {
-    return issuingState;
+    return this.issuingState;
   }
 
   /**
@@ -103,8 +104,8 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license issue date
    */
-  public AbstractDate getIssueDate() {
-    return issueDate;
+  public IDate getIssueDate() {
+    return this.issueDate;
   }
 
   /**
@@ -112,8 +113,8 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license expiration date
    */
-  public AbstractDate getExpirationDate() {
-    return expirationDate;
+  public IDate getExpirationDate() {
+    return this.expirationDate;
   }
 
   /**

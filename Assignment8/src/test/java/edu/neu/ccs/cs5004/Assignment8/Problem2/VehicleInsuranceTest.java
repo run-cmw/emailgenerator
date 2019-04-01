@@ -9,35 +9,38 @@ import org.junit.Test;
 
 public class VehicleInsuranceTest {
   private VehicleInsurance vehicleInsurance;
-  private Name owner;
-  private ArrayList<AbstractName> insuredDrivers;
-  private AbstractName insured1;
-  private AbstractName insured2;
+  private IName owner;
+  private ArrayList<IName> insuredDrivers;
+  private IName insured1;
+  private IName insured2;
   private Date expirationDate;
+  private IVehicle vehicle;
 
   @Before
   public void setUp() throws Exception {
-    vehicleInsurance = new VehicleInsurance(owner, insuredDrivers, expirationDate);
+    insuredDrivers = new ArrayList<>();
+    vehicle = new Vehicle("Space", "Machine", 2020, owner);
     owner = new Name("My", "Vehicle");
+    insured1 = new Name("Avery", "Wells");
+    insured2 = new Name("Chana", "Wells");
     insuredDrivers.add(insured1);
     insuredDrivers.add(insured2);
-    insured1 = new AbstractName("Avery", "Wells");
-    insured2 = new AbstractName("Chana", "Wells");
     expirationDate = new Date(30, 04, 2020);
+    vehicleInsurance = new VehicleInsurance(owner, insuredDrivers, expirationDate, vehicle);
   }
 
   @Test
-  public void getOwner() {                       // update after toString()
-    String ownerAsString = "MyVehicle";
+  public void getOwner() {
+    String ownerAsString = "My Vehicle";
 
     assertEquals(ownerAsString, vehicleInsurance.getOwner().toString());
   }
 
-  @Test                                          // update after toString()
+  @Test
   public void getInsuredDrivers() {
-    String additionalInsuredAsList = "AveryWells, ChanaWells";
 
-    assertEquals(additionalInsuredAsList, vehicleInsurance.getInsuredDrivers().toString());
+    assertEquals("Avery Wells", vehicleInsurance.getInsuredDrivers().get(0).toString());
+    assertEquals("Chana Wells", vehicleInsurance.getInsuredDrivers().get(1).toString());
   }
 
   @Test

@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * This abstract class implements IHistory and represents a driver's or vehicle's history.
  */
 public class AbstractHistory implements IHistory {
-  private ArrayList<AbstractTrafficViolation> trafficViolations;
-  private ArrayList<Crash> crashes;
+  private ArrayList<ITrafficViolation> trafficViolations;
+  private ArrayList<IVehicleCrash> crashes;
 
   /**
    * Construct a driver's History given traffic violations.
@@ -15,7 +15,7 @@ public class AbstractHistory implements IHistory {
    * @param trafficViolations - list of driver's traffic violations
    */
   public AbstractHistory(
-      ArrayList<AbstractTrafficViolation> trafficViolations) {
+      ArrayList<ITrafficViolation> trafficViolations) {
     this.trafficViolations = trafficViolations;
   }
 
@@ -26,8 +26,8 @@ public class AbstractHistory implements IHistory {
    * @param crashes - a list of vehicle's crashes
    */
   public AbstractHistory(
-      ArrayList<AbstractTrafficViolation> trafficViolations,
-      ArrayList<Crash> crashes) {
+      ArrayList<ITrafficViolation> trafficViolations,
+      ArrayList<IVehicleCrash> crashes) {
     this.trafficViolations = trafficViolations;
     this.crashes = crashes;
   }
@@ -37,7 +37,7 @@ public class AbstractHistory implements IHistory {
    *
    * @return list of driver's or vehicle's traffic violation history
    */
-  public ArrayList<AbstractTrafficViolation> getTrafficViolations() {
+  public ArrayList<ITrafficViolation> getTrafficViolations() {
     return trafficViolations;
   }
 
@@ -46,7 +46,7 @@ public class AbstractHistory implements IHistory {
    *
    * @return list of vehicle crash history
    */
-  public ArrayList<Crash> getCrashes() {
+  public ArrayList<IVehicleCrash> getCrashes() {
     return crashes;
   }
 }

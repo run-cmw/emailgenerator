@@ -11,8 +11,8 @@ public class VehicleTest {
 
   @Before
   public void setUp() throws Exception {
-    vehicle = new Vehicle("Space", "Machine", 2020, name);
     name = new Name("Unicorn", "Goddess");
+    vehicle = new Vehicle("Space", "Machine", 2020, name);
   }
 
   @Test
@@ -32,6 +32,6 @@ public class VehicleTest {
 
   @Test
   public void getOwner() {
-    assertEquals("UnicornGoddess", vehicle.getOwner().toString());
+    assertEquals("Unicorn Goddess", vehicle.getOwner().toString());
   }
 }

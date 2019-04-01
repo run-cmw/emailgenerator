@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 /**
  * This class extends AbstractDriversLicense and represents a driver's license.
  */
@@ -19,9 +21,9 @@ public class DriversLicense extends AbstractDriversLicense {
    * @param expirationDate - license expiration date
    */
   public DriversLicense(String licenseNumber,
-      AbstractName driverName, AbstractAddress driverAddress,
-      AbstractDate driverBirthDate, String issuingCountry, String issuingState,
-      AbstractDate issueDate, AbstractDate expirationDate) {
+      IName  driverName, IAddress driverAddress,
+      IDate driverBirthDate, Country issuingCountry, String issuingState,
+      IDate issueDate, IDate expirationDate) {
     super(licenseNumber, driverName, driverAddress, driverBirthDate, issuingCountry, issuingState,
         issueDate, expirationDate);
   }

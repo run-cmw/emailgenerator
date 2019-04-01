@@ -30,5 +30,5 @@ public interface IVehicle {
    *
    * @return vehicle owner
    */
-  AbstractName getOwner();
+  IName getOwner();
 }

@@ -1,9 +1,13 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 /**
- * This class extends AbstractAddress and represents an address.
+ * This class extends IAddress and represents an address.
  */
-public class Address extends AbstractAddress {
+public class Address implements IAddress {
+  private String streetNumberNameUnit;
+  private String city;
+  private String state;
+  private String zipCode;
 
   /**
    * Construct an Address with the given street number, name, and unit; city; state; and zip code.
@@ -15,6 +19,66 @@ public class Address extends AbstractAddress {
    */
   public Address(String streetNumberNameUnit, String city, String state,
       String zipCode) {
-    super(streetNumberNameUnit, city, state, zipCode);
+    this.streetNumberNameUnit = streetNumberNameUnit;
+    this.city = city;
+    this.state = state;
+    this.zipCode = zipCode;
+  }
+
+  /**
+   * Return street number, name, and unit.
+   *
+   * @return street number, name, and unit
+   */
+  public String getStreetNumberNameUnit() {
+    return this.streetNumberNameUnit;
+  }
+
+  /**
+   * Return city.
+   *
+   * @return city
+   */
+  public String getCity() {
+    return this.city;
+  }
+
+  /**
+   * Return state.
+   *
+   * @return state
+   */
+  public String getState() {
+    return this.state;
+  }
+
+  /**
+   * Return zip code.
+   *
+   * @return zip code
+   */
+  public String getZipCode() {
+    return this.zipCode;
+  }
+
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj the reference object with which to compare.
+   * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise.
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof Address)) {
+      return false;
+    }
+    Address other = (Address) obj;
+    return this.getCity().equals(other.getCity())
+        && this.getState().equals(other.getState())
+        && this.getZipCode().equals(other.getZipCode())
+        && this.getStreetNumberNameUnit().equals(other.getStreetNumberNameUnit());
   }
 }
