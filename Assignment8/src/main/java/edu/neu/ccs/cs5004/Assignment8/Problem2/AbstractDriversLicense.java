@@ -123,10 +123,45 @@ public class AbstractDriversLicense implements IDriversLicense{
    * @return true if licence number is unique, false otherwise
    * @throws NonUniqueNumberException if license number entered is already in system
    */
-  private boolean validateUniqueLicenseNumber() throws NonUniqueNumberException {
+  private void validateUniqueLicenseNumber() throws NonUniqueNumberException {
     // return if number !exist in allLicenseNumbers set
     //not sure if Set has contains()
-//    return (!(RideshareSystem.getAllLicenseNumbers().contains(licenseNumber)));
-    return false;
+//    if (AcceptedDriver.getList().contains(licenseNumber)) {
+//      throw new NonUniqueNumberException("This licence number is already paired with an "
+//          + "AcceptedDriver. Please enter a unique license number.");
+//    }
+
+  }
+
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * Format - "License number: licenseNumber, Driver: driverName, Expiration date: expirationDate"
+   *
+   * @return string representation of the object
+   */
+  @Override
+  public String toString() {
+    return super.toString();
   }
 }

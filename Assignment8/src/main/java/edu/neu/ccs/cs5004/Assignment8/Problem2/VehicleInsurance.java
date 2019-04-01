@@ -1,6 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * This class extends AbstractVehicleInsurance and represents a vehicle's insurance inforamtion.
@@ -25,8 +26,8 @@ public class VehicleInsurance extends AbstractVehicleInsurance {
   /**
    * Indicates whether some other object is "equal to" this one.
    *
-   * @param obj the reference object with which to compare.
-   * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise.
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
    */
   @Override
   public boolean equals(Object obj) {
@@ -41,5 +42,29 @@ public class VehicleInsurance extends AbstractVehicleInsurance {
         && this.getExpirationDate().equals(other.getExpirationDate())
         && this.getInsuredDrivers().equals(other.getInsuredDrivers())
         && this.getVehicle().equals(other.getVehicle());
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.getOwner(), this.getInsuredDrivers(), this.getExpirationDate(), this.getVehicle());
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * Format - "Owner: firstName lastName, Additional Insured: firstName lastName, firstName lastName, ..."
+   *
+   * @return string representation of the object
+   */
+  @Override
+  public String toString() {
+    return "Owner: " +
+        super.getOwner() +
+        ", Additional Insured: " +
+        super.getInsuredDrivers();
   }
 }
