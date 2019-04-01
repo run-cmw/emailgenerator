@@ -1,7 +1,5 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 /**
  * This interface contains all functionality that all DriversLicenses should support.
  */

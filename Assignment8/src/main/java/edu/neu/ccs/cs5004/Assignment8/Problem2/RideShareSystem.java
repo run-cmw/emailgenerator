@@ -54,7 +54,7 @@ public class RideShareSystem implements IRideShareSystem {
  @Override
  public boolean registerAsProspectiveDriver(IName name, IDate birthDate,
      IDriversLicense driversLicense, IVehicle vehicle, IVehicleInsurance vehicleInsurance,
-     DriverHistory driverHistory, VehicleHistory vehicleHistory) {
+     IHistory driverHistory, IHistory vehicleHistory) {
   return validateRegistration(name, birthDate, driversLicense, vehicle,
       vehicleInsurance, driverHistory, vehicleHistory);
  }
@@ -71,8 +71,8 @@ public class RideShareSystem implements IRideShareSystem {
   * @return true if applicant meets all requirements, false if missing at least one requirement
   */
  private boolean validateRegistration(IName name, IDate birthDate, IDriversLicense driversLicense,
-     IVehicle vehicle, IVehicleInsurance vehicleInsurance, DriverHistory driverHistory,
-     VehicleHistory vehicleHistory) {
+     IVehicle vehicle, IVehicleInsurance vehicleInsurance, IHistory driverHistory,
+     IHistory vehicleHistory) {
   boolean accept = this.validAge(birthDate)
       && this.validLicenseInformation(name, birthDate, driversLicense)
       && this.validVehicleInformation(vehicle)
@@ -153,9 +153,6 @@ public class RideShareSystem implements IRideShareSystem {
   * true.
   */
  private boolean validLicenseInformation(IName name, IDate birthday, IDriversLicense license) {
-  int currentMonth = LocalDateTime.now().getMonthValue();
-  int currentDay = LocalDateTime.now().getDayOfMonth();
-  int currentYear = LocalDateTime.now().getYear();
 
   // If the name on application and license aren't equal, return false.
   if (!name.equals(license.getDriverName())) {
@@ -294,7 +291,7 @@ public class RideShareSystem implements IRideShareSystem {
   * @param history - The driving history of the driver.
   * @return - True if driver doesn't have moving violations listed above. False if the driver does.
   */
- private boolean validDriverHistory(DriverHistory history) {
+ private boolean validDriverHistory(IHistory history) {
   ArrayList<ITrafficViolation> violations = history.getTrafficViolations();
   int size = violations.size();
 
@@ -319,10 +316,7 @@ public class RideShareSystem implements IRideShareSystem {
   * @return True if no crashes or moving violations within the past six months.
   * False if there are any.
   */
- private boolean validVehicleHistory(VehicleHistory history) {
-  int currentMonth = LocalDateTime.now().getMonthValue();
-  int currentDay = LocalDateTime.now().getDayOfMonth();
-  int currentYear = LocalDateTime.now().getYear();
+ private boolean validVehicleHistory(IHistory history) {
 
   ArrayList<ITrafficViolation> violations = history.getTrafficViolations();
   ArrayList<IVehicleCrash> crashes = history.getCrashes();
@@ -420,8 +414,7 @@ public class RideShareSystem implements IRideShareSystem {
   */
  @Override
  public String toString() {
-  return "RideShareSystem{" +
-      "acceptedDrivers=" + acceptedDrivers +
-      '}';
+  return "RideShareSystem - " +
+      "acceptedDrivers = " + acceptedDrivers;
  }
 }
