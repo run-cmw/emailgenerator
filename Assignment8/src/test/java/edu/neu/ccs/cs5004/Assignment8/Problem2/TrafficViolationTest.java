@@ -9,19 +9,18 @@ public class TrafficViolationTest {
   private ITrafficViolation driverViolation;
   private ITrafficViolation vehicleViolation;
   private Date date;
-  private Violations type;
   private Name offender;
-  private Violations movingViolation;
-  private Violations nonMovingViolation;
+  private MovingViolation movingViolation;
+  private NonMovingViolation nonMovingViolation;
   private Name name;
 
   @Before
   public void setUp() throws Exception {
-    driverViolation = new TrafficViolation(date, type);
-    vehicleViolation = new TrafficViolation(date, type, offender);
+    movingViolation = MovingViolation.IGNORE_TRAFFIC_SIGNS;
+    nonMovingViolation = NonMovingViolation.PARKING_VIOLATION;
+    driverViolation = new MovingTrafficViolation(date, movingViolation);
+    vehicleViolation = new MovingTrafficViolation(date, movingViolation, offender);
     date = new Date(31, 03, 2019);
-    movingViolation = new Violations(MovingViolation.IGNORE_TRAFFIC_SIGNS);
-    nonMovingViolation = new Violations(NonMovingViolation.PARKING_VIOLATION);
     name = new Name("I'm", "Innocent");
   }
 
