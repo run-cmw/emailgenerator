@@ -7,11 +7,10 @@ import org.junit.Test;
 
 public class VehicleTest {
   private Vehicle vehicle;
-  private Name name;
 
   @Before
   public void setUp() throws Exception {
-    name = new Name("Unicorn", "Goddess");
+    Name name = new Name("Unicorn", "Goddess");
     vehicle = new Vehicle("Space", "Machine", 2020, name);
   }
 
@@ -32,6 +31,8 @@ public class VehicleTest {
 
   @Test
   public void getOwner() {
-    assertEquals("Unicorn Goddess", vehicle.getOwner().toString());
+    final String OWNER_AS_STRING = "Unicorn Goddess";
+
+    assertEquals(OWNER_AS_STRING, vehicle.getOwner().toString());
   }
 }

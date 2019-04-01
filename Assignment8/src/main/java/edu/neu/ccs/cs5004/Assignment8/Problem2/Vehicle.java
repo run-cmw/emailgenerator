@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import java.util.Objects;
+
 /**
  * This class extends Vehicle and represents a vehicle.
  */
@@ -36,5 +38,26 @@ public class Vehicle extends AbstractVehicle {
         && this.getMake().equals(other.getMake())
         && this.getOwner().equals(other.getOwner())
         && this.getYear() == other.getYear();
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.getMake(), this.getModel(), this.getYear(), this.getOwner());
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * Format - "year make model"
+   *
+   * @return string representation of the object
+   */
+  @Override
+  public String toString() {
+    return super.getYear() + " " + super.getMake() + " " + super.getModel();
   }
 }
