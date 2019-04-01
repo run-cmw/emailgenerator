@@ -16,5 +16,7 @@ public class Name extends AbstractName {
     super(firstName, lastName);
   }
 
-
+  public String getName() {
+    return name;
+  }
 }
