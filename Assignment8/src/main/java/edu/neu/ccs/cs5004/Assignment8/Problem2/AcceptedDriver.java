@@ -1,5 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import java.util.Objects;
+
 public class AcceptedDriver implements IAcceptedDriver{
 
   /**
@@ -18,6 +20,13 @@ public class AcceptedDriver implements IAcceptedDriver{
    * Vehicle of the accepted driver.
    */
   private IVehicle vehicle;
+
+  public AcceptedDriver(IName name, IDate birthday, IDriversLicense license, IVehicle vehicle) {
+    this.name = name;
+    this.birthday = birthday;
+    this.license = license;
+    this.vehicle = vehicle;
+  }
 
   /**
    * Returns the name of the accepted driver.
@@ -56,12 +65,12 @@ public class AcceptedDriver implements IAcceptedDriver{
   }
 
   /**
-   * Returns a hash code value for the object.
-   * @return a hash code value for this object.
+   *
+   * @return
    */
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(name, birthday, license, vehicle);
   }
 
   /**
