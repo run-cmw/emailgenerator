@@ -1,7 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * This abstract class implements IVehicleInsurance and represents a vehicle's insurance

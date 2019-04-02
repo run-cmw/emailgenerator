@@ -67,11 +67,27 @@ public class AcceptedDriverTest {
   @Test
   public void equals() {
     IAcceptedDriver same = new AcceptedDriver(name, birthday, license, vehicle);
+    assertEquals(true, same.equals(same));
+    assertEquals(true, same.equals(accepted));
+    assertEquals(false, same.equals(license));
+
+    // Different license
     license = new DriversLicense("123456", name, address, birthday, Country.US,
         "Washington", issueDate, expirationDate);
     IAcceptedDriver different = new AcceptedDriver(name, birthday, license, vehicle);
-    assertEquals(true, same.equals(accepted));
     assertEquals(false, different.equals(accepted));
+
+    // Different Birthday
+    birthday = new Date(2, 2, 1970);
+    different = new AcceptedDriver(name, birthday, license, vehicle);
+    assertEquals(false, different.equals(accepted));
+
+    // Different name
+    name = new Name("Tom", "Tom");
+    different = new AcceptedDriver(name, birthday, license, vehicle);
+    assertEquals(false, different.equals(accepted));
+
+
   }
 
   @Test

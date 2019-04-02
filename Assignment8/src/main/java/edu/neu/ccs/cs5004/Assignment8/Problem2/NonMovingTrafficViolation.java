@@ -78,10 +78,10 @@ public class NonMovingTrafficViolation implements ITrafficViolation {
     if (this == obj) {
       return true;
     }
-    if (!(obj instanceof MovingTrafficViolation)) {
+    if (!(obj instanceof NonMovingTrafficViolation)) {
       return false;
     }
-    MovingTrafficViolation other = (MovingTrafficViolation) obj;
+    NonMovingTrafficViolation other = (NonMovingTrafficViolation) obj;
     return this.getDate() == other.getDate()
         && this.getType() == other.getType()
         && this.getOffender() == other.getOffender();
