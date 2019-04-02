@@ -1,6 +1,8 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem1;
 
 
+import java.util.Objects;
+
 /**
  * This is an Abstract class for Name. It implements interface  IName.
  */
@@ -34,16 +36,45 @@ public abstract class AbstractName implements IName {
     return this.lastName;
   }
 
+  /**
+   * Returns if the objects are the same
+   * @param obj reference to compare
+   * @return true if the object is same as the object being passed as param, false otherwise
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof AbstractName)) {
+      return false;
+    }
+    AbstractName that = (AbstractName) obj;
+    return firstName.equals(that.firstName) &&
+        lastName.equals(that.lastName);
+  }
+
+
+  /**
+   * returns the hashcode value for the object
+   * @return hashcode
+   */
 
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(firstName, lastName);
   }
 
+
+  /**
+   * Returns string representation of the object
+   * @return String representation of the object
+   */
   @Override
-  public boolean equals(Object obj) {
-    return super.equals(obj);
+  public String toString() {
+    return "AbstractName{" +
+        "firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        '}';
   }
-
-
 }
