@@ -1,7 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 /**
  * This interface contains all functionality that the RideshareSystem supports.
@@ -23,7 +22,7 @@ public interface IRideShareSystem {
   boolean registerAsProspectiveDriver(IName name,
       IDate birthDate, IDriversLicense driversLicense, IVehicle vehicle,
       IVehicleInsurance vehicleInsurance,
-      DriverHistory driverHistory, VehicleHistory vehicleHistory);
+      IHistory driverHistory, IHistory vehicleHistory);
 
   /**
    * Returns a list of the accepted drivers of the ride share system.

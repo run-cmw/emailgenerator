@@ -2,6 +2,7 @@ package edu.neu.ccs.cs5004.Assignment8.Problem1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -118,6 +119,27 @@ public class Library implements ILibrary{
   }
 
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Library)) {
+      return false;
+    }
+    Library library = (Library) o;
+    return items.equals(library.items);
+  }
 
+  @Override
+  public int hashCode() {
+    return Objects.hash(items);
+  }
 
+  @Override
+  public String toString() {
+    return "Library{" +
+        "items=" + items +
+        '}';
+  }
 }

@@ -1,6 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem1;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * This is an abstract class for Media: AbstractMedia
@@ -73,6 +74,52 @@ public abstract class AbstractMedia implements IMedia {
     return actors;
   }
 
+  /**
+   * Returns if the objects are the same
+   * @param obj reference to compare
+   * @return true if the object is same as the object being passed as param, false otherwise
+   */
 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof AbstractMedia)) {
+      return false;
+    }
+    AbstractMedia that = (AbstractMedia) obj;
+    return getAlias().equals(that.getAlias()) &&
+        getTitle().equals(that.getTitle()) &&
+        getReleaseYear().equals(that.getReleaseYear()) &&
+        getDirectors().equals(that.getDirectors()) &&
+        getActors().equals(that.getActors()) &&
+        getNumberOfTimesStreamed().equals(that.getNumberOfTimesStreamed());
+  }
 
+  /**
+   * returns the hashcode value for the object
+   * @return hashcode
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(getAlias(), getTitle(), getReleaseYear(), getDirectors(), getActors(),
+        getNumberOfTimesStreamed());
+  }
+
+  /**
+   * Returns string representation of the object
+   * @return String representation of the object
+   */
+  @Override
+  public String toString() {
+    return "AbstractMedia{" +
+        "alias='" + alias + '\'' +
+        ", title='" + title + '\'' +
+        ", releaseYear=" + releaseYear +
+        ", directors=" + directors +
+        ", actors=" + actors +
+        ", numberOfTimesStreamed=" + numberOfTimesStreamed +
+        '}';
+  }
 }
