@@ -54,10 +54,10 @@ public class MediaTest {
     Actor newActor1 = new Actor(newActorName1);
     actorsList.add(newActor1);
     assertEquals(true, actorsList.size() == 2);
-//    actorsList.remove(newActor1);
-//    assertEquals(true, actorsList.size() == 1);
-//    actorsList.remove(newActor);
-//    assertEquals(true, actorsList.size() == 0);
+    actorsList.remove(newActor1);
+    assertEquals(true, actorsList.size() == 1);
+    actorsList.remove(newActor);
+    assertEquals(true, actorsList.size() == 0);
 
 
 

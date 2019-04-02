@@ -41,7 +41,7 @@ public class AbstractMediaTest {
 
   @Test
   public void getTitle() {
-//    assertEquals("Drug Lords", media1.getTitle());
+    assertEquals("Drug Lords", media1.getTitle());
     assertNotEquals("Drug Lordws", media1.getTitle());
 
   }
