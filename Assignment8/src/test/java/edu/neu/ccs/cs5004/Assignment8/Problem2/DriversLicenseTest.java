@@ -2,20 +2,46 @@ package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class DriversLicenseTest {
-  private DriversLicense driversLicense;
+  private IDriversLicense driversLicense;
+  private IName name;
+  private IAddress address;
+  private IDate birthDate;
+  private IDate issueDate;
+  private Date expirationDate;
+
+//  private IVehicle vehicle;
+//  private ArrayList<IAcceptedDriver> acceptedDriverList;
+//  private AcceptedDriver acceptedDriver1;
+//  private IRideShareSystem system;
+
+  private IDriversLicense same;
+  private IDriversLicense different;
+
 
   @Before
   public void setUp() throws Exception {
-    Name name = new Name("Unicorn", "Goddess");
-    Address address = new Address("1039 45th Street #6", "Emeryville", "CA", "94608");
-    Date birthDate = new Date(20, 3, 1989);
-    Date issueDate = new Date(1, 7, 2017);
-    Date expirationDate = new Date(30, 4, 2020);
+    name = new Name("Unicorn", "Goddess");
+    address = new Address("1039 45th Street #6", "Emeryville", "CA", "94608");
+    birthDate = new Date(20, 3, 1989);
+    issueDate = new Date(1, 7, 2017);
+    expirationDate = new Date(30, 4, 2020);
     driversLicense = new DriversLicense("abc123", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
+
+//    vehicle = new Vehicle("Space", "Machine", 2020, name);
+//    acceptedDriver1 = new AcceptedDriver(name, birthDate, driversLicense, vehicle);
+//    acceptedDriverList.add(acceptedDriver1);
+//    system = new RideShareSystem();
+//    system.getAcceptedDriversList() = acceptedDriverList;
+
+    same = new DriversLicense("abc123", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
+    Date differentExpDate = new Date(31, 12, 2019);
+    different = new DriversLicense("abc123", name, address, birthDate, Country.US, "Louisiana", issueDate, differentExpDate);
   }
 
   @Test
@@ -66,5 +92,40 @@ public class DriversLicenseTest {
     final String DATE_AS_STRING = "4/30/2020";
 
     assertEquals(DATE_AS_STRING, driversLicense.getExpirationDate().toString());
+  }
+
+//  @Test
+//  public void uniqueLicenseNumber() throws NonUniqueNumberException {
+//    acceptedDriverList.add(acceptedDriver1);
+//
+//    driversLicense = new DriversLicense("123abc", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
+//  }
+//
+//  @Test (expected = Exception.class)
+//  public void nonUniqueLicenseNumberException() throws NonUniqueNumberException {
+//    driversLicense = new DriversLicense("abc123", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
+//  }
+
+  @Test
+  public void equals() {
+    assertTrue(same.equals(driversLicense));
+    assertFalse(different.equals(driversLicense));
+  }
+
+  @Test
+  public void equalHashCode() {
+    assertEquals(same.hashCode(), driversLicense.hashCode());
+  }
+
+  @Test
+  public void differentHashCode() {
+    assertNotEquals(different.hashCode(), driversLicense.hashCode());
+  }
+
+  @Test
+  public void testToString() {
+    final String LICENSE_AS_STRING = "License number: abc123, Driver: Unicorn Goddess, Expiration date: 4/30/2020";
+
+    assertEquals(LICENSE_AS_STRING, driversLicense.toString());
   }
 }
