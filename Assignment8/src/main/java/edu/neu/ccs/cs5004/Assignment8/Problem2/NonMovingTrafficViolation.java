@@ -44,6 +44,7 @@ public class NonMovingTrafficViolation implements ITrafficViolation {
    *
    * @return violation date
    */
+  @Override
   public IDate getDate() {
     return this.date;
   }
@@ -54,6 +55,7 @@ public class NonMovingTrafficViolation implements ITrafficViolation {
    *
    * @return offender
    */
+  @Override
   public IName getOffender() {
     return this.offender;
   }
@@ -63,6 +65,7 @@ public class NonMovingTrafficViolation implements ITrafficViolation {
    *
    * @return type of traffic violation that was committed
    */
+  @Override
   public Enum getType() {
     return this.violationType;
   }

@@ -1,6 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
-import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * This class  implements IName and represents a name.
@@ -24,6 +24,7 @@ public class Name implements IName {
    *
    * @return first name
    */
+  @Override
   public String getFirstName() {
     return firstName;
   }
@@ -33,6 +34,7 @@ public class Name implements IName {
    *
    * @return last name
    */
+  @Override
   public String getLastName() {
     return lastName;
   }
@@ -58,7 +60,7 @@ public class Name implements IName {
 
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(firstName, lastName);
   }
 
   /**
