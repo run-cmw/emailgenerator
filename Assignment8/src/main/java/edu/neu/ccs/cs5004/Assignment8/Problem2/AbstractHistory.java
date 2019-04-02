@@ -1,13 +1,14 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * This abstract class implements IHistory and represents a driver's or vehicle's history.
  */
 public class AbstractHistory implements IHistory {
-  private ArrayList<ITrafficViolation> trafficViolations;
-  private ArrayList<IVehicleCrash> crashes;
+  private ArrayList<Enum> trafficViolations;
+  private ArrayList<Enum> crashes;
 
   /**
    * Construct a driver's History given traffic violations.
@@ -16,7 +17,7 @@ public class AbstractHistory implements IHistory {
    */
   // Overloaded because driver and vehicle require different information
   public AbstractHistory(
-      ArrayList<ITrafficViolation> trafficViolations) {
+      ArrayList<Enum> trafficViolations) {
     this.trafficViolations = trafficViolations;
   }
 
@@ -28,8 +29,8 @@ public class AbstractHistory implements IHistory {
    */
   // Overloaded because driver and vehicle require different information
   public AbstractHistory(
-      ArrayList<ITrafficViolation> trafficViolations,
-      ArrayList<IVehicleCrash> crashes) {
+      ArrayList<Enum> trafficViolations,
+      ArrayList<Enum> crashes) {
     this.trafficViolations = trafficViolations;
     this.crashes = crashes;
   }
@@ -39,7 +40,8 @@ public class AbstractHistory implements IHistory {
    *
    * @return list of driver's or vehicle's traffic violation history
    */
-  public ArrayList<ITrafficViolation> getTrafficViolations() {
+  @Override
+  public ArrayList<Enum> getTrafficViolations() {
     return trafficViolations;
   }
 
@@ -48,7 +50,8 @@ public class AbstractHistory implements IHistory {
    *
    * @return list of vehicle crash history
    */
-  public ArrayList<IVehicleCrash> getCrashes() {
+  @Override
+  public ArrayList<Enum> getCrashes() {
     return crashes;
   }
 
@@ -60,7 +63,14 @@ public class AbstractHistory implements IHistory {
    */
   @Override
   public boolean equals(Object obj) {
-    return super.equals(obj);
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof DriverHistory)) {
+      return false;
+    }
+    DriverHistory other = (DriverHistory) obj;
+    return this.getTrafficViolations().equals(other.getTrafficViolations());
   }
 
   /**
@@ -70,14 +80,14 @@ public class AbstractHistory implements IHistory {
    */
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(trafficViolations);
   }
 
   /**
    * Returns a string representation of the object.
-   * Format for driver - "Violations: ITrafficViolation, ITrafficViolation, ITrafficViolation..."
-   * Format for vehicle - "Violations: ITrafficViolation, ITrafficViolation, ITrafficViolation...
-   * Crashes: Crash, Crash, Crash"
+   * Format for driver - "Violations: [ITrafficViolation, ITrafficViolation, ITrafficViolation...]"
+   * Format for vehicle - "Violations: [ITrafficViolation, ITrafficViolation, ITrafficViolation...]
+   *                       [Crashes: Crash, Crash, Crash...]"
    *
    * @return string representation of the object
    */

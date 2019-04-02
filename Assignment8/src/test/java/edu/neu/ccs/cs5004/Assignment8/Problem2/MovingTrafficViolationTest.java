@@ -8,6 +8,10 @@ import org.junit.Test;
 public class MovingTrafficViolationTest {
   private ITrafficViolation driverViolation;
   private ITrafficViolation vehicleViolation;
+  private ITrafficViolation sameDriver;
+  private ITrafficViolation differentDriver;
+  private ITrafficViolation sameVehicle;
+  private ITrafficViolation differentVehicle;
 
   @Before
   public void setUp() throws Exception {
@@ -16,6 +20,12 @@ public class MovingTrafficViolationTest {
     MovingViolation movingViolation = MovingViolation.IGNORE_TRAFFIC_SIGNS;
     driverViolation = new MovingTrafficViolation(date, movingViolation);
     vehicleViolation = new MovingTrafficViolation(date, movingViolation, offender);
+
+    Date differentDate = new Date(2, 4, 2019);
+    sameDriver = new MovingTrafficViolation(date, movingViolation);
+    differentDriver = new MovingTrafficViolation(differentDate, movingViolation);
+    sameVehicle = new MovingTrafficViolation(date, movingViolation, offender);
+    differentVehicle = new MovingTrafficViolation(differentDate, movingViolation, offender);
   }
 
   @Test
@@ -37,5 +47,34 @@ public class MovingTrafficViolationTest {
   public void getType() {
     assertEquals(MovingViolation.IGNORE_TRAFFIC_SIGNS, driverViolation.getType());
     assertEquals(MovingViolation.IGNORE_TRAFFIC_SIGNS, vehicleViolation.getType());
+  }
+
+  @Test
+  public void equals() {
+    assertTrue(sameDriver.equals(driverViolation));
+    assertTrue(sameVehicle.equals(vehicleViolation));
+    assertFalse(differentDriver.equals(driverViolation));
+    assertFalse(differentVehicle.equals(vehicleViolation));
+  }
+
+  @Test
+  public void equalHashCode() {
+    assertEquals(sameDriver.hashCode(), driverViolation.hashCode());
+    assertEquals(sameVehicle.hashCode(), vehicleViolation.hashCode());
+  }
+
+  @Test
+  public void differentHashCode() {
+    assertNotEquals(differentDriver.hashCode(), driverViolation.hashCode());
+    assertNotEquals(differentVehicle.hashCode(), vehicleViolation.hashCode());
+  }
+
+  @Test
+  public void testToString() {
+    final String DRIVER_VIOLATIONS_AS_STRING = "3/31/2019: IGNORE_TRAFFIC_SIGNS, null";
+    final String VEHICLE_VIOLATIONS_AS_STRING = "3/31/2019: IGNORE_TRAFFIC_SIGNS, I'm Innocent";
+
+    assertEquals(DRIVER_VIOLATIONS_AS_STRING, driverViolation.toString());
+    assertEquals(VEHICLE_VIOLATIONS_AS_STRING, vehicleViolation.toString());
   }
 }

@@ -28,6 +28,7 @@ public class Date implements IDate {
    *
    * @return the day
    */
+  @Override
   public int getDay() {
     return day;
   }
@@ -37,6 +38,7 @@ public class Date implements IDate {
    *
    * @return the month
    */
+  @Override
   public int getMonth() {
     return month;
   }
@@ -46,6 +48,7 @@ public class Date implements IDate {
    *
    * @return the year
    */
+  @Override
   public int getYear() {
     return year;
   }
@@ -89,6 +92,6 @@ public class Date implements IDate {
 
   @Override
   public String toString() {
-    return this.getMonth() + "/" + this.getDay() + "/" + this.getYear();
+    return month + "/" + day + "/" + year;
   }
 }

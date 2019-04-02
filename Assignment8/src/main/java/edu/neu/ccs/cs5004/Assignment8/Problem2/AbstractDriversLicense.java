@@ -1,5 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import java.util.Objects;
 
 /**
  * This abstract class implements IDriversLicense and represents a driver's license.
@@ -30,7 +31,7 @@ public class AbstractDriversLicense implements IDriversLicense{
   public AbstractDriversLicense (String licenseNumber,
       IName driverName, IAddress driverAddress,
       IDate driverBirthDate, Country issuingCountry, String issuingState,
-      IDate issueDate, IDate expirationDate) {
+      IDate issueDate, IDate expirationDate) throws NonUniqueNumberException {
     this.licenseNumber = licenseNumber;
     this.driverName = driverName;
     this.driverAddress = driverAddress;
@@ -40,7 +41,7 @@ public class AbstractDriversLicense implements IDriversLicense{
     this.issueDate = issueDate;
     this.expirationDate = expirationDate;
 
-//    validateUniqueLicenseNumber();
+    validateUniqueLicenseNumber();
   }
 
   /**
@@ -48,6 +49,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license number
    */
+  @Override
   public String getLicenseNumber() {
     return this.licenseNumber;
   }
@@ -57,6 +59,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return driver's name
    */
+  @Override
   public IName getDriverName() {
     return this.driverName;
   }
@@ -66,6 +69,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return driver's address
    */
+  @Override
   public IAddress getDriverAddress() {
     return this.driverAddress;
   }
@@ -75,6 +79,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return driver's birth date
    */
+  @Override
   public IDate getDriverBirthDate() {
     return this.driverBirthDate;
   }
@@ -84,6 +89,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license issuing country
    */
+  @Override
   public Country getIssuingCountry() {
     return this.issuingCountry;
   }
@@ -93,6 +99,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license issuing state
    */
+  @Override
   public String getIssuingState() {
     return this.issuingState;
   }
@@ -102,6 +109,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license issue date
    */
+  @Override
   public IDate getIssueDate() {
     return this.issueDate;
   }
@@ -111,24 +119,22 @@ public class AbstractDriversLicense implements IDriversLicense{
    *
    * @return license expiration date
    */
+  @Override
   public IDate getExpirationDate() {
     return this.expirationDate;
   }
 
   /**
-   * Return whether the license number entered is unique.
+   * Check whether the license number entered is unique.
    *
-   * @return true if licence number is unique, false otherwise
-   * @throws NonUniqueNumberException if license number entered is already in system
+   * @throws NonUniqueNumberException if license number entered is already in rideshare system
    */
   private void validateUniqueLicenseNumber() throws NonUniqueNumberException {
-    // return if number !exist in allLicenseNumbers set
-    //not sure if Set has contains()
-//    if (AcceptedDriver.getList().contains(licenseNumber)) {
-//      throw new NonUniqueNumberException("This licence number is already paired with an "
-//          + "AcceptedDriver. Please enter a unique license number.");
-//    }
-
+    RideShareSystem rideShareSystem = new RideShareSystem();
+    if (rideShareSystem.getAcceptedDriversList().toString().contains(licenseNumber)) {
+      throw new NonUniqueNumberException("This licence number is already paired with an "
+          + "AcceptedDriver. Please enter a unique license number.");
+    }
   }
 
   /**
@@ -139,7 +145,21 @@ public class AbstractDriversLicense implements IDriversLicense{
    */
   @Override
   public boolean equals(Object obj) {
-    return super.equals(obj);
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof DriversLicense)) {
+      return false;
+    }
+    DriversLicense other = (DriversLicense) obj;
+    return this.getLicenseNumber().equals(other.getLicenseNumber())
+        && this.getDriverName().equals(other.getDriverName())
+        && this.getDriverAddress().equals(other.getDriverAddress())
+        && this.getDriverBirthDate().equals(other.getDriverBirthDate())
+        && this.getIssuingCountry().equals(other.getIssuingCountry())
+        && this.getIssuingState().equals(other.getIssuingState())
+        && this.getIssueDate().equals(other.getIssueDate())
+        && this.getExpirationDate().equals(other.getExpirationDate());
   }
 
   /**
@@ -149,7 +169,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    */
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(licenseNumber, driverName, driverAddress, driverBirthDate, issuingCountry, issuingState, issueDate, expirationDate);
   }
 
   /**
@@ -160,6 +180,12 @@ public class AbstractDriversLicense implements IDriversLicense{
    */
   @Override
   public String toString() {
-    return super.toString();
+    return
+        "License number: " +
+            licenseNumber +
+            ", Driver: " +
+            driverName +
+            ", Expiration date: " +
+            expirationDate;
   }
 }

@@ -7,11 +7,15 @@ import org.junit.Test;
 
 public class VehicleTest {
   private Vehicle vehicle;
+  private Vehicle same;
+  private Vehicle different;
 
   @Before
   public void setUp() throws Exception {
     Name name = new Name("Unicorn", "Goddess");
     vehicle = new Vehicle("Space", "Machine", 2020, name);
+    same = new Vehicle("Space", "Machine", 2020, name);
+    different = new Vehicle("Space", "Machine", 2021, name);
   }
 
   @Test
@@ -34,5 +38,28 @@ public class VehicleTest {
     final String OWNER_AS_STRING = "Unicorn Goddess";
 
     assertEquals(OWNER_AS_STRING, vehicle.getOwner().toString());
+  }
+
+  @Test
+  public void equals() {
+    assertTrue(same.equals(vehicle));
+    assertFalse(different.equals(vehicle));
+  }
+
+  @Test
+  public void equalHashCode() {
+    assertEquals(same.hashCode(),vehicle.hashCode());
+  }
+
+  @Test
+  public void differentHashCode() {
+    assertNotEquals(different.hashCode(), vehicle.hashCode());
+  }
+
+  @Test
+  public void testToString() {
+    final String INSURANCE_AS_STRING = "2020 Space Machine";
+
+    assertEquals(INSURANCE_AS_STRING, vehicle.toString());
   }
 }

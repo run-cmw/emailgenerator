@@ -9,6 +9,8 @@ import org.junit.Test;
 
 public class VehicleInsuranceTest {
   private VehicleInsurance vehicleInsurance;
+  private VehicleInsurance same;
+  private VehicleInsurance different;
 
   @Before
   public void setUp() throws Exception {
@@ -23,6 +25,10 @@ public class VehicleInsuranceTest {
     insuredDrivers.add(insured2);
 
     vehicleInsurance = new VehicleInsurance(owner, insuredDrivers, expirationDate, vehicle);
+
+    Date differentExpDate = new Date (31, 7, 2020);
+    same = new VehicleInsurance(owner, insuredDrivers, expirationDate, vehicle);
+    different = new VehicleInsurance(owner, insuredDrivers, differentExpDate, vehicle);
   }
 
   @Test
@@ -56,5 +62,28 @@ public class VehicleInsuranceTest {
     final String VEHICLE_AS_STRING = "2020 Space Machine";
 
     assertEquals(VEHICLE_AS_STRING, vehicleInsurance.getVehicle().toString());
+  }
+
+  @Test
+  public void equals() {
+    assertTrue(same.equals(vehicleInsurance));
+    assertFalse(different.equals(vehicleInsurance));
+  }
+
+  @Test
+  public void equalHashCode() {
+    assertEquals(same.hashCode(),vehicleInsurance.hashCode());
+  }
+
+  @Test
+  public void differentHashCode() {
+    assertNotEquals(different.hashCode(), vehicleInsurance.hashCode());
+  }
+
+  @Test
+  public void testToString() {
+    final String INSURANCE_AS_STRING = "Owner: My Vehicle, Additional Insured: [Avery Wells, Chana Wells]";
+
+    assertEquals(INSURANCE_AS_STRING, vehicleInsurance.toString());
   }
 }

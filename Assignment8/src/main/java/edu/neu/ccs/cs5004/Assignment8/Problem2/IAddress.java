@@ -50,7 +50,7 @@ public interface IAddress {
   /**
    * Returns a string representation of the object.
    * Format - "streetNumberNameUnit
-   * city, state zipCode"
+   *           city, state zipCode"
    *
    * @return string representation of the object
    */

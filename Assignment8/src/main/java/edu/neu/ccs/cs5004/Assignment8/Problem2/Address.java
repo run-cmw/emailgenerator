@@ -32,6 +32,7 @@ public class Address implements IAddress {
    *
    * @return street number, name, and unit
    */
+  @Override
   public String getStreetNumberNameUnit() {
     return this.streetNumberNameUnit;
   }
@@ -41,6 +42,7 @@ public class Address implements IAddress {
    *
    * @return city
    */
+  @Override
   public String getCity() {
     return this.city;
   }
@@ -50,6 +52,7 @@ public class Address implements IAddress {
    *
    * @return state
    */
+  @Override
   public String getState() {
     return this.state;
   }
@@ -59,6 +62,7 @@ public class Address implements IAddress {
    *
    * @return zip code
    */
+  @Override
   public String getZipCode() {
     return this.zipCode;
   }

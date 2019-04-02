@@ -1,5 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
+import java.util.Objects;
 
 /**
  * This abstract class implements IVehicle and represents a vehicle.
@@ -31,6 +32,7 @@ public class AbstractVehicle implements IVehicle {
    *
    * @return vehicle make
    */
+  @Override
   public String getMake() {
     return make;
   }
@@ -40,6 +42,7 @@ public class AbstractVehicle implements IVehicle {
    *
    * @return vehicle model
    */
+  @Override
   public String getModel() {
     return model;
   }
@@ -49,6 +52,7 @@ public class AbstractVehicle implements IVehicle {
    *
    * @return vehicle year
    */
+  @Override
   public int getYear() {
     return year;
   }
@@ -58,6 +62,7 @@ public class AbstractVehicle implements IVehicle {
    *
    * @return vehicle owner
    */
+  @Override
   public IName getOwner() {
     return owner;
   }
@@ -70,7 +75,17 @@ public class AbstractVehicle implements IVehicle {
    */
   @Override
   public boolean equals(Object obj) {
-    return super.equals(obj);
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof Vehicle)) {
+      return false;
+    }
+    Vehicle other = (Vehicle) obj;
+    return this.getModel().equals(other.getModel())
+        && this.getMake().equals(other.getMake())
+        && this.getOwner().equals(other.getOwner())
+        && this.getYear() == other.getYear();
   }
 
   /**
@@ -80,7 +95,7 @@ public class AbstractVehicle implements IVehicle {
    */
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(make, model, year, owner);
   }
 
   /**
@@ -91,6 +106,6 @@ public class AbstractVehicle implements IVehicle {
    */
   @Override
   public String toString() {
-    return super.toString();
+    return year + " " + make + " " + model;
   }
 }
