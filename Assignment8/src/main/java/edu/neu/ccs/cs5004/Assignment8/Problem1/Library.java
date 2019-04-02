@@ -1,6 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem1;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
@@ -9,7 +10,8 @@ import java.util.Set;
  * This class represents a media Library. It also implements ILibrary
  */
 public class Library implements ILibrary{
-  private Set<AbstractMedia> items;
+  private Set<AbstractMedia> items = new HashSet<AbstractMedia>();
+
 
   /**
    * Constructor a Library object as a Set of items
