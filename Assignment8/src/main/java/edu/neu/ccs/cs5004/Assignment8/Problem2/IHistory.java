@@ -38,9 +38,9 @@ public interface IHistory {
 
   /**
    * Returns a string representation of the object.
-   * Format for driver - "Violations: ITrafficViolation, ITrafficViolation, ITrafficViolation..."
-   * Format for vehicle - "Violations: ITrafficViolation, ITrafficViolation, ITrafficViolation...
-   * Crashes: Crash, Crash, Crash"
+   * Format for driver - "Violations: [ITrafficViolation, ITrafficViolation, ITrafficViolation...]"
+   * Format for vehicle - "Violations: [ITrafficViolation, ITrafficViolation, ITrafficViolation...]
+   *                       Crashes: [Crash, Crash, Crash...]"
    *
    * @return string representation of the object
    */
