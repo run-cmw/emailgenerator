@@ -1,6 +1,5 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
-
 import java.util.Objects;
 
 /**
@@ -44,6 +43,7 @@ public class MovingTrafficViolation implements ITrafficViolation {
    *
    * @return violation date
    */
+  @Override
   public IDate getDate() {
     return this.date;
   }
@@ -54,6 +54,7 @@ public class MovingTrafficViolation implements ITrafficViolation {
    *
    * @return offender
    */
+  @Override
   public IName getOffender() {
     return this.offender;
   }
@@ -63,6 +64,7 @@ public class MovingTrafficViolation implements ITrafficViolation {
    *
    * @return type of traffic violation that was committed
    */
+  @Override
   public Enum getType() {
     return this.violationType;
   }

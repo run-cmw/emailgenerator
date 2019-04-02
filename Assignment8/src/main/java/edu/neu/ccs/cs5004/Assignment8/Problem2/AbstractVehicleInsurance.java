@@ -1,7 +1,7 @@
 package edu.neu.ccs.cs5004.Assignment8.Problem2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * This abstract class implements IVehicleInsurance and represents a vehicle's insurance
@@ -34,6 +34,7 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    *
    * @return vehicle's owner
    */
+  @Override
   public IName getOwner() {
     return this.owner;
   }
@@ -43,6 +44,7 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    *
    * @return list of additional drivers
    */
+  @Override
   public ArrayList<IName> getInsuredDrivers() {
     return this.insuredDrivers;
   }
@@ -52,6 +54,7 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    *
    * @return expiration date
    */
+  @Override
   public IDate getExpirationDate() {
     return this.expirationDate;
   }
@@ -74,7 +77,17 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    */
   @Override
   public boolean equals(Object obj) {
-    return super.equals(obj);
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof VehicleInsurance)) {
+      return false;
+    }
+    VehicleInsurance other = (VehicleInsurance) obj;
+    return this.getOwner().equals(other.getOwner())
+        && this.getExpirationDate().equals(other.getExpirationDate())
+        && this.getInsuredDrivers().equals(other.getInsuredDrivers())
+        && this.getVehicle().equals(other.getVehicle());
   }
 
   /**
@@ -84,17 +97,20 @@ public class AbstractVehicleInsurance implements IVehicleInsurance {
    */
   @Override
   public int hashCode() {
-    return super.hashCode();
+    return Objects.hash(owner, insuredDrivers, expirationDate, vehicle);
   }
 
   /**
    * Returns a string representation of the object.
-   * Format - "Owner: firstName lastName, Additional Insured: firstName lastName, firstName lastName, ..."
+   * Format - "Owner: firstName lastName, Additional Insured: [firstName lastName, firstName lastName, ...]"
    *
    * @return string representation of the object
    */
   @Override
   public String toString() {
-    return super.toString();
+    return "Owner: " +
+        owner +
+        ", Additional Insured: " +
+        insuredDrivers;
   }
 }
