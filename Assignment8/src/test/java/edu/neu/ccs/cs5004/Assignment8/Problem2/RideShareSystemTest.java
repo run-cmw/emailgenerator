@@ -137,6 +137,7 @@ public class RideShareSystemTest {
     system.registerAsProspectiveDriver(name, birthday, license, vehicle,
         vehicleInsurance, driverHistory, vehicleHistory);
     assertEquals("RideShareSystem - acceptedDrivers = [Driver: Tommy Land, "
-            + "Vehicle: 2017 Toyota Camry]", system.toString());
+            + "Vehicle: 2017 Toyota Camry]",
+        system.toString());
   }
 }
