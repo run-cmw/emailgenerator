@@ -50,8 +50,8 @@ public class VehicleHistory extends AbstractHistory {
 
   /**
    * Returns a string representation of the object.
-   * Format for vehicle - "Violations: [ITrafficViolation, ITrafficViolation, ITrafficViolation...]
-   *                       Crashes: [Crash, Crash, Crash...]"
+   * Format for vehicle - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]
+   *                       [VehicleCrash{date=Date, crash=IVehicleCrash}, VehicleCrash{date=Date, crash=IVehicleCrash}]"
    *
    * @return string representation of the object
    */

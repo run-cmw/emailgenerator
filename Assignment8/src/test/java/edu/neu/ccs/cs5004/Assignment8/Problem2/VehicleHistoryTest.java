@@ -14,8 +14,9 @@ public class VehicleHistoryTest {
   @Before
   public void setUp() throws Exception {
     Date date = new Date(31, 3, 2019);
-    ITrafficViolation violation1 = new NonMovingTrafficViolation(date, NonMovingViolation.PARKING_VIOLATION);
-    ITrafficViolation violation2 = new MovingTrafficViolation(date, MovingViolation.IGNORE_TRAFFIC_SIGNS);
+    Name name = new Name("Unicorn", "Goddess");
+    ITrafficViolation violation1 = new NonMovingTrafficViolation(date, NonMovingViolation.PARKING_VIOLATION, name);
+    ITrafficViolation violation2 = new MovingTrafficViolation(date, MovingViolation.IGNORE_TRAFFIC_SIGNS, name);
     IVehicleCrash crash1 = new VehicleCrash(date, Crash.FENDER_BENDER);
     IVehicleCrash crash2 = new VehicleCrash(date, Crash.WITHOUT_INJURIES);
     ArrayList<ITrafficViolation> trafficViolations = new ArrayList<>();
@@ -34,14 +35,14 @@ public class VehicleHistoryTest {
 
   @Test
   public void getTrafficViolations() {
-    final String VIOLATIONS_AS_STRING = "[PARKING_VIOLATION, IGNORE_TRAFFIC_SIGNS]";
+    final String VIOLATIONS_AS_STRING = "[3/31/2019: PARKING_VIOLATION, Unicorn Goddess, 3/31/2019: IGNORE_TRAFFIC_SIGNS, Unicorn Goddess]";
 
     assertEquals(VIOLATIONS_AS_STRING, history.getTrafficViolations().toString());
   }
 
   @Test
   public void getCrashes() {
-    final String CRASHES_AS_STRING = "[FENDER_BENDER, WITHOUT_INJURIES]";
+    final String CRASHES_AS_STRING = "[VehicleCrash{date=3/31/2019, crash=FENDER_BENDER}, VehicleCrash{date=3/31/2019, crash=WITHOUT_INJURIES}]";
 
     assertEquals(CRASHES_AS_STRING, history.getCrashes().toString());
   }
@@ -66,8 +67,8 @@ public class VehicleHistoryTest {
 
   @Test
   public void testToString() {
-    final String HISTORY = "Violations: [PARKING_VIOLATION, IGNORE_TRAFFIC_SIGNS]\n"
-        + "Crashes: [FENDER_BENDER, WITHOUT_INJURIES]";
+    final String HISTORY = "Violations: [3/31/2019: PARKING_VIOLATION, Unicorn Goddess, 3/31/2019: IGNORE_TRAFFIC_SIGNS, Unicorn Goddess]\n"
+        + "Crashes: [VehicleCrash{date=3/31/2019, crash=FENDER_BENDER}, VehicleCrash{date=3/31/2019, crash=WITHOUT_INJURIES}]";
 
     assertEquals(HISTORY, history.toString());
   }

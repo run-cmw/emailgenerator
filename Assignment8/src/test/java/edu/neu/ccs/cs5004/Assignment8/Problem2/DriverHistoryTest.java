@@ -30,7 +30,7 @@ public class DriverHistoryTest {
 
   @Test
   public void getTrafficViolations() {
-    final String VIOLATIONS_AS_STRING = "[PARKING_VIOLATION, IGNORE_TRAFFIC_SIGNS]";
+    final String VIOLATIONS_AS_STRING = "[3/31/2019: PARKING_VIOLATION, null, 3/31/2019: IGNORE_TRAFFIC_SIGNS, null]";
 
     assertEquals(VIOLATIONS_AS_STRING, history.getTrafficViolations().toString());
   }
@@ -56,7 +56,7 @@ public class DriverHistoryTest {
 
   @Test
   public void testToString() {
-    final String HISTORY_AS_STRING = "Violations: [PARKING_VIOLATION, IGNORE_TRAFFIC_SIGNS]";
+    final String HISTORY_AS_STRING = "Violations: [3/31/2019: PARKING_VIOLATION, null, 3/31/2019: IGNORE_TRAFFIC_SIGNS, null]";
 
     assertEquals(HISTORY_AS_STRING, history.toString());
   }

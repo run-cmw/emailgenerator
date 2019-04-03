@@ -19,7 +19,7 @@ public class DriverHistory extends AbstractHistory {
 
   /**
    * Returns a string representation of the object.
-   * Format for driver - "Violations: [ITrafficViolation, ITrafficViolation, ITrafficViolation...]"
+   * Format for driver - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]"
    *
    * @return string representation of the object
    */
