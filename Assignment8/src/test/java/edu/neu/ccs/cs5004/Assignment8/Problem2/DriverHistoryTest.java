@@ -13,20 +13,19 @@ public class DriverHistoryTest {
 
   @Before
   public void setUp() throws Exception {
-    trafficViolations = new ArrayList<>();
     Date date = new Date(31, 3, 2019);
     ITrafficViolation violation1 = new NonMovingTrafficViolation(date, NonMovingViolation.PARKING_VIOLATION);
     ITrafficViolation violation2 = new MovingTrafficViolation(date, MovingViolation.IGNORE_TRAFFIC_SIGNS);
-    ArrayList<Enum> trafficViolations = new ArrayList<>();
+    ArrayList<ITrafficViolation> trafficViolations = new ArrayList<>();
     history = new DriverHistory(trafficViolations);
 
-    trafficViolations.add(violation1.getType());
-    trafficViolations.add(violation2.getType());
+    trafficViolations.add(violation1);
+    trafficViolations.add(violation2);
 
-    ArrayList<Enum> trafficViolations2 = new ArrayList<>();
+    ArrayList<ITrafficViolation> trafficViolations2 = new ArrayList<>();
     same = new DriverHistory(trafficViolations);
     different = new DriverHistory(trafficViolations2);
-    trafficViolations2.add(violation1.getType());
+    trafficViolations2.add(violation1);
   }
 
   @Test
@@ -38,8 +37,11 @@ public class DriverHistoryTest {
 
   @Test
   public void equals() {
+    assertTrue(same.equals(same));
     assertTrue(same.equals(history));
+    assertTrue(same.equals(same));
     assertFalse(different.equals(history));
+    assertFalse(same.equals(2));
   }
 
   @Test

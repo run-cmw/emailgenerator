@@ -30,7 +30,9 @@ public class NameTest {
   @Test
   public void equals() {
     assertTrue(same.equals(name));
+    assertTrue(same.equals(same));
     assertFalse(different.equals(name));
+    assertFalse(same.equals(2));
   }
 
   @Test

@@ -67,7 +67,9 @@ public class VehicleInsuranceTest {
   @Test
   public void equals() {
     assertTrue(same.equals(vehicleInsurance));
+    assertTrue(same.equals(same));
     assertFalse(different.equals(vehicleInsurance));
+    assertFalse(same.equals(2));
   }
 
   @Test

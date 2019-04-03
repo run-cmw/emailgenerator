@@ -40,7 +40,9 @@ public class AddressTest {
   @Test
   public void equals() {
     assertTrue(same.equals(address));
+    assertTrue(same.equals(same));
     assertFalse(different.equals(address));
+    assertFalse(same.equals(2));
   }
 
   @Test

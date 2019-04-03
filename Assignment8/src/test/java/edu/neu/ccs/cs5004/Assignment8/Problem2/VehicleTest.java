@@ -43,7 +43,9 @@ public class VehicleTest {
   @Test
   public void equals() {
     assertTrue(same.equals(vehicle));
+    assertTrue(same.equals(same));
     assertFalse(different.equals(vehicle));
+    assertFalse(same.equals(2));
   }
 
   @Test
