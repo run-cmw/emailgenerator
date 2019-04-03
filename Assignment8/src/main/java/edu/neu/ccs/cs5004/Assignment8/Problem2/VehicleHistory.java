@@ -14,8 +14,8 @@ public class VehicleHistory extends AbstractHistory {
    * @param crashes - a list of vehicle's crashes
    */
   public VehicleHistory (
-      ArrayList<Enum> trafficViolations,
-      ArrayList<Enum> crashes) {
+      ArrayList<ITrafficViolation> trafficViolations,
+      ArrayList<IVehicleCrash> crashes) {
     super(trafficViolations, crashes);
   }
 

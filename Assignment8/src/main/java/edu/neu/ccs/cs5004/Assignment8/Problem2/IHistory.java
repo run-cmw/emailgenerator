@@ -12,14 +12,14 @@ public interface IHistory {
    *
    * @return list of driver's or vehicle's traffic violation history
    */
-  ArrayList<Enum> getTrafficViolations();
+  ArrayList<ITrafficViolation> getTrafficViolations();
 
   /**
    * Return a list of crashes in a vehicle's history.
    *
    * @return list of vehicle crash history
    */
-  ArrayList<Enum> getCrashes();
+  ArrayList<IVehicleCrash> getCrashes();
 
   /**
    * Indicates whether some other object is "equal to" this one.

@@ -13,7 +13,7 @@ public class DriverHistory extends AbstractHistory {
    * @param trafficViolations - list of driver's traffic violations
    */
   public DriverHistory (
-      ArrayList<Enum> trafficViolations) {
+      ArrayList<ITrafficViolation> trafficViolations) {
     super(trafficViolations);
   }
 

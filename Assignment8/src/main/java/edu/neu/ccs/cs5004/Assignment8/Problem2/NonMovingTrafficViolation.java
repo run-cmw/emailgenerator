@@ -6,7 +6,6 @@ import java.util.Objects;
  * This class extends AbstractTrafficViolation and represents a traffic violation.
  */
 public class NonMovingTrafficViolation implements ITrafficViolation {
-
   private NonMovingViolation violationType;
   private IDate date;
   private IName offender;
@@ -21,6 +20,7 @@ public class NonMovingTrafficViolation implements ITrafficViolation {
   public NonMovingTrafficViolation(IDate date, NonMovingViolation type) {
     this.date = date;
     this.violationType = type;
+    this.offender = null;
   }
 
   /**
