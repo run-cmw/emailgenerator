@@ -35,7 +35,9 @@ public class DateTest {
   @Test
   public void equals() {
     assertTrue(same.equals(date));
+    assertTrue(same.equals(same));
     assertFalse(different.equals(date));
+    assertFalse(same.equals(2));
   }
 
   @Test

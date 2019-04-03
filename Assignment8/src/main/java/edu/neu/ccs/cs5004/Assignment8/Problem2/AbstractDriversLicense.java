@@ -31,7 +31,7 @@ public class AbstractDriversLicense implements IDriversLicense{
   public AbstractDriversLicense (String licenseNumber,
       IName driverName, IAddress driverAddress,
       IDate driverBirthDate, Country issuingCountry, String issuingState,
-      IDate issueDate, IDate expirationDate) throws NonUniqueNumberException {
+      IDate issueDate, IDate expirationDate) {
     this.licenseNumber = licenseNumber;
     this.driverName = driverName;
     this.driverAddress = driverAddress;
@@ -40,8 +40,6 @@ public class AbstractDriversLicense implements IDriversLicense{
     this.issuingState = issuingState;
     this.issueDate = issueDate;
     this.expirationDate = expirationDate;
-
-    validateUniqueLicenseNumber();
   }
 
   /**
@@ -122,19 +120,6 @@ public class AbstractDriversLicense implements IDriversLicense{
   @Override
   public IDate getExpirationDate() {
     return this.expirationDate;
-  }
-
-  /**
-   * Check whether the license number entered is unique.
-   *
-   * @throws NonUniqueNumberException if license number entered is already in rideshare system
-   */
-  private void validateUniqueLicenseNumber() throws NonUniqueNumberException {
-    RideShareSystem rideShareSystem = new RideShareSystem();
-    if (rideShareSystem.getAcceptedDriversList().toString().contains(licenseNumber)) {
-      throw new NonUniqueNumberException("This licence number is already paired with an "
-          + "AcceptedDriver. Please enter a unique license number.");
-    }
   }
 
   /**

@@ -24,7 +24,7 @@ public class NonMovingTrafficViolationTest {
     Date differentDate = new Date(2, 4, 2019);
     sameDriver = new NonMovingTrafficViolation(date, nonMovingViolation);
     differentDriver = new NonMovingTrafficViolation(differentDate, nonMovingViolation);
-    sameVehicle = new NonMovingTrafficViolation(differentDate, nonMovingViolation, offender);
+    sameVehicle = new NonMovingTrafficViolation(date, nonMovingViolation, offender);
     differentVehicle = new NonMovingTrafficViolation(differentDate, nonMovingViolation, offender);
   }
 
@@ -52,9 +52,13 @@ public class NonMovingTrafficViolationTest {
   @Test
   public void equals() {
     assertTrue(sameDriver.equals(driverViolation));
+    assertTrue(sameDriver.equals(sameDriver));
     assertTrue(sameVehicle.equals(vehicleViolation));
+    assertTrue(sameVehicle.equals(sameVehicle));
     assertFalse(differentDriver.equals(driverViolation));
     assertFalse(differentVehicle.equals(vehicleViolation));
+    assertFalse(sameVehicle.equals(2));
+    assertFalse(sameDriver.equals(2));
   }
 
   @Test

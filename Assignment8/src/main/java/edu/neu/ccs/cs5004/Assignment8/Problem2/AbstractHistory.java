@@ -7,8 +7,8 @@ import java.util.Objects;
  * This abstract class implements IHistory and represents a driver's or vehicle's history.
  */
 public class AbstractHistory implements IHistory {
-  private ArrayList<Enum> trafficViolations;
-  private ArrayList<Enum> crashes;
+  private ArrayList<ITrafficViolation> trafficViolations;
+  private ArrayList<IVehicleCrash> crashes;
 
   /**
    * Construct a driver's History given traffic violations.
@@ -17,7 +17,7 @@ public class AbstractHistory implements IHistory {
    */
   // Overloaded because driver and vehicle require different information
   public AbstractHistory(
-      ArrayList<Enum> trafficViolations) {
+      ArrayList<ITrafficViolation> trafficViolations) {
     this.trafficViolations = trafficViolations;
   }
 
@@ -29,8 +29,8 @@ public class AbstractHistory implements IHistory {
    */
   // Overloaded because driver and vehicle require different information
   public AbstractHistory(
-      ArrayList<Enum> trafficViolations,
-      ArrayList<Enum> crashes) {
+      ArrayList<ITrafficViolation> trafficViolations,
+      ArrayList<IVehicleCrash> crashes) {
     this.trafficViolations = trafficViolations;
     this.crashes = crashes;
   }
@@ -41,7 +41,7 @@ public class AbstractHistory implements IHistory {
    * @return list of driver's or vehicle's traffic violation history
    */
   @Override
-  public ArrayList<Enum> getTrafficViolations() {
+  public ArrayList<ITrafficViolation> getTrafficViolations() {
     return trafficViolations;
   }
 
@@ -51,7 +51,7 @@ public class AbstractHistory implements IHistory {
    * @return list of vehicle crash history
    */
   @Override
-  public ArrayList<Enum> getCrashes() {
+  public ArrayList<IVehicleCrash> getCrashes() {
     return crashes;
   }
 

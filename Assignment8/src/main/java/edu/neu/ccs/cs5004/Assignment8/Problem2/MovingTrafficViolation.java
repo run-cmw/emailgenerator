@@ -20,6 +20,7 @@ public class MovingTrafficViolation implements ITrafficViolation {
   public MovingTrafficViolation(IDate date, MovingViolation type) {
     this.date = date;
     this.violationType = type;
+    this.offender = null;
   }
 
   /**

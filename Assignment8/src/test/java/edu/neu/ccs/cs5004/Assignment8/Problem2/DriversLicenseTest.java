@@ -15,11 +15,6 @@ public class DriversLicenseTest {
   private IDate issueDate;
   private Date expirationDate;
 
-//  private IVehicle vehicle;
-//  private ArrayList<IAcceptedDriver> acceptedDriverList;
-//  private AcceptedDriver acceptedDriver1;
-//  private IRideShareSystem system;
-
   private IDriversLicense same;
   private IDriversLicense different;
 
@@ -32,12 +27,6 @@ public class DriversLicenseTest {
     issueDate = new Date(1, 7, 2017);
     expirationDate = new Date(30, 4, 2020);
     driversLicense = new DriversLicense("abc123", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
-
-//    vehicle = new Vehicle("Space", "Machine", 2020, name);
-//    acceptedDriver1 = new AcceptedDriver(name, birthDate, driversLicense, vehicle);
-//    acceptedDriverList.add(acceptedDriver1);
-//    system = new RideShareSystem();
-//    system.getAcceptedDriversList() = acceptedDriverList;
 
     same = new DriversLicense("abc123", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
     Date differentExpDate = new Date(31, 12, 2019);
@@ -94,22 +83,12 @@ public class DriversLicenseTest {
     assertEquals(DATE_AS_STRING, driversLicense.getExpirationDate().toString());
   }
 
-//  @Test
-//  public void uniqueLicenseNumber() throws NonUniqueNumberException {
-//    acceptedDriverList.add(acceptedDriver1);
-//
-//    driversLicense = new DriversLicense("123abc", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
-//  }
-//
-//  @Test (expected = Exception.class)
-//  public void nonUniqueLicenseNumberException() throws NonUniqueNumberException {
-//    driversLicense = new DriversLicense("abc123", name, address, birthDate, Country.US, "Louisiana", issueDate, expirationDate);
-//  }
-
   @Test
   public void equals() {
     assertTrue(same.equals(driversLicense));
+    assertTrue(same.equals(same));
     assertFalse(different.equals(driversLicense));
+    assertFalse(same.equals(2));
   }
 
   @Test

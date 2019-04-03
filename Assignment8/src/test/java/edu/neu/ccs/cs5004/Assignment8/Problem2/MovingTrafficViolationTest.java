@@ -52,9 +52,13 @@ public class MovingTrafficViolationTest {
   @Test
   public void equals() {
     assertTrue(sameDriver.equals(driverViolation));
+    assertTrue(sameDriver.equals(sameDriver));
     assertTrue(sameVehicle.equals(vehicleViolation));
+    assertTrue(sameVehicle.equals(sameVehicle));
     assertFalse(differentDriver.equals(driverViolation));
     assertFalse(differentVehicle.equals(vehicleViolation));
+    assertFalse(sameVehicle.equals(2));
+    assertFalse(sameDriver.equals(2));
   }
 
   @Test
