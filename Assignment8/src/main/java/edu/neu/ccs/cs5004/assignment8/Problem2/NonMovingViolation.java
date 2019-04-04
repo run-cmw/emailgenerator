@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.assignment8.Problem2;
+package edu.neu.ccs.cs5004.assignment8.problem2;
 
 /**
  * Enumerate the types of non-moving violations a Driver and Vehicle may have a history of.

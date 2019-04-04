@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.assignment8.Problem2;
+package edu.neu.ccs.cs5004.assignment8.problem2;
 
 /**
  * This interface contains all functionality that all Names should support.
