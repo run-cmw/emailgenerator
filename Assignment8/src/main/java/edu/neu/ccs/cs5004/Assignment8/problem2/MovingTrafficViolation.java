@@ -109,8 +109,10 @@ public class MovingTrafficViolation implements ITrafficViolation {
    */
   @Override
   public String toString() {
-    return date +
-        ": " + violationType +
-        ", " + offender;
+    return date
+        + ": "
+        + violationType
+        + ", "
+        + offender;
   }
 }

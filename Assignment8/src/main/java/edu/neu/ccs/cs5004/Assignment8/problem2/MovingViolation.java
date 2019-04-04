@@ -5,27 +5,27 @@ package edu.neu.ccs.cs5004.Assignment8.problem2;
  */
 public enum MovingViolation {
   /**
-   * Distracted driving
+   * Distracted driving.
    */
   DISTRACTED_DRIVING,
   /**
-   * Reckless driving
+   * Reckless driving.
    */
   RECKLESS_DRIVING,
   /**
-   * Speeding
+   * Speeding.
    */
   SPEEDING,
   /**
-   * Driving under the influence
+   * Driving under the influence.
    */
   DUI,
   /**
-   * Not respecting traffic signs
+   * Not respecting traffic signs.
    */
   IGNORE_TRAFFIC_SIGNS,
   /**
-   * Driving without or with expired License or VehicleInsurance
+   * Driving without or with expired License or VehicleInsurance.
    */
   INVALID_LICENSE_OR_INSURANCE
 }

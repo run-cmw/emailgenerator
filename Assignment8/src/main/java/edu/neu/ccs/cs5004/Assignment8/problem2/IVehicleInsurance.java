@@ -51,7 +51,8 @@ public interface IVehicleInsurance {
 
   /**
    * Returns a string representation of the object.
-   * Format - "Owner: firstName lastName, Additional Insured: [firstName lastName, firstName lastName, ...]"
+   * Format - "Owner: firstName lastName,
+   * Additional Insured: [firstName lastName, firstName lastName, ...]"
    *
    * @return string representation of the object
    */

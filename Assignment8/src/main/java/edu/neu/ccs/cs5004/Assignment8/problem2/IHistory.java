@@ -25,7 +25,8 @@ public interface IHistory {
    * Indicates whether some other object is "equal to" this one.
    *
    * @param obj - the reference object with which to compare
-   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   * @return {@code true} if this object is the same as the obj argument and
+   * {@code false} otherwise
    */
   boolean equals(Object obj);
 
@@ -38,9 +39,11 @@ public interface IHistory {
 
   /**
    * Returns a string representation of the object.
-   * Format for driver - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]"
-   * Format for vehicle - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]
-   *                       [VehicleCrash{date=Date, crash=IVehicleCrash}, VehicleCrash{date=Date, crash=IVehicleCrash}]"
+   * Format for driver - "Violations:
+   * [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]"
+   * Format for vehicle - "Violations:
+   * [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]
+   * [VehicleCrash{date=Date, crash=IVehicleCrash}, VehicleCrash{date=Date, crash=IVehicleCrash}]"
    *
    * @return string representation of the object
    */

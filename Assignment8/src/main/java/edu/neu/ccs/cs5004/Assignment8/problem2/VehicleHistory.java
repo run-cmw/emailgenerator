@@ -13,7 +13,7 @@ public class VehicleHistory extends AbstractHistory {
    * @param trafficViolations - a list of vehicle's traffic violations
    * @param crashes - a list of vehicle's crashes
    */
-  public VehicleHistory (
+  public VehicleHistory(
       ArrayList<ITrafficViolation> trafficViolations,
       ArrayList<IVehicleCrash> crashes) {
     super(trafficViolations, crashes);
@@ -50,15 +50,17 @@ public class VehicleHistory extends AbstractHistory {
 
   /**
    * Returns a string representation of the object.
-   * Format for vehicle - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]
-   *                       [VehicleCrash{date=Date, crash=IVehicleCrash}, VehicleCrash{date=Date, crash=IVehicleCrash}]"
+   * Format for vehicle - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation,
+   * Date: ITrafficViolation, ...]
+   * [VehicleCrash{date=Date, crash=IVehicleCrash}, VehicleCrash{date=Date, crash=IVehicleCrash}]"
    *
    * @return string representation of the object
    */
   @Override
   public String toString() {
-    return "Violations: " +
-        super.getTrafficViolations() +
-        "\nCrashes: " + super.getCrashes();
+    return "Violations: "
+        + super.getTrafficViolations()
+        + "\nCrashes: "
+        + super.getCrashes();
   }
 }

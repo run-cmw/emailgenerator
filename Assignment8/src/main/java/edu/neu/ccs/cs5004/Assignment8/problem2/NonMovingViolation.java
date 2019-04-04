@@ -5,15 +5,15 @@ package edu.neu.ccs.cs5004.Assignment8.problem2;
  */
 public enum NonMovingViolation {
   /**
-   * Parking violation
+   * Parking violation.
    */
   PARKING_VIOLATION,
   /**
-   * Paperwork issues
+   * Paperwork issues.
    */
   PAPERWORK_ISSUES,
   /**
-   * Vehicle problems
+   * Vehicle problems.
    */
   VEHICLE_PROBLEMS
 }

@@ -56,8 +56,8 @@ public class VehicleCrash implements IVehicleCrash {
       return false;
     }
     VehicleCrash other = (VehicleCrash) obj;
-    return Objects.equals(this.date, other.date) &&
-        this.crash == other.crash;
+    return Objects.equals(this.date, other.date)
+        && this.crash == other.crash;
   }
 
   /**
@@ -78,9 +78,10 @@ public class VehicleCrash implements IVehicleCrash {
    */
   @Override
   public String toString() {
-    return "VehicleCrash{" +
-        "date=" + date +
-        ", crash=" + crash +
-        "}";
+    return "VehicleCrash{"
+        + "date="
+        + date
+        + ", crash="
+        + crash + "}";
   }
 }

@@ -25,6 +25,13 @@ public class AcceptedDriver implements IAcceptedDriver{
    */
   private IVehicle vehicle;
 
+  /**
+   * Constructor
+   * @param name - Name of driver.
+   * @param birthday - Birthday of driver.
+   * @param license - License of driver.
+   * @param vehicle - Vehicle of driver.
+   */
   public AcceptedDriver(IName name, IDate birthday, IDriversLicense license, IVehicle vehicle) {
     this.name = name;
     this.birthday = birthday;
@@ -69,8 +76,9 @@ public class AcceptedDriver implements IAcceptedDriver{
   }
 
   /**
+   * Returns a hash code value for the object.
    *
-   * @return
+   * @return hash code value for the object.
    */
   @Override
   public int hashCode() {
@@ -92,10 +100,10 @@ public class AcceptedDriver implements IAcceptedDriver{
       return false;
     }
     AcceptedDriver other = (AcceptedDriver) obj;
-    return this.birthday.equals(other.getBirthday()) &&
-        this.license.equals(other.getLicense()) &&
-        this.vehicle.equals(other.getVehicle()) &&
-        this.name.equals(other.getName());
+    return this.birthday.equals(other.getBirthday())
+        && this.license.equals(other.getLicense())
+        && this.vehicle.equals(other.getVehicle())
+        && this.name.equals(other.getName());
   }
 
   /**
@@ -106,9 +114,15 @@ public class AcceptedDriver implements IAcceptedDriver{
    */
   @Override
   public String toString() {
-    return "Driver: " + this.name.getFirstName() + " " + this.name.getLastName()
-        + ", Vehicle: " + this.vehicle.getYear()+ " " +
-        this.vehicle.getMake() + " " + this.vehicle.getModel();
+    return "Driver: "
+        + this.name.getFirstName()
+        + " " + this.name.getLastName()
+        + ", Vehicle: "
+        + this.vehicle.getYear()
+        + " "
+        + this.vehicle.getMake()
+        + " "
+        + this.vehicle.getModel();
   }
 
 }

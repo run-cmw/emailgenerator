@@ -1,7 +1,6 @@
 package edu.neu.ccs.cs5004.Assignment8.problem2;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * This abstract class implements IHistory and represents a driver's or vehicle's history.
@@ -55,39 +54,14 @@ public class AbstractHistory implements IHistory {
     return crashes;
   }
 
-  /**
-   * Indicates whether some other object is "equal to" this one.
-   *
-   * @param obj - the reference object with which to compare
-   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!(obj instanceof DriverHistory)) {
-      return false;
-    }
-    DriverHistory other = (DriverHistory) obj;
-    return this.getTrafficViolations().equals(other.getTrafficViolations());
-  }
-
-  /**
-   * Returns a hash code value for the object.
-   *
-   * @return hash code value for the object
-   */
-  @Override
-  public int hashCode() {
-    return Objects.hash(trafficViolations);
-  }
 
   /**
    * Returns a string representation of the object.
-   * Format for driver - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]"
-   * Format for vehicle - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation, Date: ITrafficViolation, ...]
-   *                       [VehicleCrash{date=Date, crash=IVehicleCrash}, VehicleCrash{date=Date, crash=IVehicleCrash}]"
+   * Format for driver - "Violations: [Date: ITrafficViolation, Date: ITrafficViolation,
+   * Date: ITrafficViolation, ...]"
+   * Format for vehicle - "Violations: [Date: ITrafficViolation,
+   * Date: ITrafficViolation, Date: ITrafficViolation, ...]
+   * [VehicleCrash{date=Date, crash=IVehicleCrash}, VehicleCrash{date=Date, crash=IVehicleCrash}]"
    *
    * @return string representation of the object
    */

@@ -1,7 +1,5 @@
 package edu.neu.ccs.cs5004.Assignment8.problem2;
 
-import java.util.Objects;
-
 /**
  * This abstract class implements IVehicle and represents a vehicle.
  */
@@ -65,37 +63,6 @@ public class AbstractVehicle implements IVehicle {
   @Override
   public IName getOwner() {
     return owner;
-  }
-
-  /**
-   * Indicates whether some other object is "equal to" this one.
-   *
-   * @param obj - the reference object with which to compare
-   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!(obj instanceof Vehicle)) {
-      return false;
-    }
-    Vehicle other = (Vehicle) obj;
-    return this.getModel().equals(other.getModel())
-        && this.getMake().equals(other.getMake())
-        && this.getOwner().equals(other.getOwner())
-        && this.getYear() == other.getYear();
-  }
-
-  /**
-   * Returns a hash code value for the object.
-   *
-   * @return hash code value for the object
-   */
-  @Override
-  public int hashCode() {
-    return Objects.hash(make, model, year, owner);
   }
 
   /**

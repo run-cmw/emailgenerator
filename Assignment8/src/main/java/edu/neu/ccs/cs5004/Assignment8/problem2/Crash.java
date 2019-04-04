@@ -5,15 +5,15 @@ package edu.neu.ccs.cs5004.Assignment8.problem2;
  */
 public enum Crash {
   /**
-   * Fender bender
+   * Fender bender.
    */
   FENDER_BENDER,
   /**
-   * With injuries
+   * With injuries.
    */
   WITH_INJURIES,
   /**
-   * Without injuries
+   * Without injuries.
    */
   WITHOUT_INJURIES
 }

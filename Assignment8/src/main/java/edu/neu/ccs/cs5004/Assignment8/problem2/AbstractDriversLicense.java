@@ -1,7 +1,5 @@
 package edu.neu.ccs.cs5004.Assignment8.problem2;
 
-import java.util.Objects;
-
 /**
  * This abstract class implements IDriversLicense and represents a driver's license.
  */
@@ -28,7 +26,7 @@ public class AbstractDriversLicense implements IDriversLicense{
    * @param issueDate - license issue date
    * @param expirationDate - license expiration date
    */
-  public AbstractDriversLicense (String licenseNumber,
+  public AbstractDriversLicense(String licenseNumber,
       IName driverName, IAddress driverAddress,
       IDate driverBirthDate, Country issuingCountry, String issuingState,
       IDate issueDate, IDate expirationDate) {
@@ -122,40 +120,6 @@ public class AbstractDriversLicense implements IDriversLicense{
     return this.expirationDate;
   }
 
-  /**
-   * Indicates whether some other object is "equal to" this one.
-   *
-   * @param obj - the reference object with which to compare
-   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (!(obj instanceof DriversLicense)) {
-      return false;
-    }
-    DriversLicense other = (DriversLicense) obj;
-    return this.getLicenseNumber().equals(other.getLicenseNumber())
-        && this.getDriverName().equals(other.getDriverName())
-        && this.getDriverAddress().equals(other.getDriverAddress())
-        && this.getDriverBirthDate().equals(other.getDriverBirthDate())
-        && this.getIssuingCountry().equals(other.getIssuingCountry())
-        && this.getIssuingState().equals(other.getIssuingState())
-        && this.getIssueDate().equals(other.getIssueDate())
-        && this.getExpirationDate().equals(other.getExpirationDate());
-  }
-
-  /**
-   * Returns a hash code value for the object.
-   *
-   * @return hash code value for the object
-   */
-  @Override
-  public int hashCode() {
-    return Objects.hash(licenseNumber, driverName, driverAddress, driverBirthDate, issuingCountry, issuingState, issueDate, expirationDate);
-  }
 
   /**
    * Returns a string representation of the object.
@@ -166,11 +130,11 @@ public class AbstractDriversLicense implements IDriversLicense{
   @Override
   public String toString() {
     return
-        "License number: " +
-            licenseNumber +
-            ", Driver: " +
-            driverName +
-            ", Expiration date: " +
-            expirationDate;
+        "License number: "
+            + licenseNumber
+            + ", Driver: "
+            + driverName
+            + ", Expiration date: "
+            + expirationDate;
   }
 }
