@@ -1,4 +1,4 @@
-package edu.neu.ccs.cs5004.assignment8.Problem2;
+package edu.neu.ccs.cs5004.assignment8.problem2;
 
 /**
  * This class creates a new exception and is thrown if a license number is already taken.
