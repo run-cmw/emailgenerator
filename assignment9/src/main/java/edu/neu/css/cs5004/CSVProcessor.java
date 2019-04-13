@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class represents a CSV processor that reads and parses CSV files.
@@ -14,19 +15,19 @@ public class CSVProcessor {
   /**
    * ArrayList of parsed header values in the CSV file.
    */
-  protected static ArrayList<ArrayList<String>> headerArrayList;
+  protected static List<List<String>> headerArrayList;
   /**
    * ArrayList of unparsed header values in the CSV file.
    */
-  private static ArrayList<String> headerString;
+  private static List<String> headerString;
   /**
    * ArrayList of parsed member information in the CSV file.
    */
-  protected static ArrayList<ArrayList<String>> memberInfoArrayList;
+  protected static List<List<String>> memberInfoArrayList;
   /**
    * Arraylist of unparsed member information in the CSV file.
    */
-  private static ArrayList<String> memberInfoString;
+  private static List<String> memberInfoString;
 
   /**
    * Create a CSVProcessor given
@@ -61,7 +62,6 @@ public class CSVProcessor {
         line = line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
         memberInfoString = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
       }
-
     } catch (FileNotFoundException fnfe) {
       System.out.println("Sorry, this file was not found: " +  fnfe.getMessage());
     } catch (IOException ioe) {
@@ -76,7 +76,7 @@ public class CSVProcessor {
    *
    * @return the ArrayList of parsed header values
    */
-  private ArrayList<ArrayList<String>> parseHeader() {
+  private List<List<String>> parseHeader() {
     addDataToArrayList(headerString, headerArrayList);
     return headerArrayList;
   }
@@ -87,7 +87,7 @@ public class CSVProcessor {
    *
    * @return the ArrayList of parsed member information
    */
-  private ArrayList<ArrayList<String>> parseMemberInfo() {
+  private List<List<String>> parseMemberInfo() {
     addDataToArrayList(memberInfoString, memberInfoArrayList);
     return memberInfoArrayList;
   }
@@ -98,7 +98,7 @@ public class CSVProcessor {
    * @param stringList ArrayList of unparsed data
    * @param listList ArrayList for parsed data
    */
-  private void addDataToArrayList(ArrayList<String> stringList, ArrayList<ArrayList<String>> listList) {
+  private void addDataToArrayList(List<String> stringList, List<List<String>> listList) { // !!!!!remove and just use code in header method when member parser updated
     for (int i = 0; i < stringList.size(); i++) {
       listList.add(new ArrayList<String>(stringList.subList(i,i+1)));
     }
