@@ -42,6 +42,7 @@ public class CSVProcessor {
     this.parseMemberInfo();
   }
 
+
   /**
    * Read the given CSV file and split according to the delimiter. Then store the header and
    * member information in separate ArrayLists.
@@ -76,7 +77,7 @@ public class CSVProcessor {
    *
    * @return the ArrayList of parsed header values
    */
-  private List<List<String>> parseHeader() {
+  protected List<List<String>> parseHeader() {
     // iterate through ArrayList of header titles represented as Strings
     for (int i = 0; i < headerString.size(); i++) {
       headerArrayList.add(new ArrayList<String>(headerString.subList(i,i+1)));
