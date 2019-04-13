@@ -71,36 +71,31 @@ public class CSVProcessor {
   }
 
   /**
-   * Parse the given CSV file by converting the ArrayList of header values into an
-   * ArrayLists of ArrayLists so that specific data pieces are easily accessible.
+   * Parse the given CSV file by converting the ArrayList of Strings containing header values into
+   * an ArrayList of ArrayLists so that specific data pieces are easily accessible.
    *
    * @return the ArrayList of parsed header values
    */
   private List<List<String>> parseHeader() {
-    addDataToArrayList(headerString, headerArrayList);
+    // iterate through ArrayList of header titles represented as Strings
+    for (int i = 0; i < headerString.size(); i++) {
+      headerArrayList.add(new ArrayList<String>(headerString.subList(i,i+1)));
+    }
     return headerArrayList;
   }
 
   /**
-   * Parse the given CSV file by converting the ArrayList member information
+   * Parse the given CSV file by converting the ArrayList of Strings containing member information
    * into ArrayLists of ArrayLists so that specific data pieces are easily accessible.
    *
    * @return the ArrayList of parsed member information
    */
   private List<List<String>> parseMemberInfo() {
-    addDataToArrayList(memberInfoString, memberInfoArrayList);
-    return memberInfoArrayList;
-  }
-
-  /**
-   * Helper method to add ArrayList of Strings data to an ArrayList of Arraylist.
-   *
-   * @param stringList ArrayList of unparsed data
-   * @param listList ArrayList for parsed data
-   */
-  private void addDataToArrayList(List<String> stringList, List<List<String>> listList) { // !!!!!remove and just use code in header method when member parser updated
-    for (int i = 0; i < stringList.size(); i++) {
-      listList.add(new ArrayList<String>(stringList.subList(i,i+1)));
+    // iterate through ArrayList of member info represented as Strings
+    // add the number of elements in the parsed header to int i b/c that will loop to next member
+    for (int i = 0; i < memberInfoString.size(); i = i + headerArrayList.size()) {
+      memberInfoArrayList.add(memberInfoString.subList(i, headerArrayList.size())); // end each sublist at the end of the current member
     }
+    return memberInfoArrayList;
   }
 }
