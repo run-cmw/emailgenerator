@@ -32,7 +32,8 @@ public class CSVProcessor {
   public CSVProcessor(String fileName) throws IOException {
    this.memberInfoArrayList = new ArrayList<>();
    this.readFile(fileName);
-   this.parseFile(fileName);
+   this.parseHeader();
+   this.parseMemberInfo();
   }
 
   /**
@@ -65,13 +66,22 @@ public class CSVProcessor {
   }
 
   /**
-   * Parse the given CSV file by converting the ArrayList of header values and member information
-   * into ArrayLists of ArrayLists so that specific data pieces are easily accesible.
+   * Parse the given CSV file by converting the ArrayList of header values into an
+   * ArrayLists of ArrayLists so that specific data pieces are easily accessible.
    *
-   * @param fileName Name of the file to be parsed.
-   * @return  if there is an input or output exception, such as file not found.
+   * @return the ArrayList of parsed header values
    */
-  private ArrayList<String> parseFile(String fileName) {
+  private ArrayList<String> parseHeader() {
+    return null;
+  }
+
+  /**
+   * Parse the given CSV file by converting the ArrayList member information
+   * into ArrayLists of ArrayLists so that specific data pieces are easily accessible.
+   *
+   * @return the ArrayList of parsed member information
+   */
+  private ArrayList<String> parseMemberInfo() {
     return null;
   }
 }
