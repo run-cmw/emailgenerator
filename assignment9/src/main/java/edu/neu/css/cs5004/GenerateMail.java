@@ -95,7 +95,7 @@ public class GenerateMail{
       inputFile.close();
 
     } catch (FileNotFoundException fnfe) {
-      System.out.println("*** OUPS! A file was not found : " + fnfe.getMessage());
+      System.out.println("*** OOPS! A file was not found : " + fnfe.getMessage());
       fnfe.printStackTrace();
     } catch (IOException ioe) {
       System.out.println("Something went wrong! : " + ioe.getMessage());
