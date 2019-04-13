@@ -13,19 +13,23 @@ import java.util.List;
  */
 public class CSVProcessor {
   /**
-   * ArrayList of parsed header values in the CSV file.
+   * ArrayList of parsed header values in the CSV file. In headerArrayList, each header value
+   * is its own ArrayList.
    */
   protected List<List<String>> headerArrayList;
   /**
-   * ArrayList of unparsed header values in the CSV file.
+   * ArrayList of unparsed header values in the CSV file. It is one ArrayList with header values
+   * in String form.
    */
   private List<String> headerString;
   /**
-   * ArrayList of parsed member information in the CSV file.
+   * ArrayList of parsed member information in the CSV file. In memberInfoArrayList, each member
+   * (with corresponding member info) is an ArrayList.
    */
   protected List<List<String>> memberInfoArrayList;
   /**
-   * Arraylist of unparsed member information in the CSV file.
+   * ArrayList of unparsed member information in the CSV file. It is one Arraylist with all member
+   * data in String form.
    */
   private List<String> memberInfoString;
 
