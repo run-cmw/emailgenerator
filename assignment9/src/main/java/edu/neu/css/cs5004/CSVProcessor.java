@@ -11,11 +11,10 @@ import java.util.Arrays;
  * This class represents a CSV processor that reads and parses CSV files.
  */
 public class CSVProcessor {
-
   /**
    * CSV file to be processed (read and parsed).
    */
-  protected static final String MEMBER_INFO_FILE = "insurance_company_members.csv";
+  protected static final String MEMBER_INFO_FILE = "insurance_company_members.csv"; // will likely delete b/c only needed for testing based on how I designed class
   /**
    * ArrayList of header values in the CSV file.
    */
@@ -27,8 +26,8 @@ public class CSVProcessor {
 
   /**
    * Create a CSVProcessor given
-   * @param fileName
-   * @throws IOException
+   * @param fileName Name of the file to be read and parsed.
+   * @throws IOException if there is an input or output exception, such as file not found.
    */
   public CSVProcessor(String fileName) throws IOException {
    this.memberInfoArrayList = new ArrayList<>();
@@ -36,18 +35,25 @@ public class CSVProcessor {
    this.parseFile(fileName);
   }
 
+  /**
+   * Read the given CSV file and split according to the delimiter. Then store the header and
+   * member information in separate ArrayLists.
+   *
+   * @param fileName Name of the file to be read.
+   * @throws IOException if there is an input or output exception, such as file not found.
+   */
   private void readFile(String fileName) throws IOException {
     try (BufferedReader inputFile = new BufferedReader(new FileReader(fileName))) {
-      String commaBetweenQuotes = "\",\""; // delimeter for file splitting is ","
+      String commaBetweenQuotes = "\",\""; // delimeter for file splitting is: ","
       String line;
 
       line = inputFile.readLine();
       line =  line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
-      header = new ArrayList<String>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
+      header = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
 
       while ((line = inputFile.readLine()) != null) {
         line = line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
-        memberInfoArrayList = new ArrayList<String>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
+        memberInfoArrayList = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
       }
 
     } catch (FileNotFoundException fnfe) {
@@ -58,6 +64,13 @@ public class CSVProcessor {
     }
   }
 
+  /**
+   * Parse the given CSV file by converting the ArrayList of header values and member information
+   * into ArrayLists of ArrayLists so that specific data pieces are easily accesible.
+   *
+   * @param fileName Name of the file to be parsed.
+   * @return  if there is an input or output exception, such as file not found.
+   */
   private ArrayList<String> parseFile(String fileName) {
     return null;
   }
