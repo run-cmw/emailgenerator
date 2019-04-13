@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class represents a CSV processor that reads and parses CSV files.
@@ -14,19 +15,19 @@ public class CSVProcessor {
   /**
    * ArrayList of parsed header values in the CSV file.
    */
-  protected static ArrayList<ArrayList<String>> headerArrayList;
+  protected static List<List<String>> headerArrayList;
   /**
    * ArrayList of unparsed header values in the CSV file.
    */
-  private static ArrayList<String> headerString;
+  private static List<String> headerString;
   /**
    * ArrayList of parsed member information in the CSV file.
    */
-  protected static ArrayList<ArrayList<String>> memberInfoArrayList;
+  protected static List<List<String>> memberInfoArrayList;
   /**
    * Arraylist of unparsed member information in the CSV file.
    */
-  private static ArrayList<String> memberInfoString;
+  private static List<String> memberInfoString;
 
   /**
    * Create a CSVProcessor given
@@ -61,7 +62,6 @@ public class CSVProcessor {
         line = line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
         memberInfoString = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
       }
-
     } catch (FileNotFoundException fnfe) {
       System.out.println("Sorry, this file was not found: " +  fnfe.getMessage());
     } catch (IOException ioe) {
@@ -71,36 +71,31 @@ public class CSVProcessor {
   }
 
   /**
-   * Parse the given CSV file by converting the ArrayList of header values into an
-   * ArrayLists of ArrayLists so that specific data pieces are easily accessible.
+   * Parse the given CSV file by converting the ArrayList of Strings containing header values into
+   * an ArrayList of ArrayLists so that specific data pieces are easily accessible.
    *
    * @return the ArrayList of parsed header values
    */
-  private ArrayList<ArrayList<String>> parseHeader() {
-    addDataToArrayList(headerString, headerArrayList);
+  private List<List<String>> parseHeader() {
+    // iterate through ArrayList of header titles represented as Strings
+    for (int i = 0; i < headerString.size(); i++) {
+      headerArrayList.add(new ArrayList<String>(headerString.subList(i,i+1)));
+    }
     return headerArrayList;
   }
 
   /**
-   * Parse the given CSV file by converting the ArrayList member information
+   * Parse the given CSV file by converting the ArrayList of Strings containing member information
    * into ArrayLists of ArrayLists so that specific data pieces are easily accessible.
    *
    * @return the ArrayList of parsed member information
    */
-  private ArrayList<ArrayList<String>> parseMemberInfo() {
-    addDataToArrayList(memberInfoString, memberInfoArrayList);
-    return memberInfoArrayList;
-  }
-
-  /**
-   * Helper method to add ArrayList of Strings data to an ArrayList of Arraylist.
-   *
-   * @param stringList ArrayList of unparsed data
-   * @param listList ArrayList for parsed data
-   */
-  private void addDataToArrayList(ArrayList<String> stringList, ArrayList<ArrayList<String>> listList) {
-    for (int i = 0; i < stringList.size(); i++) {
-      listList.add(new ArrayList<String>(stringList.subList(i,i+1)));
+  private List<List<String>> parseMemberInfo() {
+    // iterate through ArrayList of member info represented as Strings
+    // add the number of elements in the parsed header to int i b/c that will loop to next member
+    for (int i = 0; i < memberInfoString.size(); i = i + headerArrayList.size()) {
+      memberInfoArrayList.add(memberInfoString.subList(i, headerArrayList.size())); // end each sublist at the end of the current member
     }
+    return memberInfoArrayList;
   }
 }
