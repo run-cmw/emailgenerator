@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 public class ModelFileReader {
   private static final String MEMBER_INFO_FILE = "insurance_company_members.csv";
-  private ArrayList<String> header;
-  private ArrayList<String> memberInfoArrayList;
+  protected ArrayList<String> header;
+  protected ArrayList<String> memberInfoArrayList;
 
   public ModelFileReader() throws IOException {
    this.memberInfoArrayList = new ArrayList<String>();
