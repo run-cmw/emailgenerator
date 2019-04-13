@@ -49,7 +49,7 @@ public class CSVProcessor {
    * @param fileName Name of the file to be read.
    * @throws IOException if there is an input or output exception, such as file not found.
    */
-  private void readFile(String fileName) throws IOException {
+  protected void readFile(String fileName) throws IOException {
     try (BufferedReader inputFile = new BufferedReader(new FileReader(fileName))) {
       String commaBetweenQuotes = "\",\""; // delimeter for file splitting is: ","
       String line;
@@ -76,7 +76,7 @@ public class CSVProcessor {
    *
    * @return the ArrayList of parsed header values
    */
-  private List<List<String>> parseHeader() {
+  protected List<List<String>> parseHeader() {
     // iterate through ArrayList of header titles represented as Strings
     for (int i = 0; i < headerString.size(); i++) {
       headerArrayList.add(new ArrayList<String>(headerString.subList(i,i+1)));
@@ -90,7 +90,7 @@ public class CSVProcessor {
    *
    * @return the ArrayList of parsed member information
    */
-  private List<List<String>> parseMemberInfo() {
+  protected List<List<String>> parseMemberInfo() {
     // iterate through ArrayList of member info represented as Strings
     // add the number of elements in the parsed header to int i b/c that will loop to next member
     for (int i = 0; i < memberInfoString.size(); i = i + headerArrayList.size()) {
