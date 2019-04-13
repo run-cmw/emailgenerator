@@ -4,18 +4,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class ReadTemplate {
 
-//create a String Builder object
-  protected StringBuilder templateToBeLoaded;
+  protected StringBuilder templateToBeLoaded = new StringBuilder();
 
   /**
    * Constructor to create a Template Reader
-   * @param templateToBeLoaded to be read
+   *
    */
-  public ReadTemplate(StringBuilder templateToBeLoaded) {
-    this.templateToBeLoaded = templateToBeLoaded;
+  public ReadTemplate() {
+
   }
 
   /**
@@ -53,6 +53,30 @@ public class ReadTemplate {
     return templateToBeLoaded.toString();
   }
 
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof ReadTemplate)) {
+      return false;
+    }
+    ReadTemplate that = (ReadTemplate) obj;
+    return templateToBeLoaded.equals(that.templateToBeLoaded);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(templateToBeLoaded);
+  }
+
+  @Override
+  public String toString() {
+    return "ReadTemplate{" +
+        "templateToBeLoaded=" + templateToBeLoaded +
+        '}';
+  }
 }
 
 

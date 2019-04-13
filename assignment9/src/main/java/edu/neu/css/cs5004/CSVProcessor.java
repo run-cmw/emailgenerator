@@ -43,6 +43,7 @@ public class CSVProcessor {
     this.parseMemberInfo();
   }
 
+
   /**
    * Read the given CSV file and split according to the delimiter. Then store the header and
    * member information in separate ArrayLists.
