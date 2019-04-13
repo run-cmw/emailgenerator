@@ -15,22 +15,23 @@ public class CSVProcessor {
   /**
    * ArrayList of parsed header values in the CSV file.
    */
-  protected static List<List<String>> headerArrayList;
+  protected List<List<String>> headerArrayList;
   /**
    * ArrayList of unparsed header values in the CSV file.
    */
-  private static List<String> headerString;
+  private List<String> headerString;
   /**
    * ArrayList of parsed member information in the CSV file.
    */
-  protected static List<List<String>> memberInfoArrayList;
+  protected List<List<String>> memberInfoArrayList;
   /**
    * Arraylist of unparsed member information in the CSV file.
    */
-  private static List<String> memberInfoString;
+  private List<String> memberInfoString;
 
   /**
-   * Create a CSVProcessor given
+   * Create a CSVProcessor given a CSV file name.
+   *
    * @param fileName Name of the file to be read and parsed.
    * @throws IOException if there is an input or output exception, such as file not found.
    */
