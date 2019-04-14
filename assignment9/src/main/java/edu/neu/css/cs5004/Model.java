@@ -1,0 +1,5 @@
+package edu.neu.css.cs5004;
+
+public class Model {
+
+}
