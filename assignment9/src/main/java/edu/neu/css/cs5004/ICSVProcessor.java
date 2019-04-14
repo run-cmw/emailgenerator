@@ -1,9 +1,25 @@
 package edu.neu.css.cs5004;
 
+import java.util.List;
+
 /**
  * This interface contains all functinality that the CSV Processor supports.
  */
 public interface ICSVProcessor {
+  /**
+   * Return ArrayList of ArrayLists of header titles.
+   *
+   * @return ArrayList of ArrayLists of header titles
+   */
+  List<List<String>> getHeaderArrayList();
+
+  /**
+   * Return ArrayList of ArrayLists of member information.
+   *
+   * @return ArrayList of ArrayLists of member information
+   */
+  List<List<String>> getMemberInfoArrayList();
+
   /**
    * Indicates whether some other object is "equal to" this one.
    *
@@ -22,8 +38,9 @@ public interface ICSVProcessor {
   /**
    * Returns a string representation of the object.
    * Format -
-   * "Owner: firstName lastName, Additional Insured: [firstName lastName, firstName lastName, ...]
-   * "
+   * "Header titles: [[header_title], [header_title], [header_title],...]
+   *  Member data: [[member1_info, member1_info, member1_info],
+   *               [member2_info, member1_info, member1_info], ...]"
    *
    * @return string representation of the object
    */
