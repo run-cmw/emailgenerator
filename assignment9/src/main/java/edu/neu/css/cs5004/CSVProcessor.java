@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class represents a CSV processor that reads and parses CSV files.
@@ -36,8 +37,8 @@ public class CSVProcessor {
   /**
    * Create a CSVProcessor given a CSV file name.
    *
-   * @param fileName Name of the file to be read and parsed.
-   * @throws IOException if there is an input or output exception, such as file not found.
+   * @param fileName Name of the file to be read and parsed
+   * @throws IOException if there is an input or output exception, such as file not found
    */
   public CSVProcessor(String fileName) throws IOException {
     this.headerArrayList = new ArrayList<>();
@@ -49,8 +50,8 @@ public class CSVProcessor {
    * Read the given CSV file and split according to the delimiter. Then store the header and
    * member information in separate ArrayLists.
    *
-   * @param fileName Name of the file to be read.
-   * @throws IOException if there is an input or output exception, such as file not found.
+   * @param fileName Name of the file to be read
+   * @throws IOException if there is an input or output exception, such as file not found
    */
   protected void readFile(String fileName) throws IOException {
     try (BufferedReader inputFile = new BufferedReader(new FileReader(fileName))) {
@@ -106,6 +107,67 @@ public class CSVProcessor {
     }
 
     return memberInfoArrayList;
+  }
+
+  /**
+   * Return ArrayList of ArrayLists of header titles.
+   *
+   * @return ArrayList of ArrayLists of header titles
+   */
+  public List<List<String>> getHeaderArrayList() {
+    return headerArrayList;
+  }
+
+  /**
+   * Return ArrayList of ArrayLists of member information.
+   *
+   * @return ArrayList of ArrayLists of member information
+   */
+  public List<List<String>> getMemberInfoArrayList() {
+    return memberInfoArrayList;
+  }
+
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof CSVProcessor)) {
+      return false;
+    }
+    CSVProcessor other = (CSVProcessor) obj;
+    return this.getHeaderArrayList().equals(other.getHeaderArrayList())
+        && this.getMemberInfoArrayList().equals(other.getMemberInfoArrayList());
+  }
+
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
+  public int hashCode() {
+    return Objects.hash(headerArrayList, headerString, memberInfoArrayList, memberInfoString);
+  }
+
+  /**
+   * Returns a string representation of the object.
+   * Format -
+   * "Header titles: [[header_title], [header_title], [header_title],...]
+   *  Member data: [[member1_info, member1_info, member1_info],
+   *               [member2_info, member1_info, member1_info], ...]"
+   *
+   * @return string representation of the object
+   */
+  public String toString() {
+    return "Header titles: " +
+        headerArrayList.toString() + "\n" +
+        "Member data: " +
+        memberInfoArrayList.toString();
   }
 
   //  !!!!! main method not permanent - only for testing merge from scratch file !!!!!
