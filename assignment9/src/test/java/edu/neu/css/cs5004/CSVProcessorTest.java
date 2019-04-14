@@ -1,8 +1,11 @@
 package edu.neu.css.cs5004;
 
+import static java.lang.System.out;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,13 +23,19 @@ public class CSVProcessorTest {
     different = new CSVProcessor(DIFFERENT_FILE);
   }
 
-  @Test
+  @Test // No (expected = Exception.class) b/c exception will give file not found message due to try catch
   public void testIOExceptionMessage() throws IOException {
     final String NON_EXISTENT_FILE = "ghost.csv";
-
-    // Because of try catch, exception will give a message.
-    // So no (expected = Exception.class after @Test)
+    final List<List<String>> EMPTY_ARRAY_LIST = new ArrayList<>();
+    java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+    System.setOut(new java.io.PrintStream(out));
+    final String FILE_NOT_FOUND_MESSAGE = "Sorry, this file was not found: ghost.csv (The system cannot find the file specified)\r\n";
     CSVProcessor processor2 = new CSVProcessor(NON_EXISTENT_FILE);
+
+    assertEquals(FILE_NOT_FOUND_MESSAGE, out.toString());
+    // test for empty Lists b/c method will continue after try catch
+    assertEquals(EMPTY_ARRAY_LIST, processor2.getHeaderArrayList());
+    assertEquals(EMPTY_ARRAY_LIST, processor2.getMemberInfoArrayList());
   }
 
   @Test
