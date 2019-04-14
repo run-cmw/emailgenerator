@@ -22,20 +22,21 @@ public class CSVProcessorTest {
     different = new CSVProcessor(DIFFERENT_FILE);
   }
 
-  @Test
-  public void testIOException() throws IOException {
-    final String NON_EXISTENT_FILE = "ghost.csv";
-    CSVProcessor processor2 = new CSVProcessor(NON_EXISTENT_FILE);
-
-
-  }
+////  !!!!! need to account for try - catch - exception won't be thrown !!!!
+//  @Test (expected = Exception.class)
+//  public void testIOException() throws IOException {
+//    final String NON_EXISTENT_FILE = "ghost.csv";
+////    final String fnfe = "Sorry, this file was not found: " +  fnfe.getMessage();
+//
+//    CSVProcessor processor2 = new CSVProcessor(NON_EXISTENT_FILE);
+//  }
 
   @Test
   public void testParseHeader() {
     final String HEADER_LIST_LIST_AS_STRING = "[[first_name], [last_name], [company_name], [address], [city], [county], "
         + "[state], [zip], [phone1], [phone2], [email], [web]]";
 
-    assertEquals(HEADER_LIST_LIST_AS_STRING, processor.headerArrayList.toString());
+    assertEquals(HEADER_LIST_LIST_AS_STRING, processor.getHeaderArrayList().toString());
   }
 
   @Test
@@ -43,47 +44,40 @@ public class CSVProcessorTest {
     final String MEMBER_ONE_AS_STRING = "[James, Butt, Benton, John B Jr, 6649 N Blue Gum St, New Orleans, Orleans, LA, 70116, 504-621-8927, 504-845-1427, jbutt@gmail.com, http://www.bentonjohnbjr.com]";
     final String MEMBER_ONE_COMPANY_STRING = "Benton, John B Jr";
 
-    assertEquals(MEMBER_ONE_AS_STRING, processor.memberInfoArrayList.get(0).toString());
-    assertEquals(MEMBER_ONE_COMPANY_STRING, processor.memberInfoArrayList.get(0).get(2));
+    assertEquals(MEMBER_ONE_AS_STRING, processor.getMemberInfoArrayList().get(0).toString());
+    assertEquals(MEMBER_ONE_COMPANY_STRING, processor.getMemberInfoArrayList().get(0).get(2));
   }
 
-//  @Test
-//  public void testHeaderEquals() {
-//    final String DIFFERENT_DATA_TYPE1 = "first_name, last_name, company_name, address, city, county, "
-//        + "state, zip, phone1, phone2, email, web";
-//    final int DIFFERENT_DATA_TYPE2 = 0;
-//    final float DIFFERENT_DATA_TYPE3 = 0.5f;
-//    final CSVProcessor DIFFERENT_DATA_TYPE4 = processor;
-//
-//    assertEquals(headerArrayList, sameHeaderList);
-//    assertEquals(headerArrayList, headerArrayList);
-//    assertEquals(sameHeaderList, sameHeaderList);
-//    assertEquals(differentHeaderList, differentHeaderList);
-//    assertNotEquals(headerArrayList, differentHeaderList);
-//    assertNotEquals(headerArrayList, DIFFERENT_DATA_TYPE1);
-//    assertNotEquals(headerArrayList, DIFFERENT_DATA_TYPE2);
-//    assertNotEquals(headerArrayList, DIFFERENT_DATA_TYPE3);
-//    assertNotEquals(headerArrayList, DIFFERENT_DATA_TYPE4);
-//  }
-//
-//  @Test
-//  public void testInfoEquals() {
-//    final String DIFFERENT_DATA_TYPE1 = "James, Butt, Benton, John B Jr, 6649 N Blue Gum St, "
-//        + "New Orleans, Orleans, LA, 70116, 504-621-8927, 504-845-1427, "
-//        + "jbutt@gmail.com, http://www.bentonjohnbjr.com";
-//    final int DIFFERENT_DATA_TYPE2 = 0;
-//    final float DIFFERENT_DATA_TYPE3 = 0.5f;
-//    final CSVProcessor DIFFERENT_DATA_TYPE4 = processor;
-//
-//
-//    assertEquals(memberInfoArrayList, sameMemberInfoList);
-//    assertEquals(memberInfoArrayList, memberInfoArrayList);
-//    assertEquals(sameMemberInfoList, sameMemberInfoList);
-//    assertEquals(differentMemberInfoList, differentMemberInfoList);
-//    assertNotEquals(memberInfoArrayList, differentMemberInfoList);
-//    assertNotEquals(memberInfoArrayList, DIFFERENT_DATA_TYPE1);
-//    assertNotEquals(memberInfoArrayList, DIFFERENT_DATA_TYPE2);
-//    assertNotEquals(memberInfoArrayList, DIFFERENT_DATA_TYPE3);
-//    assertNotEquals(memberInfoArrayList, DIFFERENT_DATA_TYPE4);
-//  }
+  @Test
+  public void testEquals() {
+    final String DIFFERENT_DATA_TYPE1 = "first_name, last_name, company_name, address, city, county, "
+        + "state, zip, phone1, phone2, email, web";
+    final int DIFFERENT_DATA_TYPE2 = 0;
+    final float DIFFERENT_DATA_TYPE3 = 0.5f;
+
+    assertEquals(processor, same);
+    assertEquals(processor, processor);
+    assertEquals(same, same);
+    assertEquals(different, different);
+    assertNotEquals(processor, different);
+    assertNotEquals(processor, DIFFERENT_DATA_TYPE1);
+    assertNotEquals(processor, DIFFERENT_DATA_TYPE2);
+    assertNotEquals(processor, DIFFERENT_DATA_TYPE3);
+  }
+
+  @Test
+  public void testHashCode() {
+    assertEquals(same.hashCode(), processor.hashCode());
+    assertNotEquals(different.hashCode(), processor.hashCode());
+  }
+
+//  !!!!! Actually passes but need to save as a proper csv file with correct formatting!!! Ask group members.
+  @Test
+  public void testToString() {
+    final String DIFFERENT_HEADER_AS_STRING = "[[first_name], [last_name], [city], [state]]";
+    final String DIFFERENT_DATA_AS_STRING = "[[Avery, Wells, Baton Rouge, LA], [Clara, Wells, Seattle, WA], [Chana, Wells, Pear, MS], [Norseen, Wells, Baton Rouge, LA], [Averon, Reed, Baton Rouge, LA]]";
+    final String DIFFERENT_AS_STRING = "Header titles: " + DIFFERENT_HEADER_AS_STRING + "\n" + "Member data: " + DIFFERENT_DATA_AS_STRING;
+
+    assertEquals(DIFFERENT_AS_STRING, different.toString());
+  }
 }
