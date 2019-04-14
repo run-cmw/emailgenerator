@@ -38,6 +38,8 @@ public class ReadTemplate {
         }
 
         templateToBeLoaded.append(line).append("\r\n");
+        System.out.println("Read : " + line);
+
 
       }
 
