@@ -70,12 +70,11 @@ public class CSVProcessorTest {
     assertEquals(same.hashCode(), processor.hashCode());
     assertNotEquals(different.hashCode(), processor.hashCode());
   }
-
-//  !!!!! Actually passes but need to save as a proper csv file with correct formatting!!! Ask group members.
+  
   @Test
   public void testToString() {
     final String DIFFERENT_HEADER_AS_STRING = "[[first_name], [last_name], [city], [state]]";
-    final String DIFFERENT_DATA_AS_STRING = "[[Avery, Wells, Baton Rouge, LA], [Clara, Wells, Seattle, WA], [Chana, Wells, Pear, MS], [Norseen, Wells, Baton Rouge, LA], [Averon, Reed, Baton Rouge, LA]]";
+    final String DIFFERENT_DATA_AS_STRING = "[[Avery, Wells, Baton Rouge, LA], [Clara, Wells, Seattle, WA], [Chana, Wells, Pearl, MS], [Norseen, Wells, Baton Rouge, LA], [Averon, Reed, Baton Rouge, LA]]";
     final String DIFFERENT_AS_STRING = "Header titles: " + DIFFERENT_HEADER_AS_STRING + "\n" + "Member data: " + DIFFERENT_DATA_AS_STRING;
 
     assertEquals(DIFFERENT_AS_STRING, different.toString());
