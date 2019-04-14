@@ -43,10 +43,7 @@ public class CSVProcessor {
     this.headerArrayList = new ArrayList<>();
     this.memberInfoArrayList = new ArrayList<>();
     this.readFile(fileName);
-    this.parseHeader();
-    this.parseMemberInfo();
   }
-
 
   /**
    * Read the given CSV file and split according to the delimiter. Then store the header and
@@ -57,16 +54,18 @@ public class CSVProcessor {
    */
   protected void readFile(String fileName) throws IOException {
     try (BufferedReader inputFile = new BufferedReader(new FileReader(fileName))) {
-      String commaBetweenQuotes = "\",\""; // delimeter for file splitting is: ","
+      String commaBetweenQuotes = "\",\""; // delimiter for file splitting is: ","
       String line;
 
       line = inputFile.readLine();
       line =  line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
       headerString = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
+      parseHeader();
 
       while ((line = inputFile.readLine()) != null) {
         line = line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
         memberInfoString = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
+        parseMemberInfo();
       }
     } catch (FileNotFoundException fnfe) {
       System.out.println("Sorry, this file was not found: " +  fnfe.getMessage());
@@ -77,22 +76,25 @@ public class CSVProcessor {
   }
 
   /**
-   * Parse the given CSV file by converting the ArrayList of Strings containing header values into
-   * an ArrayList of ArrayLists so that specific data pieces are easily accessible.
+   * Helper method to parse the given CSV file by converting the ArrayList of Strings containing
+   * header values into an ArrayList of ArrayLists so that specific data pieces are easily
+   * accessible.
    *
    * @return the ArrayList of parsed header values
    */
   protected List<List<String>> parseHeader() {
     // iterate through ArrayList of header titles represented as Strings
     for (int i = 0; i < headerString.size(); i++) {
-      headerArrayList.add(new ArrayList<String>(headerString.subList(i,i+1)));
+      headerArrayList.add(new ArrayList<>(headerString.subList(i,i+1)));
     }
+
     return headerArrayList;
   }
 
   /**
-   * Parse the given CSV file by converting the ArrayList of Strings containing member information
-   * into ArrayLists of ArrayLists so that specific data pieces are easily accessible.
+   * Helper method to parse the given CSV file by converting the ArrayList of Strings containing
+   * member information into ArrayLists of ArrayLists so that specific data pieces are easily
+   * accessible.
    *
    * @return the ArrayList of parsed member information
    */
@@ -102,6 +104,23 @@ public class CSVProcessor {
     for (int i = 0; i < memberInfoString.size(); i = i + headerArrayList.size()) {
       memberInfoArrayList.add(memberInfoString.subList(i, headerArrayList.size())); // end each sublist at the end of the current member
     }
+
     return memberInfoArrayList;
+  }
+
+  //  !!!!! main method not permanent - only for testing merge from scratch file !!!!!
+  public static void main(String[] args) throws IOException {
+    final String MEMBER_INFO_FILE = "insurance_company_members.csv";
+    CSVProcessor processor = new CSVProcessor(MEMBER_INFO_FILE);
+    System.out.println("Header string: " + processor.headerString);
+    System.out.println("Header list: " + processor.headerArrayList);
+    System.out.println("Member string: " + processor.memberInfoString);
+    System.out.println("Member list: " + processor.memberInfoArrayList);
+
+    System.out.println("Sixth header title: " + processor.headerArrayList.get(5));
+    System.out.println("First member:" + processor.memberInfoArrayList.get(0));
+    System.out.println("First member's company: " + processor.memberInfoArrayList.get(0).get(2));
+    System.out.println("First member's website: " + processor.memberInfoArrayList.get(0).get(processor.headerArrayList.size()-1));
+    System.out.println("Sixth member: " + processor.memberInfoArrayList.get(5));
   }
 }
