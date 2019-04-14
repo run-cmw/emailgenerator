@@ -3,8 +3,6 @@ package edu.neu.css.cs5004;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,17 +20,17 @@ public class CSVProcessorTest {
     different = new CSVProcessor(DIFFERENT_FILE);
   }
 
-////  !!!!! need to account for try - catch - exception won't be thrown !!!!
-//  @Test (expected = Exception.class)
-//  public void testIOException() throws IOException {
-//    final String NON_EXISTENT_FILE = "ghost.csv";
-////    final String fnfe = "Sorry, this file was not found: " +  fnfe.getMessage();
-//
-//    CSVProcessor processor2 = new CSVProcessor(NON_EXISTENT_FILE);
-//  }
+  @Test
+  public void testIOExceptionMessage() throws IOException {
+    final String NON_EXISTENT_FILE = "ghost.csv";
+
+    // Because of try catch, exception will give a message.
+    // So no (expected = Exception.class after @Test)
+    CSVProcessor processor2 = new CSVProcessor(NON_EXISTENT_FILE);
+  }
 
   @Test
-  public void testParseHeader() {
+  public void testGetHeaderArrayList() {
     final String HEADER_LIST_LIST_AS_STRING = "[[first_name], [last_name], [company_name], [address], [city], [county], "
         + "[state], [zip], [phone1], [phone2], [email], [web]]";
 
@@ -40,7 +38,7 @@ public class CSVProcessorTest {
   }
 
   @Test
-  public void testParseMemberInfo() {
+  public void testGetMemberInfoArrayList() {
     final String MEMBER_ONE_AS_STRING = "[James, Butt, Benton, John B Jr, 6649 N Blue Gum St, New Orleans, Orleans, LA, 70116, 504-621-8927, 504-845-1427, jbutt@gmail.com, http://www.bentonjohnbjr.com]";
     final String MEMBER_ONE_COMPANY_STRING = "Benton, John B Jr";
 
