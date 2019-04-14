@@ -41,7 +41,7 @@ public class GenerateMail{
 
 
 
-  public void generateMail(String templateName, String fileName, String mailType, String outputDirectory, String outputDir) throws Exception{
+  public void generateMail(String templateName, String fileName, String mailType, String outputDir) throws Exception{
 
     try {
 
@@ -56,6 +56,7 @@ public class GenerateMail{
 
       String eachCSVline;
       inputFile.readLine();
+      System.out.println("starting ....");
       while((eachCSVline = inputFile.readLine()) != null){
         System.out.println("Read: " + eachCSVline);
         currentCSVline = newCSVProcessor.parseHeader();
