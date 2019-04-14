@@ -17,7 +17,7 @@ public class CSVProcessor {
    * ArrayList of parsed header values in the CSV file. In headerArrayList, each header value
    * is its own ArrayList.
    */
-  protected List<List<String>> headerArrayList;
+  private List<List<String>> headerArrayList;
   /**
    * ArrayList of unparsed header values in the CSV file. It is one ArrayList with header values
    * in String form.
@@ -27,7 +27,7 @@ public class CSVProcessor {
    * ArrayList of parsed member information in the CSV file. In memberInfoArrayList, each member
    * (with corresponding member info) is an ArrayList.
    */
-  protected List<List<String>> memberInfoArrayList;
+  private List<List<String>> memberInfoArrayList;
   /**
    * ArrayList of unparsed member information in the CSV file. It is one Arraylist with all member
    * data in String form.
@@ -53,7 +53,7 @@ public class CSVProcessor {
    * @param fileName Name of the file to be read
    * @throws IOException if there is an input or output exception, such as file not found
    */
-  protected void readFile(String fileName) throws IOException {
+  private void readFile(String fileName) throws IOException {
     try (BufferedReader inputFile = new BufferedReader(new FileReader(fileName))) {
       String commaBetweenQuotes = "\",\""; // delimiter for file splitting is: ","
       String line;
@@ -83,7 +83,7 @@ public class CSVProcessor {
    *
    * @return the ArrayList of parsed header values
    */
-  protected List<List<String>> parseHeader() {
+  private List<List<String>> parseHeader() {
     // iterate through ArrayList of header titles represented as Strings
     for (int i = 0; i < headerString.size(); i++) {
       headerArrayList.add(new ArrayList<>(headerString.subList(i,i+1)));
@@ -99,7 +99,7 @@ public class CSVProcessor {
    *
    * @return the ArrayList of parsed member information
    */
-  protected List<List<String>> parseMemberInfo() {
+  private List<List<String>> parseMemberInfo() {
     // iterate through ArrayList of member info represented as Strings
     // add the number of elements in the parsed header to int i b/c that will loop to next member
     for (int i = 0; i < memberInfoString.size(); i = i + headerArrayList.size()) {
