@@ -10,9 +10,10 @@ public class GenerateMailTest {
   private GenerateMail newGenerateMail;
   private String emailTemplate;
   private String csvFile;
-  private String mailType;
+  //private String mailType;
   private String corruptFileName;
   private String outputDirectory;
+  MailType mailType;
 
   @Before
   public void setUp() throws Exception {
@@ -21,8 +22,9 @@ public class GenerateMailTest {
     emailTemplate = "custom-letter-template.txt";
     csvFile = "insurance_company_members.csv";
     outputDirectory = "email";
-    mailType = "email";
+    mailType =  MailType.EMAIL;
     corruptFileName = "fileDoesNotExist.csv";
+
   }
 
   @Test
