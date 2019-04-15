@@ -8,28 +8,42 @@ import org.junit.Test;
 public class GenerateMailTest {
 
   private GenerateMail newGenerateMail;
+  private String letterTemplate;
   private String emailTemplate;
   private String csvFile;
-  //private String mailType;
-  private String corruptFileName;
-  private String outputDirectory;
-  MailType mailType;
+
+  //private String corruptFileName;
+  private String outputDirectoryEmail;
+  private String outputDirectoryLetter;
+  MailType mailTypeLetter;
+  MailType mailTypeEmail;
 
   @Before
   public void setUp() throws Exception {
 
     newGenerateMail = new GenerateMail();
-    emailTemplate = "custom-letter-template.txt";
-    csvFile = "insurance_company_members.csv";
-    outputDirectory = "email";
-    mailType =  MailType.EMAIL;
-    corruptFileName = "fileDoesNotExist.csv";
+    letterTemplate = "custom-letter-template.txt";
+    emailTemplate = "custom-email-template.txt";
+    csvFile = "insurance_company_members_copy.csv";
+    outputDirectoryEmail = "email";
+    outputDirectoryLetter = "letter";
+    mailTypeLetter =  MailType.LETTER;
+    mailTypeEmail =  MailType.EMAIL;
+    //corruptFileName = "fileDoesNotExist.csv";
 
   }
 
   @Test
   public void generateMail() throws Exception {
-    newGenerateMail.generateMail(emailTemplate, csvFile, mailType, outputDirectory );
+    newGenerateMail.generateMail(letterTemplate, csvFile, mailTypeLetter, outputDirectoryLetter );
 
   }
+
+  @Test
+  public void generateEmail() throws Exception {
+    newGenerateMail.generateMail(emailTemplate, csvFile, mailTypeEmail, outputDirectoryEmail );
+
+  }
+
+
 }
