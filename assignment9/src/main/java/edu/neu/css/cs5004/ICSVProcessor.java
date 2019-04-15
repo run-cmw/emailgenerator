@@ -7,11 +7,11 @@ import java.util.List;
  */
 public interface ICSVProcessor {
   /**
-   * Return ArrayList of ArrayLists of header titles.
+   * Return ArrayList of header titles.
    *
-   * @return ArrayList of ArrayLists of header titles
+   * @return ArrayList of header titles
    */
-  List<List<String>> getHeaderArrayList();
+  List<String> getHeaderArrayList();
 
   /**
    * Return ArrayList of ArrayLists of member information.
@@ -38,7 +38,7 @@ public interface ICSVProcessor {
   /**
    * Returns a string representation of the object.
    * Format -
-   * "Header titles: [[header_title], [header_title], [header_title],...]
+   * "Header titles: [header_title, header_title, header_title,...]
    *  Member data: [[member1_info, member1_info, member1_info],
    *               [member2_info, member1_info, member1_info], ...]"
    *
