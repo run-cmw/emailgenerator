@@ -11,18 +11,15 @@ import java.util.Objects;
 
 /**
  * This class represents a CSV processor that reads and parses CSV files.
+ * It implements ICSVProcessor.
  */
-public class CSVProcessor {
+public class CSVProcessor implements ICSVProcessor {
   /**
    * ArrayList of parsed header values in the CSV file. In headerArrayList, each header value
    * is its own ArrayList.
    */
-  private List<List<String>> headerArrayList;
-  /**
-   * ArrayList of unparsed header values in the CSV file. It is one ArrayList with header values
-   * in String form.
-   */
-  private List<String> headerString;
+  private List<String> headerArrayList;
+
   /**
    * ArrayList of parsed member information in the CSV file. In memberInfoArrayList, each member
    * (with corresponding member info) is an ArrayList.
@@ -60,8 +57,7 @@ public class CSVProcessor {
 
       line = inputFile.readLine();
       line =  line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
-      headerString = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
-      parseHeader();
+      headerArrayList = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
 
       while ((line = inputFile.readLine()) != null) {
         line = line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
@@ -74,22 +70,6 @@ public class CSVProcessor {
       System.out.println("Sorry, something went wrong: " + ioe.getMessage());
       ioe.printStackTrace();
     }
-  }
-
-  /**
-   * Helper method to parse the given CSV file by converting the ArrayList of Strings containing
-   * header values into an ArrayList of ArrayLists so that specific data pieces are easily
-   * accessible.
-   *
-   * @return the ArrayList of parsed header values
-   */
-  private List<List<String>> parseHeader() {
-    // iterate through ArrayList of header titles represented as Strings
-    for (int i = 0; i < headerString.size(); i++) {
-      headerArrayList.add(new ArrayList<>(headerString.subList(i,i+1)));
-    }
-
-    return headerArrayList;
   }
 
   /**
@@ -110,11 +90,11 @@ public class CSVProcessor {
   }
 
   /**
-   * Return ArrayList of ArrayLists of header titles.
+   * Return ArrayList of header titles.
    *
-   * @return ArrayList of ArrayLists of header titles
+   * @return ArrayList of header titles
    */
-  public List<List<String>> getHeaderArrayList() {
+  public List<String> getHeaderArrayList() {
     return headerArrayList;
   }
 
@@ -151,13 +131,13 @@ public class CSVProcessor {
    * @return hash code value for the object
    */
   public int hashCode() {
-    return Objects.hash(headerArrayList, headerString, memberInfoArrayList, memberInfoString);
+    return Objects.hash(headerArrayList, memberInfoArrayList, memberInfoString);
   }
 
   /**
    * Returns a string representation of the object.
    * Format -
-   * "Header titles: [[header_title], [header_title], [header_title],...]
+   * "Header titles: [header_title, header_title, header_title,...]
    *  Member data: [[member1_info, member1_info, member1_info],
    *               [member2_info, member1_info, member1_info], ...]"
    *
@@ -174,7 +154,6 @@ public class CSVProcessor {
   public static void main(String[] args) throws IOException {
     final String MEMBER_INFO_FILE = "insurance_company_members.csv";
     CSVProcessor processor = new CSVProcessor(MEMBER_INFO_FILE);
-    System.out.println("Header string: " + processor.headerString);
     System.out.println("Header list: " + processor.headerArrayList);
     System.out.println("Member string: " + processor.memberInfoString);
     System.out.println("Member list: " + processor.memberInfoArrayList);
