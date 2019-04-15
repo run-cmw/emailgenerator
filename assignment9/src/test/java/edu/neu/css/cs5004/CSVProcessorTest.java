@@ -40,8 +40,8 @@ public class CSVProcessorTest {
 
   @Test
   public void testGetHeaderArrayList() {
-    final String HEADER_LIST_LIST_AS_STRING = "[[first_name], [last_name], [company_name], [address], [city], [county], "
-        + "[state], [zip], [phone1], [phone2], [email], [web]]";
+    final String HEADER_LIST_LIST_AS_STRING = "[first_name, last_name, company_name, address, city, county, "
+        + "state, zip, phone1, phone2, email, web]";
 
     assertEquals(HEADER_LIST_LIST_AS_STRING, processor.getHeaderArrayList().toString());
   }
@@ -80,7 +80,7 @@ public class CSVProcessorTest {
   
   @Test
   public void testToString() {
-    final String DIFFERENT_HEADER_AS_STRING = "[[first_name], [last_name], [city], [state]]";
+    final String DIFFERENT_HEADER_AS_STRING = "[first_name, last_name, city, state]";
     final String DIFFERENT_DATA_AS_STRING = "[[Avery, Wells, Baton Rouge, LA], [Clara, Wells, Seattle, WA], [Chana, Wells, Pearl, MS], [Norseen, Wells, Baton Rouge, LA], [Averon, Reed, Baton Rouge, LA]]";
     final String DIFFERENT_AS_STRING = "Header titles: " + DIFFERENT_HEADER_AS_STRING + "\n" + "Member data: " + DIFFERENT_DATA_AS_STRING;
 
