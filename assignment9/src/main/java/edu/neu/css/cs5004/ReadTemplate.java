@@ -35,9 +35,7 @@ public class ReadTemplate {
       while ((line = inputFile.readLine()) != null) {
 
         templateToBeLoaded.append(line).append("\r\n");
-        System.out.println("Read : " + line);
-
-
+        // System.out.println("Read : " + line);
       }
 
     } catch (FileNotFoundException fnfe) {
