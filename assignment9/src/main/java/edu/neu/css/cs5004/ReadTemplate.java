@@ -35,7 +35,7 @@ public class ReadTemplate {
       while ((line = inputFile.readLine()) != null) {
 
         templateToBeLoaded.append(line).append("\r\n");
-        // System.out.println("Read : " + line);
+
       }
 
     } catch (FileNotFoundException fnfe) {
@@ -49,7 +49,6 @@ public class ReadTemplate {
 
     return templateToBeLoaded.toString();
   }
-
 
   @Override
   public boolean equals(Object obj) {
@@ -67,6 +66,7 @@ public class ReadTemplate {
   public int hashCode() {
     return Objects.hash(templateToBeLoaded);
   }
+
 
   @Override
   public String toString() {
