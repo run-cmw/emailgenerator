@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.List;
-import java.util.Objects;
 
 
 public class GenerateMail {
@@ -66,45 +65,9 @@ public class GenerateMail {
 
     }
 
-
-
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof GenerateMail)) {
-      return false;
-    }
-    GenerateMail that = (GenerateMail) o;
-    return MEMBER_INFO_FILE.equals(that.MEMBER_INFO_FILE) &&
-        headers.equals(that.headers) &&
-        members.equals(that.members) &&
-        newReadTemplate.equals(that.newReadTemplate) &&
-        newCSVProcessor.equals(that.newCSVProcessor) &&
-        newFileName.equals(that.newFileName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects
-        .hash(MEMBER_INFO_FILE, headers, members, newReadTemplate, newCSVProcessor, newFileName);
   }
 
 
-  @Override
-  public String toString() {
-    return "GenerateMail{" +
-        "MEMBER_INFO_FILE='" + MEMBER_INFO_FILE + '\'' +
-        ", headers=" + headers +
-        ", members=" + members +
-        ", newReadTemplate=" + newReadTemplate +
-        ", newCSVProcessor=" + newCSVProcessor +
-        ", newFileName='" + newFileName + '\'' +
-        '}';
-  }
 }
 
 
