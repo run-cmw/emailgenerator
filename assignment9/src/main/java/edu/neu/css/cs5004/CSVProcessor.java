@@ -163,5 +163,8 @@ public class CSVProcessor implements ICSVProcessor {
     System.out.println("First member's company: " + processor.memberInfoArrayList.get(0).get(2));
     System.out.println("First member's website: " + processor.memberInfoArrayList.get(0).get(processor.headerArrayList.size()-1));
     System.out.println("Sixth member: " + processor.memberInfoArrayList.get(5));
+    System.out.println("Header size: " + processor.getHeaderArrayList().size());
+    System.out.println("Entire list size: " + processor.getMemberInfoArrayList().size());
+    System.out.println("One member's size: " + processor.getMemberInfoArrayList().get(0).size());
   }
 }
