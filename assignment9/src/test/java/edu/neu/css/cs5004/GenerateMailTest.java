@@ -10,7 +10,7 @@ public class GenerateMailTest {
   private GenerateMail newGenerateMail;
   private String emailTemplate;
   private String csvFile;
-  //private String mailType;
+
   private String corruptFileName;
   private String outputDirectory;
   MailType mailType;
