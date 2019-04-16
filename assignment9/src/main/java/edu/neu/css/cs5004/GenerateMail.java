@@ -90,6 +90,8 @@ public class GenerateMail {
 
     }
 
+    System.out.println("Successfully generated mail");
+
   }
 
   /**

@@ -29,11 +29,9 @@ public class ReadTemplateTest {
   @Test
   public void parseTemplate() {
     System.out.println(newTemplateRead.parseTemplate("custom-email-template.txt"));
+    String checkString = newTemplateRead.parseTemplate("custom-email-template.txt");
 
   }
-
-
-
 
 
   @Test
@@ -54,7 +52,6 @@ public class ReadTemplateTest {
   public void testHashCode(){
 
 
-
    }
 
 
@@ -64,4 +61,7 @@ public class ReadTemplateTest {
 
 
    }
+
+
+
 }
