@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
+
+/**
+ * This class represents Read Template
+ */
 public class ReadTemplate {
 
   protected StringBuilder templateToBeLoaded = new StringBuilder();
@@ -20,7 +24,7 @@ public class ReadTemplate {
 
   /**
    * Method to parse the template
-   * @param templateName given
+   * @param templateName given template name
    * @return a string representation of the template
    */
   public String parseTemplate(String templateName) {
@@ -49,7 +53,12 @@ public class ReadTemplate {
 
     return templateToBeLoaded.toString();
   }
-
+  /**
+   * Indicates whether some other object is "equal to" this one.
+   *
+   * @param obj - the reference object with which to compare
+   * @return {@code true} if this object is the same as the obj argument and {@code false} otherwise
+   */
 
   @Override
   public boolean equals(Object obj) {
@@ -63,11 +72,21 @@ public class ReadTemplate {
     return templateToBeLoaded.equals(that.templateToBeLoaded);
   }
 
+  /**
+   * Returns a hash code value for the object.
+   *
+   * @return hash code value for the object
+   */
   @Override
   public int hashCode() {
     return Objects.hash(templateToBeLoaded);
   }
 
+
+  /**
+   * Returns a string representation of the object
+   * @return String representation of the object
+   */
   @Override
   public String toString() {
     return "ReadTemplate{" +
