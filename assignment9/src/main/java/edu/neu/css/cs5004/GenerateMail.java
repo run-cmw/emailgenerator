@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class GenerateMail {
 
-  private final String MEMBER_INFO_FILE = "insurance_company_members_copy.csv";
+  private final String MEMBER_INFO_FILE = "insurance_company_members.csv";
 
   /**
    * List of headers
@@ -89,6 +89,8 @@ public class GenerateMail {
 
 
     }
+
+    System.out.println("Successfully generated mail");
 
   }
 
