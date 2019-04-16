@@ -24,7 +24,7 @@ public class GenerateMailTest {
     newGenerateMail = new GenerateMail();
     letterTemplate = "custom-letter-template.txt";
     emailTemplate = "custom-email-template.txt";
-    csvFile = "insurance_company_members_copy.csv";
+    csvFile = "insurance_company_members.csv";
     outputDirectoryEmail = "email";
     outputDirectoryLetter = "letter";
     mailTypeLetter =  MailType.LETTER;
@@ -44,6 +44,10 @@ public class GenerateMailTest {
     newGenerateMail.generateMail(emailTemplate, csvFile, mailTypeEmail, outputDirectoryEmail );
 
   }
+
+
+
+
 
 
 }
