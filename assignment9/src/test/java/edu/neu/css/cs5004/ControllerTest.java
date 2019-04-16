@@ -28,28 +28,83 @@ public class ControllerTest {
       + "  or \n"
       + "  --letter "
       + "--letter-template letter-template.txt --output-dir letters --csv-file customer.csv\r\n";
+  private Controller controller;
+  private java.io.ByteArrayOutputStream out;
+  private String [] args;
+  private String argument;
+  private InputStream input;
+  private String success;
+
   @Before
   public void setUp() throws Exception {
-
+    controller = new Controller();
+    out = new java.io.ByteArrayOutputStream();
+    args = null;
+    success = "Mail generation was successful!\r";
   }
 
+  @Test
+  public void correctGenerationEmail() throws Exception {
+    argument =
+        "--email --email-template custom-email-template.txt "
+            + "--output-dir email --csv-file insurance_company_members.csv";
+    input = new ByteArrayInputStream(argument.getBytes());
+    System.setOut(new java.io.PrintStream(out));
+    System.setIn(input);
+    Controller.main(args);
+    String [] output = out.toString().split("\n");
+    int size = output.length - 1;
+
+    // If generated correctly, should output "Mail generation was successful!\r"
+    assertEquals(success, output[size]);
+  }
 
   @Test
-  public void testMain() {
-    Controller controller = new Controller();
-    java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
-    String[] args = null;
-    String argument =
-        "--email --letter-template email-template.txt --output-dr emails --csv-file customer.csv";
-    InputStream input = new ByteArrayInputStream(argument.getBytes());
+  public void correctGenerationLetter() throws Exception {
+    argument =
+        "--letter --letter-template custom-letter-template.txt "
+            + "--output-dir letter --csv-file insurance_company_members.csv";
+    input = new ByteArrayInputStream(argument.getBytes());
+    System.setOut(new java.io.PrintStream(out));
+    System.setIn(input);
+    Controller.main(args);
+    String [] output = out.toString().split("\n");
+    int size = output.length - 1;
+
+    // If generated correctly, should output "Mail generation was successful!\r"
+    assertEquals(success, output[size]);
+  }
+
+  @Test
+  public void givenEmailNoEmailTemplateError() throws Exception {
+    // Error that occurs when --email is given but no --email-template given
+
+    argument =
+        "--email --letter-template email-template.txt --output-dir emails --csv-file customer.csv";
+    input = new ByteArrayInputStream(argument.getBytes());
     System.setOut(new java.io.PrintStream(out));
     System.setIn(input);
     Controller.main(args);
     feedback = "Enter arguments to generate email or letter:\r\n"
-        + "Error : --email provided but no --email-template was provided.\r\n"
+        + "Error: --email provided but no --email-template was provided.\r\n"
         + feedback;
     assertEquals(feedback, out.toString());
+  }
 
+  @Test
+  public void givenLetterNoLetterTemplateError() throws Exception {
+    // Error that occurs when --letter is given but no --letter-template given
+
+    argument =
+        "--letter --email-template email-template.txt --output-dir emails --csv-file customer.csv";
+    input = new ByteArrayInputStream(argument.getBytes());
+    System.setOut(new java.io.PrintStream(out));
+    System.setIn(input);
+    Controller.main(args);
+    feedback = "Enter arguments to generate email or letter:\r\n"
+        + "Error: --letter provided but no --letter-template was provided.\r\n"
+        + feedback;
+    assertEquals(feedback, out.toString());
   }
 
 

@@ -2,37 +2,92 @@ package edu.neu.css.cs5004;
 
 import java.util.HashMap;
 
+/**
+ * Controller class that takes in user actions and responds (modifies data or UI.
+ */
 public class Controller {
-  private static final String emailKey = "email ";
-  private static final String emailTemplateKey = "email-template";
-  private static final String letterKey = "letter ";
-  private static final String letterTemplateKey = "letter-template";
-  private static final String fileKey = "csv-file";
-  private static final String outputKey = "output-dir";
-  private static final int expectedArgumentNumber = 4;
+  /**
+   * Constant that represents the command line argument --email.
+   */
+  private static final String EMAIL_KEY = "email ";
+  /**
+   * Constant that represents the command line argument --email-template.
+   */
+  private static final String EMAIL_TEMPLATE_KEY = "email-template";
+  /**
+   * Constant that represents the command line argument --letter.
+   */
+  private static final String LETTER_KEY = "letter ";
+  /**
+   * Constant that represents the command line argument --letter-template.
+   */
+  private static final String LETTER_TEMPLATE_KEY = "letter-template";
+  /**
+   * Constant that represents the command line argument --csv-file.
+   */
+  private static final String FILE_KEY = "csv-file";
+  /**
+   * Constant that represents the command line argument --output-dir.
+   */
+  private static final String OUTPUT_KEY = "output-dir";
+  /**
+   * The number of expected inputs in the command line when running this class.
+   */
+  private static final int EXPECTED_ARGUMENT_NUMBER = 4;
+  /**
+   * The type of the request - either generate email or letter files.
+   */
+  private static String type = "";
 
-  public static HashMap<String, String> createDictionary() {
+  /**
+   * Function that creates a hash map with the command line arguments that must be included.
+   * @return hash map with the command line arguments that must be included when calling the
+   *     mail generator.
+   */
+  private static HashMap<String, String> createDictionary() {
     HashMap<String, String> dictionaryArguments = new HashMap<>();
-    dictionaryArguments.put(emailKey, null);
-    dictionaryArguments.put(emailTemplateKey, null);
-    dictionaryArguments.put(letterKey, null);
-    dictionaryArguments.put(letterTemplateKey, null);
-    dictionaryArguments.put(fileKey, null);
-    dictionaryArguments.put(outputKey, null);
+    dictionaryArguments.put(EMAIL_KEY, null);
+    dictionaryArguments.put(EMAIL_TEMPLATE_KEY, null);
+    dictionaryArguments.put(LETTER_KEY, null);
+    dictionaryArguments.put(LETTER_TEMPLATE_KEY, null);
+    dictionaryArguments.put(FILE_KEY, null);
+    dictionaryArguments.put(OUTPUT_KEY, null);
     return dictionaryArguments;
   }
 
-  public static HashMap<String, String> validInputs(String userInput,
+  /**
+   * Validates the command line inputs/arguments passed in by the user and either throws an
+   * IllegalArgumentException or returns a hash map with the the command line arguments
+   * parsed as a value.
+   *
+   * Example:
+   * Command line input:
+   * --email --letter-template email-template.txt --output-dir emails --csv-file customer.csv
+   *
+   * Hash map contents:
+   * email: email
+   * email-template: email-template.txt
+   * output-dir: emails
+   * csv-file: customer.csv
+   *
+   * @param userInput
+   * @param dictionary
+   * @return
+   * @throws IllegalArgumentException - Thrown if the number of arguments given is not four,
+   *     if the --email argument is included but --email-template is not included,
+   *     if the --letter argument is included but --letter-template is not included, or
+   *     if any arguments besides --csv-file, --output-dir, or the arguments above are given.
+   */
+  private static HashMap<String, String> validInputs(String userInput,
       HashMap<String, String> dictionary) throws IllegalArgumentException {
+    // Splitting the user input by the flag '--'
     String[] arrayInput = userInput.split("--");
-
-    String type = "";
 
     int size = arrayInput.length;
 
     // If number of inputs given is not four, error message returned.
-    if (size - 1 != expectedArgumentNumber) {
-      String feedback = "Expected " + expectedArgumentNumber + " arguments "
+    if (size - 1 != EXPECTED_ARGUMENT_NUMBER) {
+      String feedback = "Expected " + EXPECTED_ARGUMENT_NUMBER + " arguments "
           + "given " + size + " arguments.";
       throw new IllegalArgumentException(feedback);
     }
@@ -40,19 +95,19 @@ public class Controller {
     // Iterating through inputs and determining if email or letter
     // template should be created.
     for (int i = 1; i < size; i++) {
-      if (arrayInput[i].equals(emailKey)) {
-        // If emailKey (--email) is included, removing letterKey and letterTemplateKey
+      if (arrayInput[i].equals(EMAIL_KEY)) {
+        // If EMAIL_KEY (--email) is included, removing LETTER_KEY and LETTER_TEMPLATE_KEY
         // from dictionary.
-        dictionary.remove(letterKey);
-        dictionary.remove(letterTemplateKey);
-        type = emailKey;
+        dictionary.remove(LETTER_KEY);
+        dictionary.remove(LETTER_TEMPLATE_KEY);
+        type = EMAIL_KEY;
         break;
-      } else if (arrayInput[i].equals(letterKey)) {
-        // If letterKey (--letter) is included, removing emailKey and emailTemplateKey
+      } else if (arrayInput[i].equals(LETTER_KEY)) {
+        // If LETTER_KEY (--letter) is included, removing EMAIL_KEY and EMAIL_TEMPLATE_KEY
         // from dictionary.
-        dictionary.remove(emailKey);
-        dictionary.remove(emailTemplateKey);
-        type = letterKey;
+        dictionary.remove(EMAIL_KEY);
+        dictionary.remove(EMAIL_TEMPLATE_KEY);
+        type = LETTER_KEY;
         size -= 1;
         break;
       } else {
@@ -73,13 +128,13 @@ public class Controller {
       // If dictionary inputs contains a wrong key, print out an error message.
       if (!dictionary.containsKey(input[0])) {
         String feedback;
-        if (type.equals(emailKey) && input[0].equals(letterTemplateKey)) {
+        if (type.equals(EMAIL_KEY) && input[0].equals(LETTER_TEMPLATE_KEY)) {
           // If --email was provided but no --email-template
-          feedback = "Error : --" + type + "provided but no --" + emailTemplateKey +
+          feedback = "Error: --" + type + "provided but no --" + EMAIL_TEMPLATE_KEY +
               " was provided.";
-        } else if (type.equals(letterKey) && input[0].equals(emailTemplateKey)) {
+        } else if (type.equals(LETTER_KEY) && input[0].equals(EMAIL_TEMPLATE_KEY)) {
           // If --letter was provided but no --letter-template
-          feedback = "Error: --" + type + "provided but no --" + letterTemplateKey +
+          feedback = "Error: --" + type + "provided but no --" + LETTER_TEMPLATE_KEY +
               " was provided.";
         } else {
           // If given argument is not one of the legal arguments.
@@ -95,8 +150,15 @@ public class Controller {
     }
     return dictionary;
   }
-  public static void main(String[] args) {
-    // Model model = new Model();
+
+  /**
+   * Main function that initiates the UI (calls the View class) to get user input and responds, as
+   * necessary, based on user actions.
+   * @param arguments - Arguments given by the user.
+   * @throws Exception - Thrown any I/O exceptions occur.
+   */
+  public static void main(String[] arguments) throws Exception {
+
     HashMap<String, String> dictionaryArguments = createDictionary();
 
     String userInput;
@@ -107,10 +169,27 @@ public class Controller {
     try {
       dictionaryArguments = validInputs(userInput, dictionaryArguments);
     } catch (IllegalArgumentException exception) {
+      // If the user provided improper inputs, provide user feedback.
       View.giveFeedback(exception.getMessage());
       View.provideExample();
+      return;
     }
-  }
 
+    // If there are no errors with inputs, proceed.
+    GenerateMail model = new GenerateMail();
+    MailType mailType;
+    if (type == EMAIL_KEY) {
+      mailType =  MailType.EMAIL;
+      model.generateMail(dictionaryArguments.get(EMAIL_TEMPLATE_KEY),
+          dictionaryArguments.get(FILE_KEY), mailType, dictionaryArguments.get(OUTPUT_KEY));
+    } else {
+      mailType =  MailType.LETTER;
+      model.generateMail(dictionaryArguments.get(LETTER_TEMPLATE_KEY),
+          dictionaryArguments.get(FILE_KEY), mailType, dictionaryArguments.get(OUTPUT_KEY));
+    }
+
+    // If everything is successful, provide user message indicating success.
+    View.provideSuccessMessage();
+  }
 
 }

@@ -2,18 +2,33 @@ package edu.neu.css.cs5004;
 
 import java.util.Scanner;
 
+/**
+ * View class that creates the user interface.
+ */
 public class View {
 
+  /**
+   * Takes in and returns user input.
+   * @param prompt - A string that informs the user what to input.
+   * @return - returns the user input.
+   */
   public static String getInput(String prompt) {
     Scanner scan = new Scanner(System.in);
     System.out.println(prompt);
     return scan.nextLine();
   }
 
+  /**
+   * Takes in a feedback string and shows this feedback to the user.
+   * @param feedback - A string with feedback (error message).
+   */
   public static void giveFeedback(String feedback) {
     System.out.println(feedback);
   }
 
+  /**
+   * Provides an example of proper user inputs to the user when the user provides incorrect inputs.
+   */
   public static void provideExample() {
     String feedback = "\n Usage: \n"
         + "  --email: "
@@ -35,5 +50,12 @@ public class View {
         + "  --letter --letter-template letter-template.txt --output-dir letters "
         + "--csv-file customer.csv";
     System.out.println(feedback);
+  }
+
+  /**
+   * Provides a success message if the mails were generated successfully.
+   */
+  public static void provideSuccessMessage() {
+    System.out.println("Mail generation was successful!");
   }
 }
