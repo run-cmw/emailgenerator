@@ -150,21 +150,4 @@ public class CSVProcessor implements ICSVProcessor {
         memberInfoArrayList.toString();
   }
 
-  //  !!!!! main method not permanent - only for testing merge from scratch file !!!!!
-  public static void main(String[] args) throws IOException {
-    final String MEMBER_INFO_FILE = "insurance_company_members.csv";
-    CSVProcessor processor = new CSVProcessor(MEMBER_INFO_FILE);
-    System.out.println("Header list: " + processor.headerArrayList);
-    System.out.println("Member string: " + processor.memberInfoString);
-    System.out.println("Member list: " + processor.memberInfoArrayList);
-
-    System.out.println("Sixth header title: " + processor.headerArrayList.get(5));
-    System.out.println("First member:" + processor.memberInfoArrayList.get(0));
-    System.out.println("First member's company: " + processor.memberInfoArrayList.get(0).get(2));
-    System.out.println("First member's website: " + processor.memberInfoArrayList.get(0).get(processor.headerArrayList.size()-1));
-    System.out.println("Sixth member: " + processor.memberInfoArrayList.get(5));
-    System.out.println("Header size: " + processor.getHeaderArrayList().size());
-    System.out.println("Entire list size: " + processor.getMemberInfoArrayList().size());
-    System.out.println("One member's size: " + processor.getMemberInfoArrayList().get(0).size());
-  }
 }

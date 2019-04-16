@@ -60,19 +60,19 @@ public class Controller {
    * IllegalArgumentException or returns a hash map with the the command line arguments
    * parsed as a value.
    *
-   * Example:
+   * <p>Example</p>:
    * Command line input:
    * --email --letter-template email-template.txt --output-dir emails --csv-file customer.csv
    *
-   * Hash map contents:
+   * <p>Hash map contents</p>:
    * email: email
    * email-template: email-template.txt
    * output-dir: emails
    * csv-file: customer.csv
    *
-   * @param userInput
-   * @param dictionary
-   * @return
+   * @param userInput - Command line inputs provided by the user.
+   * @param dictionary - Hash map (dictionary) that will store the user inputs.
+   * @return - Hash map with user inputs.
    * @throws IllegalArgumentException - Thrown if the number of arguments given is not four,
    *     if the --email argument is included but --email-template is not included,
    *     if the --letter argument is included but --letter-template is not included, or
@@ -130,22 +130,30 @@ public class Controller {
         String feedback;
         if (type.equals(EMAIL_KEY) && input[0].equals(LETTER_TEMPLATE_KEY)) {
           // If --email was provided but no --email-template
-          feedback = "Error: --" + type + "provided but no --" + EMAIL_TEMPLATE_KEY +
-              " was provided.";
+          feedback = "Error: --"
+              + type
+              + "provided but no --"
+              + EMAIL_TEMPLATE_KEY
+              + " was provided.";
         } else if (type.equals(LETTER_KEY) && input[0].equals(EMAIL_TEMPLATE_KEY)) {
           // If --letter was provided but no --letter-template
-          feedback = "Error: --" + type + "provided but no --" + LETTER_TEMPLATE_KEY +
-              " was provided.";
+          feedback = "Error: --"
+              + type
+              + "provided but no --"
+              + LETTER_TEMPLATE_KEY
+              + " was provided.";
         } else {
           // If given argument is not one of the legal arguments.
-          feedback = "Error: " + input[0] + " is not a legal input.";
+          feedback = "Error: "
+              + input[0]
+              + " is not a legal input.";
         }
         throw new IllegalArgumentException(feedback);
       } else {
-          // If not "--email" or "--letter", placing argument into dictionary with
-          // key: value pair of flag: path. Example: --email-template: "emails"
-          input[1].replaceAll("\\s","");
-          dictionary.put(input[0], input[1]);
+        // If not "--email" or "--letter", placing argument into dictionary with
+        // key: value pair of flag: path. Example: --email-template: "emails"
+        input[1].replaceAll("\\s","");
+        dictionary.put(input[0], input[1]);
       }
     }
     return dictionary;
