@@ -3,7 +3,7 @@ package edu.neu.css.cs5004;
 import java.util.HashMap;
 
 /**
- * Controller class that takes in user actions and responds (modifies data or UI.
+ * Controller class that takes in user actions and responds (modifies data or UI).
  */
 public class Controller {
   /**
@@ -135,19 +135,19 @@ public class Controller {
               + type
               + "provided but no --"
               + EMAIL_TEMPLATE_KEY
-              + " was provided.";
+              + " was provided.\n";
         } else if (type.equals(LETTER_KEY) && input[0].equals(EMAIL_TEMPLATE_KEY)) {
           // If --letter was provided but no --letter-template
           feedback = "Error: --"
               + type
               + "provided but no --"
               + LETTER_TEMPLATE_KEY
-              + " was provided.";
+              + " was provided.\n";
         } else {
           // If given argument is not one of the legal arguments.
           feedback = "Error: --"
               + input[0]
-              + " is not a legal input.";
+              + " is not a legal input.\n";
         }
         throw new IllegalArgumentException(feedback);
       } else {
@@ -173,7 +173,7 @@ public class Controller {
     String userInput;
 
     // Ask for user input via the View
-    userInput = View.getInput("Enter arguments to generate email or letter:");
+    userInput = View.getInput("Enter arguments to generate email or letter:\n");
 
     try {
       dictionaryArguments = validInputs(userInput, dictionaryArguments);

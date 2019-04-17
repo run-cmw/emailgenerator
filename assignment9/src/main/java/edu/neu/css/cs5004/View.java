@@ -14,7 +14,7 @@ public class View {
    */
   public static String getInput(String prompt) {
     Scanner scan = new Scanner(System.in, "UTF-8");
-    System.out.println(prompt);
+    System.out.print(prompt);
     return scan.nextLine();
   }
 
@@ -23,7 +23,7 @@ public class View {
    * @param feedback - A string with feedback (error message).
    */
   public static void giveFeedback(String feedback) {
-    System.out.println(feedback);
+    System.out.print(feedback);
   }
 
   /**
@@ -48,14 +48,14 @@ public class View {
         + "--csv-file customer.csv\n"
         + "  or \n"
         + "  --letter --letter-template letter-template.txt --output-dir letters "
-        + "--csv-file customer.csv";
-    System.out.println(feedback);
+        + "--csv-file customer.csv\n";
+    System.out.print(feedback);
   }
 
   /**
    * Provides a success message if the mails were generated successfully.
    */
   public static void provideSuccessMessage() {
-    System.out.println("Mail generation was successful!");
+    System.out.print("Mail generation was successful!\n");
   }
 }

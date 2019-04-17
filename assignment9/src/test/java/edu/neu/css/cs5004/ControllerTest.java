@@ -27,7 +27,7 @@ public class ControllerTest {
       + "--email-template email-template.txt --output-dir emails --csv-file customer.csv\n"
       + "  or \n"
       + "  --letter "
-      + "--letter-template letter-template.txt --output-dir letters --csv-file customer.csv\r\n";
+      + "--letter-template letter-template.txt --output-dir letters --csv-file customer.csv\n";
   private Controller controller;
   private java.io.ByteArrayOutputStream out;
   private String [] args;
@@ -40,7 +40,7 @@ public class ControllerTest {
     controller = new Controller();
     out = new java.io.ByteArrayOutputStream();
     args = null;
-    success = "Mail generation was successful!\r";
+    success = "Mail generation was successful!";
   }
 
   @Test
@@ -85,8 +85,8 @@ public class ControllerTest {
     System.setOut(new java.io.PrintStream(out));
     System.setIn(input);
     Controller.main(args);
-    feedback = "Enter arguments to generate email or letter:\r\n"
-        + "Error: --email provided but no --email-template was provided.\r\n"
+    feedback = "Enter arguments to generate email or letter:\n"
+        + "Error: --email provided but no --email-template was provided.\n"
         + feedback;
     assertEquals(feedback, out.toString());
   }
@@ -101,8 +101,8 @@ public class ControllerTest {
     System.setOut(new java.io.PrintStream(out));
     System.setIn(input);
     Controller.main(args);
-    feedback = "Enter arguments to generate email or letter:\r\n"
-        + "Error: --letter provided but no --letter-template was provided.\r\n"
+    feedback = "Enter arguments to generate email or letter:\n"
+        + "Error: --letter provided but no --letter-template was provided.\n"
         + feedback;
     assertEquals(feedback, out.toString());
   }
@@ -117,8 +117,8 @@ public class ControllerTest {
     System.setOut(new java.io.PrintStream(out));
     System.setIn(input);
     Controller.main(args);
-    feedback = "Enter arguments to generate email or letter:\r\n"
-        + "Error: Expected 4 arguments given 3 arguments.\r\n"
+    feedback = "Enter arguments to generate email or letter:\n"
+        + "Error: Expected 4 arguments given 3 arguments."
         + feedback;
     assertEquals(feedback, out.toString());
   }
@@ -134,8 +134,8 @@ public class ControllerTest {
     System.setOut(new java.io.PrintStream(out));
     System.setIn(input);
     Controller.main(args);
-    feedback = "Enter arguments to generate email or letter:\r\n"
-        + "Error: --incorrect is not a legal input.\r\n"
+    feedback = "Enter arguments to generate email or letter:\n"
+        + "Error: --incorrect is not a legal input.\n"
         + feedback;
     assertEquals(feedback, out.toString());
   }
