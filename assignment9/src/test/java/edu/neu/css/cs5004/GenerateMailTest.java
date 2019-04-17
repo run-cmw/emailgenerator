@@ -1,7 +1,6 @@
 package edu.neu.css.cs5004;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,13 +13,15 @@ public class GenerateMailTest {
   private String csvFile;
   private String outputDirectoryEmail;
   private String outputDirectoryLetter;
-  MailType mailTypeLetter;
-  MailType mailTypeEmail;
+  private MailType mailTypeLetter;
+  private MailType mailTypeEmail;
+  private ReadTemplate readTemp;
 
   @Before
   public void setUp() throws Exception {
 
     newGenerateMail = new GenerateMail();
+    readTemp = new ReadTemplate();
     letterTemplate = "custom-letter-template.txt";
     emailTemplate = "custom-email-template.txt";
     csvFile = "insurance_company_members.csv";
@@ -66,10 +67,14 @@ public class GenerateMailTest {
 
 
   @Test
-  public void testEquals() {
-
+  public void testEquals() throws Exception{
     assertTrue(newGenerateMail.equals(newGenerateMail));
-    assertFalse(newGenerateMail.equals(newGenerateMail1));
+    assertTrue(newGenerateMail.equals(newGenerateMail));
+    ReadTemplate readtemp1 = new ReadTemplate();
+    assertNotEquals(readtemp1, readTemp);
+    assertFalse(!(newGenerateMail instanceof GenerateMail));
+
+
   }
 
 
