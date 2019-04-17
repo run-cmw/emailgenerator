@@ -67,6 +67,7 @@ public class GenerateMailTest {
 
   @Test
   public void testEquals() {
+
     assertTrue(newGenerateMail.equals(newGenerateMail));
     assertFalse(newGenerateMail.equals(newGenerateMail1));
   }
