@@ -55,7 +55,7 @@ public class ControllerTest {
     String [] output = out.toString().split("\n");
     int size = output.length - 1;
 
-    // If generated correctly, should output "Mail generation was successful!\r"
+    // If generated correctly, should output "Mail generation was successful!"
     assertEquals(success, output[size]);
   }
 
@@ -71,7 +71,7 @@ public class ControllerTest {
     String [] output = out.toString().split("\n");
     int size = output.length - 1;
 
-    // If generated correctly, should output "Mail generation was successful!\r"
+    // If generated correctly, should output "Mail generation was successful!"
     assertEquals(success, output[size]);
   }
 
