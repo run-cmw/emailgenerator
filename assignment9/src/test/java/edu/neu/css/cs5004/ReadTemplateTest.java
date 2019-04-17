@@ -14,7 +14,8 @@ public class ReadTemplateTest {
   String corruptedFileName;
   String EmptyFile;
   String temp;
-  //String line;
+  String temp1;
+
 
 
   @Before
@@ -23,7 +24,9 @@ public class ReadTemplateTest {
     templateName = "custom-email-template.txt";
     corruptedFileName = "noTemplate.txt";
     newTemplateRead = new ReadTemplate();
+    newTemplateRead1 = new ReadTemplate();
     String temp = newTemplateRead.parseTemplate("custom-email-template.txt");
+    String temp1 = newTemplateRead1.parseTemplate("custom-letter-template.txt");
   }
 
   @Test
@@ -31,34 +34,35 @@ public class ReadTemplateTest {
     System.out.println(newTemplateRead.parseTemplate("custom-email-template.txt"));
     String checkString = newTemplateRead.parseTemplate("custom-email-template.txt");
 
+
   }
 
 
   @Test
   public void testToString(){
 
-    System.out.println(newTemplateRead.parseTemplate("custom-email-template.txt"));
-
-    newTemplateRead1 = new ReadTemplate();
-    String temp1 = newTemplateRead1.parseTemplate("custom-email-template.txt");
-    System.out.println(temp1);
-
-    //assertEquals(temp, temp1);
+    ReadTemplate testTemplate = new ReadTemplate();
+    String check = testTemplate.parseTemplate("test_custom_letter.txt");
+    System.out.println(check);
+    //System.out.println(testTemplate.parseTemplate("test_custom_letter.txt"));
+    String checkStr = "We are truly sorry this incident occurred, and we sincerely regret any anxiety it may cause.\n";
+    assertEquals(checkStr,testTemplate.parseTemplate("test_custom_letter.txt").toString() );
 
   }
 
 
    @Test
   public void testHashCode(){
-
-
+    assertNotEquals(newTemplateRead1.hashCode(), newTemplateRead.hashCode());
+    assertEquals(newTemplateRead.hashCode(), newTemplateRead.hashCode());
    }
 
 
 
    @Test
   public void testEquals(){
-
+    assertTrue(newTemplateRead.equals(newTemplateRead));
+    assertFalse(newTemplateRead.equals(newTemplateRead1));
 
    }
 
