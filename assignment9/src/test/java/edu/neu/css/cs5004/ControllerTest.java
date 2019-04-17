@@ -107,5 +107,37 @@ public class ControllerTest {
     assertEquals(feedback, out.toString());
   }
 
+  @Test
+  public void invalidNumberOfInputs() throws Exception {
+    // Error that occurs when number of arguments given doesn't equal 4
+
+    argument =
+        "--email --email-template email-template.txt --output-dir emails";
+    input = new ByteArrayInputStream(argument.getBytes());
+    System.setOut(new java.io.PrintStream(out));
+    System.setIn(input);
+    Controller.main(args);
+    feedback = "Enter arguments to generate email or letter:\r\n"
+        + "Error: Expected 4 arguments given 3 arguments.\r\n"
+        + feedback;
+    assertEquals(feedback, out.toString());
+  }
+
+  @Test
+  public void illegalInput() throws Exception {
+    // Error that occurs when the arguments given doesn't equal one of the allowed
+    // arguments.
+
+    argument =
+        "--incorrect --email-template email-template.txt --output-dir emails --csv-file customer.csv";
+    input = new ByteArrayInputStream(argument.getBytes());
+    System.setOut(new java.io.PrintStream(out));
+    System.setIn(input);
+    Controller.main(args);
+    feedback = "Enter arguments to generate email or letter:\r\n"
+        + "Error: --incorrect is not a legal input.\r\n"
+        + feedback;
+    assertEquals(feedback, out.toString());
+  }
 
 }

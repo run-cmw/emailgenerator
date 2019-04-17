@@ -84,11 +84,12 @@ public class Controller {
     String[] arrayInput = userInput.split("--");
 
     int size = arrayInput.length;
+    int argumentNumber = size - 1;
 
     // If number of inputs given is not four, error message returned.
-    if (size - 1 != EXPECTED_ARGUMENT_NUMBER) {
-      String feedback = "Expected " + EXPECTED_ARGUMENT_NUMBER + " arguments "
-          + "given " + size + " arguments.";
+    if (argumentNumber != EXPECTED_ARGUMENT_NUMBER) {
+      String feedback = "Error: Expected " + EXPECTED_ARGUMENT_NUMBER + " arguments "
+          + "given " + argumentNumber + " arguments.";
       throw new IllegalArgumentException(feedback);
     }
 
@@ -144,7 +145,7 @@ public class Controller {
               + " was provided.";
         } else {
           // If given argument is not one of the legal arguments.
-          feedback = "Error: "
+          feedback = "Error: --"
               + input[0]
               + " is not a legal input.";
         }
@@ -152,7 +153,7 @@ public class Controller {
       } else {
         // If not "--email" or "--letter", placing argument into dictionary with
         // key: value pair of flag: path. Example: --email-template: "emails"
-        input[1].replaceAll("\\s","");
+        input[1] = input[1].replaceAll("\\s","");
         dictionary.put(input[0], input[1]);
       }
     }

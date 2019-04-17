@@ -13,7 +13,7 @@ public class View {
    * @return - returns the user input.
    */
   public static String getInput(String prompt) {
-    Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in, "UTF-8");
     System.out.println(prompt);
     return scan.nextLine();
   }
