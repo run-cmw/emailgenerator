@@ -1,4 +1,5 @@
 package edu.neu.css.cs5004;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,14 +9,14 @@ import java.util.Objects;
 
 
 /**
- * This class represents Read Template
+ * This class represents Read Template.
  */
 public class ReadTemplate {
 
   protected StringBuilder templateToBeLoaded = new StringBuilder();
 
   /**
-   * Constructor to create a Template Reader
+   * Constructor to create a Template Reader.
    *
    */
   public ReadTemplate() {
@@ -23,7 +24,7 @@ public class ReadTemplate {
   }
 
   /**
-   * Method to parse the template
+   * Method to parse the template.
    * @param templateName given template name
    * @return a string representation of the template
    */
@@ -31,7 +32,7 @@ public class ReadTemplate {
     //System.out.println(System.getProperty("user.dir"));
 
     try (BufferedReader inputFile = new BufferedReader(
-        new InputStreamReader(new FileInputStream(templateName)))) {
+        new InputStreamReader(new FileInputStream(templateName), "UTF8"))) {
 
       String line;
       //templateToBeLoaded.setLength(0);
@@ -84,14 +85,14 @@ public class ReadTemplate {
 
 
   /**
-   * Returns a string representation of the object
+   * Returns a string representation of the object.
    * @return String representation of the object
    */
   @Override
   public String toString() {
-    return "ReadTemplate{" +
-        "templateToBeLoaded=" + templateToBeLoaded +
-        '}';
+    return "ReadTemplate{"
+        + "templateToBeLoaded=" + templateToBeLoaded
+        + '}';
   }
 }
 
