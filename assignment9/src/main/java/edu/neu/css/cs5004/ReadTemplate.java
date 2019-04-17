@@ -28,13 +28,13 @@ public class ReadTemplate {
    * @return a string representation of the template
    */
   public String parseTemplate(String templateName) {
-    System.out.println(System.getProperty("user.dir"));
+    //System.out.println(System.getProperty("user.dir"));
 
     try (BufferedReader inputFile = new BufferedReader(
         new InputStreamReader(new FileInputStream(templateName)))) {
 
       String line;
-      templateToBeLoaded.setLength(0);
+      //templateToBeLoaded.setLength(0);
 
       while ((line = inputFile.readLine()) != null) {
 

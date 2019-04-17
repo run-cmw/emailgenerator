@@ -140,7 +140,6 @@ public class GenerateMail {
         ", headers=" + headers +
         ", members=" + members +
         ", newReadTemplate=" + newReadTemplate +
-        ", newCSVProcessor=" + newCSVProcessor +
         ", newFileName='" + newFileName + '\'' +
         '}';
   }

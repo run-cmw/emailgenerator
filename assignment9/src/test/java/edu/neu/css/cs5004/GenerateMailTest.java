@@ -12,8 +12,6 @@ public class GenerateMailTest {
   private String letterTemplate;
   private String emailTemplate;
   private String csvFile;
-
-  //private String corruptFileName;
   private String outputDirectoryEmail;
   private String outputDirectoryLetter;
   MailType mailTypeLetter;
@@ -30,7 +28,6 @@ public class GenerateMailTest {
     outputDirectoryLetter = "letter";
     mailTypeLetter =  MailType.LETTER;
     mailTypeEmail =  MailType.EMAIL;
-    //corruptFileName = "fileDoesNotExist.csv";
 
   }
 
@@ -51,31 +48,27 @@ public class GenerateMailTest {
   public void testHashCode() throws Exception {
     newGenerateMail1 = new GenerateMail();
     newGenerateMail1.generateMail(emailTemplate, csvFile, mailTypeEmail, outputDirectoryEmail );
-
+    assertNotEquals(newGenerateMail.hashCode(), newGenerateMail1.hashCode());
+    assertEquals(newGenerateMail.hashCode(), newGenerateMail.hashCode() );
 
   }
 
 
   @Test
-  public void testToString() {
-    String tempString = "GenerateMail{MEMBER_INFO_FILE='insurance_company_members.csv',"
-        + " headers=null, members=null, newReadTemplate=ReadTemplate{templateToBeLoaded=}, "
-        + "newCSVProcessor=Header titles: [first_name, last_name, company_name, address, city, "
-        + "county, state, zip, phone1, phone2, email, web]";
-    System.out.println(newGenerateMail.toString());
-    assertEquals(tempString, newGenerateMail.toString());
+  public void testToString() throws Exception {
 
-
-
-
+    String checkStr = "GenerateMail{MEMBER_INFO_FILE='insurance_company_members.csv', headers=null, members=null, newReadTemplate=ReadTemplate{templateToBeLoaded=}, newFileName='null'}";
+    String checkStr1 = "";
+    assertEquals(checkStr, newGenerateMail.toString());
+    assertNotEquals(checkStr1, newGenerateMail.toString());
 
   }
 
 
   @Test
   public void testEquals() {
-
-
+    assertTrue(newGenerateMail.equals(newGenerateMail));
+    assertFalse(newGenerateMail.equals(newGenerateMail1));
   }
 
 
