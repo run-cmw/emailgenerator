@@ -1,11 +1,9 @@
 package edu.neu.css.cs5004;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;

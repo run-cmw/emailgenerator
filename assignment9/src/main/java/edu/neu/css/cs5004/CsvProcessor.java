@@ -56,15 +56,12 @@ public class CsvProcessor implements ICsvProcessor {
         new InputStreamReader(new FileInputStream(fileName), "UTF8"))) {
       String commaBetweenQuotes = "\",\""; // delimiter for file splitting is: ","
       String line;
-
-      while ((line = inputFile.readLine()) != null) {
-        line = inputFile.readLine();
-        // remove the double quotes at the beginning and end of the string
-        // (since not removed with split)
-        if (line != null) {
-          line = line.substring(1, line.length() - 1);
-          headerArrayList = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
-        }
+      line = inputFile.readLine();
+      // remove the double quotes at the beginning and end of the string
+      // (since not removed with split)
+      if (line != null) {
+        line = line.substring(1, line.length() - 1);
+        headerArrayList = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
       }
 
       while ((line = inputFile.readLine()) != null) {
