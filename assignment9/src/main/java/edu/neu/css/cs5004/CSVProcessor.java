@@ -65,9 +65,9 @@ public class CSVProcessor implements ICSVProcessor {
         parseMemberInfo();
       }
     } catch (FileNotFoundException fnfe) {
-      System.out.println("Sorry, this file was not found: " +  fnfe.getMessage());
+      System.out.print("Sorry, this file was not found: " +  fnfe.getMessage());
     } catch (IOException ioe) {
-      System.out.println("Sorry, something went wrong: " + ioe.getMessage());
+      System.out.print("Sorry, something went wrong: " + ioe.getMessage());
       ioe.printStackTrace();
     }
   }
@@ -149,5 +149,4 @@ public class CSVProcessor implements ICSVProcessor {
         "Member data: " +
         memberInfoArrayList.toString();
   }
-
 }

@@ -24,15 +24,47 @@ public class CSVProcessorTest {
   }
 
   @Test // No (expected = Exception.class) b/c exception will give file not found message due to try catch
-  public void testIOExceptionMessage() throws IOException {
+  public void testFileNotFoundExceptionMessage() throws IOException {
     final String NON_EXISTENT_FILE = "ghost.csv";
     final List<List<String>> EMPTY_ARRAY_LIST = new ArrayList<>();
     java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
     System.setOut(new java.io.PrintStream(out));
-    final String FILE_NOT_FOUND_MESSAGE = "Sorry, this file was not found: ghost.csv (The system cannot find the file specified)\r\n";
+    final String FILE_NOT_FOUND_MESSAGE = "Sorry, this file was not found: ghost.csv (The system cannot find the file specified)";
     CSVProcessor processor2 = new CSVProcessor(NON_EXISTENT_FILE);
 
     assertEquals(FILE_NOT_FOUND_MESSAGE, out.toString());
+    // test for empty Lists b/c method will continue after try catch
+    assertEquals(EMPTY_ARRAY_LIST, processor2.getHeaderArrayList());
+    assertEquals(EMPTY_ARRAY_LIST, processor2.getMemberInfoArrayList());
+  }
+
+//  @Test // No (expected = Exception.class) b/c exception will give !!!! message due to try catch
+//  public void testIOExceptionMessage() throws IOException {
+//
+//    final String FILE_WITH_HIGH_PERMISSION = ".hidden-directory/.hidden-file.txt";
+//    final List<List<String>> EMPTY_ARRAY_LIST = new ArrayList<>();
+//    java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+//    System.setOut(new java.io.PrintStream(out));
+//    final String IO_EXCEPTION_MESSAGE = "Sorry, something went wrong: ghost.csv (The system cannot find the file specified)";
+//    CSVProcessor processor2 = new CSVProcessor(FILE_WITH_HIGH_PERMISSION);
+//
+//    assertEquals(IO_EXCEPTION_MESSAGE, out.toString());
+//    // test for empty Lists b/c method will continue after try catch
+//    assertEquals(EMPTY_ARRAY_LIST, processor2.getHeaderArrayList());
+//    assertEquals(EMPTY_ARRAY_LIST, processor2.getMemberInfoArrayList());
+//  }
+
+  @Test (expected = Exception.class)
+  public void testIOExceptionMessage() throws IOException {
+
+    final String ADMIN_PERMISSION_FILE = "admin-permission-file.txt";
+    final List<List<String>> EMPTY_ARRAY_LIST = new ArrayList<>();
+    java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream();
+    System.setOut(new java.io.PrintStream(out));
+    final String IO_EXCEPTION_MESSAGE = "Sorry, something went wrong: ghost.csv (The system cannot find the file specified)";
+    CSVProcessor processor2 = new CSVProcessor(ADMIN_PERMISSION_FILE);
+
+//    assertEquals(IO_EXCEPTION_MESSAGE, out.toString());
     // test for empty Lists b/c method will continue after try catch
     assertEquals(EMPTY_ARRAY_LIST, processor2.getHeaderArrayList());
     assertEquals(EMPTY_ARRAY_LIST, processor2.getMemberInfoArrayList());
