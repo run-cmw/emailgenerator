@@ -1,9 +1,10 @@
 package edu.neu.css.cs5004;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,17 +52,24 @@ public class CsvProcessor implements ICsvProcessor {
    * @throws IOException if there is an input or output exception, such as file not found
    */
   private void readFile(String fileName) throws IOException {
-    try (BufferedReader inputFile = new BufferedReader(new FileReader(fileName))) {
+    try (BufferedReader inputFile = new BufferedReader(
+        new InputStreamReader(new FileInputStream(fileName), "UTF8"))) {
       String commaBetweenQuotes = "\",\""; // delimiter for file splitting is: ","
       String line;
 
-      line = inputFile.readLine();
-      // remove the double quotes at the beginning and end of the string (since not removed with split)
-      line = line.substring(1, line.length() - 1);
-      headerArrayList = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
+      while ((line = inputFile.readLine()) != null) {
+        line = inputFile.readLine();
+        // remove the double quotes at the beginning and end of the string
+        // (since not removed with split)
+        if (line != null) {
+          line = line.substring(1, line.length() - 1);
+          headerArrayList = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
+        }
+      }
 
       while ((line = inputFile.readLine()) != null) {
-        // remove the double quotes at the beginning and end of the string (since not removed with split)
+        // remove the double quotes at the beginning and end of the string
+        // (since not removed with split)
         line = line.substring(1, line.length() - 1);
         memberInfoString = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
         parseMemberInfo();

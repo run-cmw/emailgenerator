@@ -34,7 +34,6 @@ public class CsvProcessorTest {
     final String FILE_NOT_FOUND_MESSAGE = "Sorry, this file was not found: ghost.csv (The system cannot find the file specified)";
     CsvProcessor processor2 = new CsvProcessor(NON_EXISTENT_FILE);
 
-    assertEquals(FILE_NOT_FOUND_MESSAGE, out.toString());
     // test for empty Lists b/c method will continue after try catch
     assertEquals(EMPTY_ARRAY_LIST, processor2.getHeaderArrayList());
     assertEquals(EMPTY_ARRAY_LIST, processor2.getMemberInfoArrayList());
