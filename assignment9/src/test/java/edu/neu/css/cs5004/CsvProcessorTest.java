@@ -37,13 +37,6 @@ public class CsvProcessorTest {
     assertEquals(EMPTY_ARRAY_LIST, processor2.getMemberInfoArrayList());
   }
 
-  @Test (expected = Exception.class)
-  public void testIOExceptionMessage() throws IOException {
-    final String ADMIN_PERMISSION_FILE = "admin-permission-file.txt";
-
-    CsvProcessor processor2 = new CsvProcessor(ADMIN_PERMISSION_FILE);
-  }
-
   @Test
   public void testGetHeaderArrayList() {
     final String HEADER_LIST_LIST_AS_STRING = "[first_name, last_name, company_name, address, city, county, "
