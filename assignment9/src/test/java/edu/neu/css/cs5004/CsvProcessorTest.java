@@ -40,13 +40,9 @@ public class CsvProcessorTest {
     assertEquals(EMPTY_ARRAY_LIST, processor2.getMemberInfoArrayList());
   }
 
-  @Test (expected = IOException.class)
+  @Test (expected = Exception.class)
   public void testIOExceptionMessage() throws IOException {
     final String ADMIN_PERMISSION_FILE = "admin-permission-file.txt";
-    File file = new File(ADMIN_PERMISSION_FILE);
-    FileChannel channel = new RandomAccessFile(file, "rw").getChannel();
-    // lock the file that was created to trigger IOException
-    channel.lock();
 
     CsvProcessor processor2 = new CsvProcessor(ADMIN_PERMISSION_FILE);
   }
