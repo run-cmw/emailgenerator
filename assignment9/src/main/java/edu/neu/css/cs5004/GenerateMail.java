@@ -33,7 +33,7 @@ public class GenerateMail {
   /**
    * Create a new object of CSVProcsessor.
    */
-  private CSVProcessor newCsvprocessor = new CSVProcessor(MEMBER_INFO_FILE);
+  private CsvProcessor newCsvprocessor = new CsvProcessor(MEMBER_INFO_FILE);
 
   /**
    * newFileName as a String.

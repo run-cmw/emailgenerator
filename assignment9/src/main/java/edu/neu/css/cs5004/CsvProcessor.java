@@ -11,9 +11,9 @@ import java.util.Objects;
 
 /**
  * This class represents a CSV processor that reads and parses CSV files.
- * It implements ICSVProcessor.
+ * It implements ICsvProcessor.
  */
-public class CSVProcessor implements ICSVProcessor {
+public class CsvProcessor implements ICsvProcessor {
   /**
    * ArrayList of parsed header values in the CSV file. In headerArrayList, each header value
    * is its own ArrayList.
@@ -32,12 +32,12 @@ public class CSVProcessor implements ICSVProcessor {
   private List<String> memberInfoString;
 
   /**
-   * Create a CSVProcessor given a CSV file name.
+   * Create a CsvProcessor given a CSV file name.
    *
    * @param fileName Name of the file to be read and parsed
    * @throws IOException if there is an input or output exception, such as file not found
    */
-  public CSVProcessor(String fileName) throws IOException {
+  public CsvProcessor(String fileName) throws IOException {
     this.headerArrayList = new ArrayList<>();
     this.memberInfoArrayList = new ArrayList<>();
     this.readFile(fileName);
@@ -56,11 +56,13 @@ public class CSVProcessor implements ICSVProcessor {
       String line;
 
       line = inputFile.readLine();
-      line =  line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
+      // remove the double quotes at the beginning and end of the string (since not removed with split)
+      line = line.substring(1, line.length() - 1);
       headerArrayList = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
 
       while ((line = inputFile.readLine()) != null) {
-        line = line.substring(1, line.length()-1); // remove the double quotes at the beginning and end of the string (since not removed with split)
+        // remove the double quotes at the beginning and end of the string (since not removed with split)
+        line = line.substring(1, line.length() - 1);
         memberInfoString = new ArrayList<>(Arrays.asList(line.trim().split(commaBetweenQuotes)));
         parseMemberInfo();
       }
@@ -83,7 +85,8 @@ public class CSVProcessor implements ICSVProcessor {
     // iterate through ArrayList of member info represented as Strings
     // add the number of elements in the parsed header to int i b/c that will loop to next member
     for (int i = 0; i < memberInfoString.size(); i = i + headerArrayList.size()) {
-      memberInfoArrayList.add(memberInfoString.subList(i, headerArrayList.size())); // end each sublist at the end of the current member
+      // end each sublist at the end of the current member
+      memberInfoArrayList.add(memberInfoString.subList(i, headerArrayList.size()));
     }
 
     return memberInfoArrayList;
@@ -117,10 +120,10 @@ public class CSVProcessor implements ICSVProcessor {
     if (this == obj) {
       return true;
     }
-    if (!(obj instanceof CSVProcessor)) {
+    if (!(obj instanceof CsvProcessor)) {
       return false;
     }
-    CSVProcessor other = (CSVProcessor) obj;
+    CsvProcessor other = (CsvProcessor) obj;
     return this.getHeaderArrayList().equals(other.getHeaderArrayList())
         && this.getMemberInfoArrayList().equals(other.getMemberInfoArrayList());
   }
@@ -144,9 +147,10 @@ public class CSVProcessor implements ICSVProcessor {
    * @return string representation of the object
    */
   public String toString() {
-    return "Header titles: " +
-        headerArrayList.toString() + "\n" +
-        "Member data: " +
-        memberInfoArrayList.toString();
+    return "Header titles: "
+        + headerArrayList.toString()
+        + "\n"
+        + "Member data: "
+        + memberInfoArrayList.toString();
   }
 }

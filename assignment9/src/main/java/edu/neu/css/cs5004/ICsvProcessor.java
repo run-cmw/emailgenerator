@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * This interface contains all functinality that the CSV Processor supports.
  */
-public interface ICSVProcessor {
+public interface ICsvProcessor {
   /**
    * Return ArrayList of header titles.
    *
