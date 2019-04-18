@@ -5,14 +5,14 @@ import java.util.Scanner;
 /**
  * View class that creates the user interface.
  */
-public class View {
+class View {
 
   /**
    * Takes in and returns user input.
    * @param prompt - A string that informs the user what to input.
    * @return - returns the user input.
    */
-  public static String getInput(String prompt) {
+  static String getInput(String prompt) {
     Scanner scan = new Scanner(System.in, "UTF-8");
     System.out.print(prompt);
     return scan.nextLine();
@@ -22,14 +22,14 @@ public class View {
    * Takes in a feedback string and shows this feedback to the user.
    * @param feedback - A string with feedback (error message).
    */
-  public static void giveFeedback(String feedback) {
+  static void giveFeedback(String feedback) {
     System.out.print(feedback);
   }
 
   /**
    * Provides an example of proper user inputs to the user when the user provides incorrect inputs.
    */
-  public static void provideExample() {
+  static void provideExample() {
     String feedback = "\n Usage: \n"
         + "  --email: "
         + "only generate email messages. \n"
@@ -55,7 +55,7 @@ public class View {
   /**
    * Provides a success message if the mails were generated successfully.
    */
-  public static void provideSuccessMessage() {
+  static void provideSuccessMessage() {
     System.out.print("Mail generation was successful!\n");
   }
 }

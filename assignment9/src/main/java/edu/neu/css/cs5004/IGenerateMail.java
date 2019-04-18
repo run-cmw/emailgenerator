@@ -11,6 +11,7 @@ public interface IGenerateMail {
    * @param fileName name of the file
    * @param mailType mailtype email/letter
    * @param outputDir output directory where the generated files will go
+   * @throws Exception when no mail is generated
    */
 
   void generateMail(String templateName, String fileName, MailType mailType,

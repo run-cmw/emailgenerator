@@ -13,7 +13,7 @@ import java.util.Objects;
  * This class represents Generating a mail functionality.
  */
 
-public class GenerateMail implements  IGenerateMail{
+public class GenerateMail {
 
   private static final String MEMBER_INFO_FILE = "insurance_company_members.csv";
 
